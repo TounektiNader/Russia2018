@@ -1,0 +1,92 @@
+{% extends 'baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap-3.3.5-dist/css/bootstrap.css')}}"/>
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min3f0d.css?v2.2.0')}}">
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+
+
+
+    {%  for flashMessage in app.session.flashbag.get('Suppression') %}
+        <div class="alert-danger">
+            {{ flashMessage   }}
+
+
+        </div>
+    {% endfor %}
+
+    <div class="content-wrapper">
+
+        <div class="modal-dialog" role="document">
+            <br><br><br>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a    button type="button" class="close" data-dismiss="modal" aria-label="Close"  href="{{ path('resultatList') }}" >x</a>
+
+                    <h4 class="modal-title" id="exampleModalLabel">Modfier Résultat</h4>
+                </div>
+                <div class="modal-body">
+
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                     <img src="http://localhost/russia/web/public/images/{{ resultat.idpartie.home.drapeau }}" height="30" width="30">   <label for="recipient-name" class="form-control-label">But Home:</label>
+                        {{ form_widget(form.buthome,{'attr':{'class':'form-control'}} ) }}
+                    </div>
+                    <div class="form-group">
+                        <img src="http://localhost/russia/web/public/images/{{ resultat.idpartie.away.drapeau }}" height="30" width="30">    <label for="recipient-name" class="form-control-label">But Away:</label>
+                        {{ form_widget(form.butaway,{'attr':{'class':'form-control'}} ) }}
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <table>
+
+                    <tr>
+                   <td> {{ form_row(form.submit,{'attr':{'class':'btn btn-warning'}}) }} </td>
+                        <td>  <a   button type="button" class="btn btn-block btn-danger" data-dismiss="modal"  href="{{ path('resultatList') }}" style="
+
+                           margin-left: 400px;
+    margin-top: 0px;
+    border-top-width: 1px;
+    padding-top: 6px;
+    margin-bottom: 0px;
+    border-bottom-width: 1px;
+   width: 76px;
+">Annuler</a>       </td>
+                    </tr>
+                    </table>
+
+                </div>
+
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <!-- Jquery JS file -->
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.3.min.js')}}"></script>
+
+    <!-- Bootstrap JS file -->
+    <script type="text/javascript" src="{{ asset('bootstrap-3.3.5-dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('toastr/toastr.min.js')}}"></script>
+    <!-- Custom JS file -->
+    <script type="text/javascript" src="{{ asset('js/script.js')}}"></script>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

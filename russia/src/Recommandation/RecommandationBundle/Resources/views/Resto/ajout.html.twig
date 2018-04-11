@@ -1,0 +1,79 @@
+{% extends 'baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="{{ path('afficherestoadmin') }}">Restaurants</a></li>
+                 <li class="active">Ajout d'un restaurant</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div align="" class="row">
+                 <!-- left column -->
+                 <div class="col-md-6">
+                     <!-- general form elements -->
+                     <div class="box box-primary">
+                         <div class="box-header with-border">
+                             <h3 class="box-title">Ajout d'un nouveau restaurant</h3>
+                         </div>
+                         <!-- /.box-header -->
+                         <!-- form start -->
+                         <form name="form" method="post" enctype="multipart/form-data">
+                             <div class="box-body">
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Nom</label>
+                                     <input class="form-control" placeholder="Nom" type="text" id="form_nomresto" name="form[nomresto]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Détails</label>
+                                     <textarea class="form-control" placeholder="Détails" id="form_detailsresto" name="form[detailsresto]" required="required" cols="20" rows="5"></textarea>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Position</label>
+                                     <input type="text" class="form-control" placeholder="Position" id="form_positionresto" name="form[positionresto]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputFile">Photo</label>
+                                     {{ form_row(form.photoresto)}}
+                                     <p class="help-block">Sélectionnez une image JPG.</p>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputPassword1">Ville</label>
+                                     {{ form_widget(form.idville)}}
+                                 </div>
+                             </div>
+                             <!-- /.box-body -->
+                             <div class="box-footer">
+                                 <button class="btn btn-primary" type="submit" id="form_Ajouter" name="form[Ajouter]">Ajouter</button>
+                             </div>
+                             {{ form_row(form._token) }}
+                         </form>
+                     </div>
+                     <!-- /.box -->
+
+                     <!-- /.box-body -->
+                 </div>
+                 <!-- /.box -->
+             </div>
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}

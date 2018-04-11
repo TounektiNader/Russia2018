@@ -1,0 +1,39 @@
+recompense_recompens_homepage:
+    path:     /
+    defaults: { _controller: RecompenseRecompensBundle:Default:index }
+AjouterModele:
+        path:     /admin/Ajout
+        defaults: { _controller: RecompenseRecompensBundle:Cadeau:ajouter }
+AffichageModele:
+    path:     /admin/ListModele
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:List }
+Delete_Cadeau:
+        path:     /admin/Delete/{id}
+        defaults: { _controller: RecompenseRecompensBundle:Cadeau:Delete }
+Update_Cadeau:
+        path:     /admin/Update/{id}
+        defaults: { _controller: RecompenseRecompensBundle:Cadeau:Update }
+CadeauxModele:
+    path:     /ListCadeau
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:Cadeau }
+AjouterRecompense:
+    path:     /Recompense/{id}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:Ajout }
+RecompenseUser:
+    path:     /RecompenseUser
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:Recompense }
+AjouterPromo:
+    path:     /admin/ajoutpromo
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:AjoutPromo }
+DeletePromo:
+    path:     /Promo
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:DeletePromo }
+CadeauTag:
+    path:     /Tag/{id}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:CadeauTag }
+PromoModele:
+    path:     /admin/ListPromo
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:ListPromo }
+Delete_Promo:
+    path:     /DeletePromo/{id}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:effacerPromo }

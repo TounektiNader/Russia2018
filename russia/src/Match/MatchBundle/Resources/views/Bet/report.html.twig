@@ -1,0 +1,943 @@
+
+
+
+
+
+
+
+
+
+
+
+{% extends 'baseadmin.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                ChartJS
+                <small>Preview sample</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Charts</a></li>
+                <li class="active">ChartJS</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3><V>{{ cntcadeau }}</V></h3>
+
+                            <p>Cadeaux</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3>{{ somme }}<sup style="font-size: 20px"></sup></h3>
+
+                            <p>Recommandations</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3>{{ cntuser }}</h3>
+
+                            <p>User Inscris</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>{{ countpartie }}</h3>
+
+                            <p>Match</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <!-- AREA CHART -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Area Chart</h3>
+
+
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <div id="container6"></div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- DONUT CHART -->
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Donut Chart</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div id="container5" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+                <!-- /.col (LEFT) -->
+                <div class="col-md-6">
+                    <!-- LINE CHART -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Line Chart</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- BAR CHART -->
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Bar Chart</h3>
+                            <div class="form-group">
+                                <label for="sel1">Select list:</label>
+                                {{ form_start(form) }}
+                                <select class="form-control"  name="CGroup" >
+                                    {% for group in groupes %}
+
+                                        <option value="{{ group.groupe}}"> {{ group.groupe}} </option>
+
+
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="box-footer">
+                                {{ form_row(form.filtrer,{'attr':{'class':'btn btn-block btn-success btn-sm'}}) }}
+
+
+                            </div>
+                            {{ form_end(form) }}
+
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <div id="container" style="width: 510px; height: 230px; margin: 0 auto"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Bar Chart</h3>
+
+                        </div>
+                        <div class="box-body">
+                            <div class="chart">
+                                <div id="container2"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box -->
+
+                </div>
+                <!-- /.col (RIGHT) -->
+            </div>
+            <!-- /.row -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <!-- foooter -->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.0
+        </div>
+        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                                <p>New phone +1(800)555-1234</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                                <p>nora@example.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                                <p>Execution time 5 seconds</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="label label-danger pull-right">70%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Update Resume
+                                <span class="label label-success pull-right">95%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Laravel Integration
+                                <span class="label label-warning pull-right">50%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <h4 class="control-sidebar-subheading">
+                                Back End Framework
+                                <span class="label label-primary pull-right">68%</span>
+                            </h4>
+
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Allow mail redirect
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Other sets of options are available
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Expose author name in posts
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Allow the user to show his name in blog posts
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Show me as online
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Turn off notifications
+                            <input type="checkbox" class="pull-right">
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Delete chat history
+                            <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                        </label>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+
+
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- ChartJS -->
+    <script src="../../bower_components/chart.js/Chart.js"></script>
+    <!-- FastClick -->
+    <script src="../../bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- page script -->
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Stacked column chart'
+            },
+            xAxis: {
+                categories: [{% for c in equipes %}'{{ c.nomequipe }}',{% endfor %}]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: [{
+                name: 'But Marque',
+                data:  [{% for c in equipes %}{{ c.butmarque }},{% endfor %}]
+            }, {
+                name: 'But Encaisse',
+                data: [{% for c in equipes %}{{ c.butencaisse }},{% endfor %}]
+            }]
+        });
+    </script>
+
+
+
+
+     <script>
+        $.getJSON('https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/world-mortality.json', function (data) {
+
+            var points = [],
+                regionP,
+                regionVal,
+                regionI = 0,
+                countryP,
+                countryI,
+                causeP,
+                causeI,
+                region,
+                country,
+                cause,
+                causeName = {
+                    'Communicable & other Group I': 'Communicable diseases',
+                    'Noncommunicable diseases': 'Non-communicable diseases',
+                    'Injuries': 'Injuries'
+                };
+
+            for (region in data) {
+                if (data.hasOwnProperty(region)) {
+                    regionVal = 0;
+                    regionP = {
+                        id: 'id_' + regionI,
+                        name: region,
+                        color: Highcharts.getOptions().colors[regionI]
+                    };
+                    countryI = 0;
+                    for (country in data[region]) {
+                        if (data[region].hasOwnProperty(country)) {
+                            countryP = {
+                                id: regionP.id + '_' + countryI,
+                                name: country,
+                                parent: regionP.id
+                            };
+                            points.push(countryP);
+                            causeI = 0;
+                            for (cause in data[region][country]) {
+                                if (data[region][country].hasOwnProperty(cause)) {
+                                    causeP = {
+                                        id: countryP.id + '_' + causeI,
+                                        name: causeName[cause],
+                                        parent: countryP.id,
+                                        value: Math.round(+data[region][country][cause])
+                                    };
+                                    regionVal += causeP.value;
+                                    points.push(causeP);
+                                    causeI = causeI + 1;
+                                }
+                            }
+                            countryI = countryI + 1;
+                        }
+                    }
+                    regionP.value = Math.round(regionVal / countryI);
+                    points.push(regionP);
+                    regionI = regionI + 1;
+                }
+            }
+            Highcharts.chart('container2', {
+                series: [{
+                    type: 'treemap',
+                    layoutAlgorithm: 'squarified',
+                    allowDrillToNode: true,
+                    animationLimit: 1000,
+                    dataLabels: {
+                        enabled: false
+                    },
+                    levelIsConstant: false,
+                    levels: [{
+                        level: 1,
+                        dataLabels: {
+                            enabled: true
+                        },
+                        borderWidth: 3
+                    }],
+                    data: points
+                }],
+                subtitle: {
+                    text: 'Click points to drill down. Source: <a href="http://apps.who.int/gho/data/node.main.12?lang=en">WHO</a>.'
+                },
+                title: {
+                    text: 'Global Mortality Rate 2012, per 100 000 population'
+                }
+            });
+
+        });
+    </script>
+    <script>
+        Highcharts.chart('container3', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Browser<br>shares<br>2017',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 40
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: true,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white'
+                        }
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%']
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                innerSize: '50%',
+                data: [
+                    ['Voiture', {{ voiture }}],
+                    ['Telephone', {{ tel }}],
+                    ['Ticket', {{ Ticket }}],
+                    ['Bon_Achat', {{ Bon_Achat }}],
+
+                ]
+            }]
+        });
+
+    </script>
+    <script>
+        Highcharts.chart('container4', {
+
+            title: {
+                text: 'Logarithmic axis demo'
+            },
+
+            xAxis: {
+                categories: ['{{ user1.username }}','{{ user2.username }}','{{ user3.username }}','{{ user4.username }}']
+            },
+
+            yAxis: {
+                type: 'logarithmic',
+                minorTickInterval: 0.1
+            },
+
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br />',
+                pointFormat: 'x = {point.x}, y = {point.y}'
+            },
+
+            series: [{
+                data: [{{ user1.jeton }}, {{ user2.jeton }}, {{ user3.jeton }},{{ user4.jeton }}],
+                pointStart: 0
+            }]
+        });
+    </script>
+    <script>
+        Highcharts.chart('container5', {
+            title: {
+                text: 'Combination chart'
+            },
+            xAxis: {
+                categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+            },
+            labels: {
+                items: [{
+                    html: 'Total fruit consumption',
+                    style: {
+                        left: '50px',
+                        top: '18px',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                    }
+                }]
+            },
+            series: [{
+                type: 'column',
+                name: 'Jane',
+                data: [3, 2, 1, 3, 4]
+            }, {
+                type: 'column',
+                name: 'John',
+                data: [2, 3, 5, 7, 6]
+            }, {
+                type: 'column',
+                name: 'Joe',
+                data: [4, 3, 3, 9, 0]
+            }, {
+                type: 'spline',
+                name: 'Average',
+                data: [3, 2.67, 3, 6.33, 3.33],
+                marker: {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
+                }
+            }, {
+                type: 'pie',
+                name: 'Total consumption',
+                data: [{
+                    name: 'Jane',
+                    y: 13,
+                    color: Highcharts.getOptions().colors[0] // Jane's color
+                }, {
+                    name: 'John',
+                    y: 23,
+                    color: Highcharts.getOptions().colors[1] // John's color
+                }, {
+                    name: 'Joe',
+                    y: 19,
+                    color: Highcharts.getOptions().colors[2] // Joe's color
+                }],
+                center: [100, 80],
+                size: 100,
+                showInLegend: false,
+                dataLabels: {
+                    enabled: false
+                }
+            }]
+        });
+    </script>
+    <script>
+        // Uncomment to style it like Apple Watch
+        /*
+        if (!Highcharts.theme) {
+            Highcharts.setOptions({
+                chart: {
+                    backgroundColor: 'black'
+                },
+                colors: ['#F62366', '#9DFF02', '#0CCDD6'],
+                title: {
+                    style: {
+                        color: 'silver'
+                    }
+                },
+                tooltip: {
+                    style: {
+                        color: 'silver'
+                    }
+                }
+            });
+        }
+        // */
+
+        /**
+         * In the chart render event, add icons on top of the circular shapes
+         */
+        function renderIcons() {
+
+            // Move icon
+            if (!this.series[0].icon) {
+                this.series[0].icon = this.renderer.path(['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8])
+                    .attr({
+                        'stroke': '#303030',
+                        'stroke-linecap': 'round',
+                        'stroke-linejoin': 'round',
+                        'stroke-width': 2,
+                        'zIndex': 10
+                    })
+                    .add(this.series[2].group);
+            }
+            this.series[0].icon.translate(
+                this.chartWidth / 2 - 10,
+                this.plotHeight / 2 - this.series[0].points[0].shapeArgs.innerR -
+                (this.series[0].points[0].shapeArgs.r - this.series[0].points[0].shapeArgs.innerR) / 2
+            );
+
+            // Exercise icon
+            if (!this.series[1].icon) {
+                this.series[1].icon = this.renderer.path(
+                    ['M', -8, 0, 'L', 8, 0, 'M', 0, -8, 'L', 8, 0, 0, 8,
+                        'M', 8, -8, 'L', 16, 0, 8, 8]
+                )
+                    .attr({
+                        'stroke': '#ffffff',
+                        'stroke-linecap': 'round',
+                        'stroke-linejoin': 'round',
+                        'stroke-width': 2,
+                        'zIndex': 10
+                    })
+                    .add(this.series[2].group);
+            }
+            this.series[1].icon.translate(
+                this.chartWidth / 2 - 10,
+                this.plotHeight / 2 - this.series[1].points[0].shapeArgs.innerR -
+                (this.series[1].points[0].shapeArgs.r - this.series[1].points[0].shapeArgs.innerR) / 2
+            );
+
+            // Stand icon
+            if (!this.series[2].icon) {
+                this.series[2].icon = this.renderer.path(['M', 0, 8, 'L', 0, -8, 'M', -8, 0, 'L', 0, -8, 8, 0])
+                    .attr({
+                        'stroke': '#303030',
+                        'stroke-linecap': 'round',
+                        'stroke-linejoin': 'round',
+                        'stroke-width': 2,
+                        'zIndex': 10
+                    })
+                    .add(this.series[2].group);
+            }
+
+            this.series[2].icon.translate(
+                this.chartWidth / 2 - 10,
+                this.plotHeight / 2 - this.series[2].points[0].shapeArgs.innerR -
+                (this.series[2].points[0].shapeArgs.r - this.series[2].points[0].shapeArgs.innerR) / 2
+            );
+        }
+
+        Highcharts.chart('container6', {
+
+            chart: {
+                type: 'solidgauge',
+                height: '110%',
+                events: {
+                    render: renderIcons
+                }
+            },
+
+            title: {
+                text: 'Activity',
+                style: {
+                    fontSize: '24px'
+                }
+            },
+
+            tooltip: {
+                borderWidth: 0,
+                backgroundColor: 'none',
+                shadow: false,
+                style: {
+                    fontSize: '16px'
+                },
+                pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
+                positioner: function (labelWidth) {
+                    return {
+                        x: (this.chart.chartWidth - labelWidth) / 2,
+                        y: (this.chart.plotHeight / 2) + 15
+                    };
+                }
+            },
+
+            pane: {
+                startAngle: 0,
+                endAngle: 360,
+                background: [{ // Track for Move
+                    outerRadius: '112%',
+                    innerRadius: '88%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
+                        .setOpacity(0.3)
+                        .get(),
+                    borderWidth: 0
+                }, { // Track for Exercise
+                    outerRadius: '87%',
+                    innerRadius: '63%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[1])
+                        .setOpacity(0.3)
+                        .get(),
+                    borderWidth: 0
+                }, { // Track for Stand
+                    outerRadius: '62%',
+                    innerRadius: '38%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[2])
+                        .setOpacity(0.3)
+                        .get(),
+                    borderWidth: 0
+                }]
+            },
+
+            yAxis: {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+            },
+
+            plotOptions: {
+                solidgauge: {
+                    dataLabels: {
+                        enabled: false
+                    },
+                    linecap: 'round',
+                    stickyTracking: false,
+                    rounded: true
+                }
+            },
+
+            series: [{
+                name: 'Move',
+                data: [{
+                    color: Highcharts.getOptions().colors[0],
+                    radius: '112%',
+                    innerRadius: '88%',
+                    y: 80
+                }]
+            }, {
+                name: 'Exercise',
+                data: [{
+                    color: Highcharts.getOptions().colors[1],
+                    radius: '87%',
+                    innerRadius: '63%',
+                    y: 65
+                }]
+            }, {
+                name: 'Stand',
+                data: [{
+                    color: Highcharts.getOptions().colors[2],
+                    radius: '62%',
+                    innerRadius: '38%',
+                    y: 50
+                }]
+            }]
+        });
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

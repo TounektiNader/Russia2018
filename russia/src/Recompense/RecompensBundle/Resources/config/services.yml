@@ -1,0 +1,4 @@
+services:
+#    recompense_recompens.example:
+#        class: Recompense\RecompensBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

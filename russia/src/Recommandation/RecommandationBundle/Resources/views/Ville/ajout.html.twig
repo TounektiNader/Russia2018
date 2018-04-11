@@ -1,0 +1,97 @@
+{% extends 'baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="{{ path('affichevilleadmin') }}">Villes</a></li>
+                 <li class="active">Ajout d'une ville</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div align="" class="row">
+                 <!-- left column -->
+                 <div class="col-md-6">
+                     <!-- general form elements -->
+                     <div class="box box-primary">
+                         <div class="box-header with-border">
+                             <h3 class="box-title">Ajout d'une nouvelle ville</h3>
+                         </div>
+                         <!-- /.box-header -->
+                         <!-- form start -->
+                         <form name="form" method="post" enctype="multipart/form-data">
+                             <div class="box-body">
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Nom</label>
+                                     <input class="form-control" placeholder="Nom" type="text" id="form_nomville" name="form[nomville]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Fondation</label>
+                                     <input class="form-control" placeholder="Fondation" type="text" id="form_fondationville" name="form[fondationville]" required="required" maxlength="4">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Population</label>
+                                     <input class="form-control" placeholder="Population" type="text" id="form_populationville" name="form[populationville]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Timezone</label>
+                                     <input class="form-control" placeholder="Timezone" type="text" id="form_timezoneville" name="form[timezone]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Equipe locale</label>
+                                     <input class="form-control" placeholder="Equipe locale" type="text" id="form_equipeville" name="form[equipelocale]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Position</label>
+                                     <input type="text" class="form-control" placeholder="Position" id="form_positionville" name="form[coordonnees]" required="required" maxlength="50">
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputFile">Photo</label>
+                                     {{ form_row(form.photoville)}}
+                                     <p class="help-block">Sélectionnez une image JPG.</p>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputFile">Logo</label>
+                                     {{ form_row(form.logoville)}}
+                                     <p class="help-block">Sélectionnez une image JPG.</p>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputFile">Logo de l'équipe</label>
+                                     {{ form_row(form.logoequipe)}}
+                                     <p class="help-block">Sélectionnez une image JPG.</p>
+                                 </div>
+                             </div>
+                             <!-- /.box-body -->
+                             <div class="box-footer">
+                                 <button class="btn btn-primary" type="submit" id="form_Ajouter" name="form[Ajouter]">Ajouter</button>
+                             </div>
+                             {{ form_row(form._token) }}
+                         </form>
+                     </div>
+                     <!-- /.box -->
+
+                     <!-- /.box-body -->
+                 </div>
+                 <!-- /.box -->
+             </div>
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'baseadmin.html.twig' %}
+
+    {% block style %}
+        {{ parent() }}
+    {% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <h1>
+                 Formulaire de modif de joueurs
+
+             </h1>
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="#">Equipe</a></li>
+                 <li class="active">Modifier l'equipe</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div class="row">
+                 <!-- left column -->
+                 <div class="col-md-12">
+                     <!-- general form elements -->
+                     <div class="box box-primary">
+                         <div class="box-header with-border">
+                             <h3 class="box-title">Formulaire</h3>
+                         </div>
+                         <!-- /.box-header -->
+                         <!-- form start -->
+
+
+                         {{ form_start(form) }}
+                         <div class="box-body">
+                             <div class="form-group">
+                                 {{ form_row(form.valider, {'label': 'Modifier'}) }}
+                             </div>
+                             <a href="{{ path('_afficher_joueurs') }}">Tableaux des joueurs</a>
+
+                             {{ form_end(form) }}
+                         </div>
+                         <!-- /.box -->
+
+                         <!-- Form Element sizes -->
+
+                         <!-- /.box -->
+
+
+                         <!-- /.box -->
+
+                         <!-- Input addon -->
+
+                         <!--/.col (left) -->
+                         <!-- right column -->
+
+                         <!--/.col (right) -->
+                     </div>
+                 </div>
+                 <!-- /.row -->
+         </section>
+         <!-- /.content -->
+     </div>
+
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+     <script src="{{ asset('public/js/1_jquery.min.js') }}"></script>
+     <script src="{{ asset('public/js/2_jquery.ui.widget.js') }}"></script>
+     <script src="{{ asset('public/js/3_jquery.iframe-transport.js') }}"></script>
+     <script src="{{ asset('public/js/4_jquery.fileupload.js') }}"></script>
+     <script src="{{ asset('public/js/5_init.js') }}"></script>
+ {% endblock %}

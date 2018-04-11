@@ -1,0 +1,39 @@
+<div class="alert alert-danger text-center" role="alert">{{ 'discutea.forum.warning.preview'|trans }}</div>
+{#}
+<li id="post-preview" class="list-group-item topics">
+  <div class="row">
+    <div class="col-sm-2 text-center">
+      <p><strong>{{ postpreview.poster.username }}</strong></p>
+    </div>
+    <div class="col-sm-10">
+      <div class="raw">
+        <span class="small">{{ 'discutea.forum.on'|trans }} {{ postpreview.date|date("Y-m-d H:i:s") }}</span>
+        <br /><br />
+      </div>
+
+      <div class="raw">{{ postpreview.content }}</div>
+
+    </div>
+  </div>
+</li>
+{#}
+<li class="comment" >
+  <div class="stand_comment">
+    <div class="thiscommentbody">
+      <div class="commentava wrapped_img">
+        <img class="avatar" src="{{ asset('user.png') }}" style="
+    width: 80px;" alt="" />
+      </div>
+      <div class="comment_info">
+        <div class="comment_meta clearfix">
+          <h6 class="comment_author_name"><a href="javascript:void(0);">{{ postpreview.poster.username }}</a></h6>
+          <span class="date">{{ postpreview.date|date("Y-m-d H:i:s") }} </span>
+
+        </div>
+      </div>
+      <div class="comment_content">
+        <p>{{ postpreview.content }}</p>
+      </div>
+    </div>
+  </div>
+</li>

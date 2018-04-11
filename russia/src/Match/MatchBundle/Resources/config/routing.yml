@@ -1,0 +1,89 @@
+match_match_homepage:
+    path:     /
+    defaults: { _controller: MatchMatchBundle:Default:index }
+
+list_match:
+    path:     /admin/listMatch
+    defaults: { _controller: MatchMatchBundle:Partie:listMatch }
+delete:
+    path:     /admin/supprimerPartie/{id}
+    defaults: { _controller: MatchMatchBundle:Partie:supprimerMatch }
+ajoutPartie:
+    path:     /admin/ajoutPartie
+    defaults: { _controller: MatchMatchBundle:Partie:ajoutPartie }
+modifier:
+    path:     /admin/modifier/{id}
+    defaults: { _controller: MatchMatchBundle:Partie:modifier }
+classement:
+    path:     /classement
+    defaults: { _controller: MatchMatchBundle:Equipe:classement }
+classementGroupe:
+    path:     /classement{groupe}
+    defaults: { _controller: MatchMatchBundle:Equipe:classementGroupe }
+programme:
+    path:     /programme
+    defaults: { _controller: MatchMatchBundle:Partie:programmeMatch }
+arbre:
+    path:     /arbre
+    defaults: { _controller: MatchMatchBundle:Partie:Match }
+resultatList:
+    path:     /admin/listResultat
+    defaults: { _controller: MatchMatchBundle:Resultat:listResultat }
+updateResultat:
+    path:     /admin/updateResultat{id}
+    defaults: { _controller: MatchMatchBundle:Resultat:modifierResulltat }
+insertBet:
+    path:     /insertBet{id}
+    defaults: { _controller: MatchMatchBundle:Partie:insertBet }
+listgroupequipe:
+    path:     /equipes
+    defaults: { _controller: MatchMatchBundle:Partie:haya }
+Bett:
+    path:     /bet
+    defaults: { _controller: MatchMatchBundle:Equipe:MesBets }
+mes_bets:
+    path:     /mesBets
+    defaults: { _controller: MatchMatchBundle:Bet:mesBets }
+matchParEquipe:
+    path:     /matchEquipe{id}
+    defaults: { _controller: MatchMatchBundle:Partie:mesequipes }
+envoie:
+    path:     /envoieSms
+    defaults: { _controller: MatchMatchBundle:Bet:envoismms }
+forumindex:
+    path:     /pdf
+    defaults: { _controller: MatchMatchBundle:Bet:forumindex }
+listnomequipe:
+    path:     /EquipeFiltrerParNom
+    defaults: { _controller: MatchMatchBundle:Partie:filtreparnomEquipe }
+listcontenentequipe:
+    path:     /EquipeFiltrerParContenant
+    defaults: { _controller: MatchMatchBundle:Partie:filtreparcontentEquipe }
+reporting:
+    path:     /report
+    defaults: { _controller: MatchMatchBundle:Bet:report }
+listUser:
+    path:     /admin/listUsers
+    defaults: { _controller: MatchMatchBundle:Default:users }
+promoteUser:
+    path:     /admin/listUsers{id}
+    defaults: { _controller: MatchMatchBundle:Default:promotes }
+son:
+    path:     /hayahaya
+    defaults: { _controller: MatchMatchBundle:Default:acc }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

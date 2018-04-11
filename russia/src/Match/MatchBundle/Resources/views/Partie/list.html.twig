@@ -1,0 +1,472 @@
+{% extends 'base.html.twig' %}
+
+  {% block style %}
+      {{ parent() }}
+      {% block title %} Liste Equipes{% endblock %}
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+      <link rel="apple-touch-icon" href="img/apple_icons_57x57.png">
+      <link rel="apple-touch-icon" sizes="72x72" href="img/apple_icons_72x72.png">
+      <link rel="apple-touch-icon" sizes="114x114" href="img/apple_icons_114x114.png">
+
+      <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('css/theme.css') }}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ 'css/shop.css' }}" type="text/css" media="all" />
+      <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" media="all" />
+
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-common.css?v3753b998?v3753b998"/>
+      <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-misc.css?v3753b998?v3753b998"/>
+      <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" href={{ asset("img/favicon.ico") }} type="image/x-icon">
+      <link rel="apple-touch-icon" href={{ asset("img/apple_icons_57x57.png") }}>
+      <link rel="apple-touch-icon" sizes="72x72" href={{ asset("img/apple_icons_72x72.png") }}>
+      <link rel="apple-touch-icon" sizes="114x114" href={{ asset("img/apple_icons_114x114.png" )}}>
+      <title>OC Plateforme</title>
+      <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href={{ asset("css/bootstrap.min.css") }} type="text/css" media="all" />
+      <link rel="stylesheet" href={{ asset("css/theme.css") }} type="text/css" media="all" />
+      <!-- REVOLUTION CSS FILES -->
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/settings.css") }}>
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/layers.css") }}>
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/navigation.css") }}>
+      <link rel="stylesheet" href={{ asset("css/custom.css") }} type="text/css" media="all" />
+
+      <link rel="stylesheet" href={{ asset("fonts/Dusha_-_FIFA_World_Cup_2018.ttf") }} type="text/css" media="all" />
+
+
+      <link rel="stylesheet" href="/pronosoft.css?v=30" type="text/css"/>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js" ></script>
+      <script async='async' type="text/javascript" src="https://static.criteo.net/js/ld/publishertag.js"></script>
+      <script src="https://static.criteo.net/js/ld/publishertag.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Roboto:700" rel="stylesheet" type="text/css"/>
+      <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" type="text/css"/>
+      <link rel="stylesheet" href="/pronosoft_print.css" type="text/css" media="print"/>
+      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+
+
+      <link rel="stylesheet" href="/fr/lotofoot/stats.css?v=11" type="text/css"/>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+  {% endblock %}
+{% block header %}
+    <div id="main_header" class="type4">
+        <div class="tagline show_hide">
+            <div class="container">
+                <div class="fright">
+                    <div class="tagline_items">
+                        <div class="log_in_out">
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                <div class="login_submenu">
+                                    <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                </div>
+
+
+
+                            {% else %}
+                                <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                            {% endif %}
+
+
+                            <!-- Login submenu -->
+                            <!--<div class="login_submenu">
+                                <form action="javascript:void(0);" method="post">
+                                    <input type="text" placeholder="Email or Login*" value="" name="name">
+                                    <input type="password" placeholder="Password*" value="" name="password">
+                                    <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                    <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                </form>
+                            </div>-->
+                            <!-- //Login submenu -->
+
+                        </div>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="cart_btn">
+                                <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="social_icons">
+                            <ul>
+                                <li><span>Follow:</span></li>
+                                <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="language_select">
+                            <div class="selectBox">
+                                <span class="selected"></span>
+                                <span class="selectArrow"></span>
+                                <div class="selectOptions">
+                                    <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                <div class="fleft">
+                    <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                    <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+        <div class="header_parent_wrap">
+            <header>
+                <div class="container">
+                    <div class="logo_sect">
+                        <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                    </div>
+                    <div class="fright">
+                        <nav>
+                            <ul class="menu">
+                                <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                </li>
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                            {% else %}
+                                                <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                <div class="sub-nav">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                        <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                        <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                            <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+
+                                            <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                <div class="sub-nav">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                        <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                        <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+                                            <li><a href="{{ path('classement') }}">Classement</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                    <li class="current-menu-parent menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                        <div class="sub-nav">
+                                            <ul class="sub-menu">
+
+                                                <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                                <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                {% else %}
+                                    <li></li>
+                                {% endif %}
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                                <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                            {% else %}
+                                                <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                </li>
+                                <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                        <!--<div class="top_search">
+                            <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                            <div class="top_search_wrap not_click">
+                                <form name="search_form" method="get" action="#" class="search_form not_click">
+                                    <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                    <input type="submit" value="Go">
+                                </form>
+                            </div>
+                        </div>-->
+                        <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+{% endblock %}
+
+
+
+
+
+
+{% block body %}
+    <br>
+
+    <br>
+    <div class="breadcrumbs type2">
+        <div class="container">
+            <a href="index.html">Home</a><a href="javascript:void(0);">Shop</a><span>All Products</span>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="content_block row right-sidebar">
+                <div class="page_title">
+                    <h1><span style="    color: #007edc;">Listes des equipes </span> Coupe du monde 2018</h1>
+                    <div class="icon_divider"></div>
+                    <p>Tous les informatons concernant les 32 équipes qualifiés pour jouer le coupe de monde Russie 2018 seront détaillées ci dessus;
+                    <br> Ces équipes représentent les 5 continents : Afrique , Europe , Amerique de sud , Amérique du Nord , Asie</p>
+                </div>
+                <div class="fl-container hasRS">
+                    <div class="posts-block">
+                        <div class="contentarea shop_list">
+                            <div class="shop_ordering">
+                                <div class="fright">{{ equipes.getTotalItemCount }} equipes</div>
+                                <div class="fleft">
+                                    <!--selectBox-->
+                                    <div class="selectBox">
+                                        <span class="selected"></span>
+                                        <span class="selectArrow"></span>
+                                        <div class="selectOptions">
+                                            <span class="selectOption" data-value="default"><a href="{{ path('listgroupequipe') }}">Filterer par Groupe </a></span>
+                                            <span class="selectOption" data-value="popularity"><a href="{{ path('listnomequipe') }}">Filterer par Nom </a></span>
+                                            <span class="selectOption" data-value="rating"><a href="{{ path('listcontenentequipe') }}">Filterer par Continent </a></span>
+
+                                        </div>
+                                    </div>
+                                    <!--//selectBox-->
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="shop_list_item">
+                                <div class="items2">
+                                    <ul class="item_list">
+                                        {% for equipe in equipes %} }
+                                        <li>
+                                            <div class="item">
+                                                <div class="shop_list_product_image">
+                                                    <a class="shop_list_product_image" href="{{ path('matchParEquipe',{'id':equipe.idequipe}) }}">
+                                                        <img src="http://localhost/russia/web/public/images/{{ equipe.drapeau }}" alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="shop_list_info">
+                                                    <h6><a href="shop_product.html">{{ equipe.nomequipe }}</a></h6>
+                                                    <div class="shop_list_cat">
+                                                        <i class="fa fa-bookmark-o"></i>
+                                                        <a href="javascript:void(0);">Entraineur : {{ equipe.entraineur }}</a>,
+                                                        <a href="javascript:void(0);"> </a>
+                                                    </div>
+                                                    <div class="clearfix shop_list_details">
+                                                        <span class="price color pull-left">Continent : {{ equipe.continent }}</span>
+                                                        <a class="" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                      {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+                                   <div class="navigation">
+                                       {{ knp_pagination_render(equipes) }}
+                                   </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-sidebar-block">
+
+
+
+                    <div class="col-sm-6 pull-right" style=" width: 280px;">
+                        <button onclick="startConverting();"><i class="fa fa-microphone"></i></button>
+                        <label>Recherche:</label>
+                        <div id="result" style="visibility: hidden"> </div>
+                        <form method="post">
+
+
+                            <input type="text" id="txt_pass" name="serie" style="width: 189.97728px;" />
+
+
+                        <input type="submit" text="chercher" name="chercher">
+
+                    </form>
+                    </div>
+                    <br><br><br>
+                    <div class="sidepanel widget_cart">
+
+
+                        <div style="width: 300px;margin-left: 0px;margin-top: 80px;">
+                            <div class="data-box data-next">
+                                <header>
+                                    <h3>Prochain match</h3>
+                                </header>
+                                <div class="content-next js-matches" data-target="js-match" itemscope itemtype="http://schema.org/SportsEvent">
+                                    <div class="m js-match activ" data-match-id="8211">
+                                        <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                                        <meta itemprop="startDate" content="2018-06-14T17:00">
+                                        <meta itemprop="name" content="17:00 : Russie vs Arabie Saoudite">
+                                        <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+                                            <meta itemprop="name" content="Moscou">
+                                            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                                <meta itemprop="addressLocality" content="Moscou"> <meta itemprop="url" content="/russie2018/stades">
+                                            </div>
+                                        </div>
+                                        <span class="date-m">{{ match.datepartie|date('d-m-Y') }} à {{ match.heurepartie }}</span>
+                                        <a href="" title="">
+                                            <div class="dom">
+                                                <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ match.home.drapeau }} " height="20" width="20"></svg>
+                                                <span class="country">{{ match.home.nomequipe }}</span>
+                                            </div>
+                                            <div class="result"> <span class="score" data-match="score.home">0</span>
+                                                <span class="score" data-match="score.away">0</span>
+                                                <span class="peno"> <em data-match="tab"></em> </span>
+                                                <span class="timer" data-match="timer"></span>
+                                            </div>
+                                            <div class="ext">
+                                                <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ match.away.drapeau }} " height="20" width="20"></svg>
+                                                <span class="country">{{ match.away.nomequipe }}</span>
+                                            </div> </a>
+                                    </div>
+
+                                </div>
+                            </div></div>
+
+
+
+                    </div>
+
+
+
+
+
+                <div class="clear"></div>
+            </div>
+
+    </div>
+
+    </div>
+
+</div>
+
+
+    <script type="text/javascript">
+
+        var r=document.getElementById('result');
+
+        function startConverting(){
+
+
+
+            if('webkitSpeechRecognition' in window){
+
+                var speechRecognizer = new webkitSpeechRecognition();
+
+                speechRecognizer.continuous = true;
+                speechRecognizer.interimResults = true;
+                speechRecognizer.lang='fr-FR';
+                speechRecognizer.start();
+
+                var finalTranscripts='';
+                speechRecognizer.onresult = function(event){
+                    var interimTranscripts='';
+
+                    for(var i=event.resultIndex; i<event.results.length; i++){
+                        var transcript = event.results[i][0].transcript;
+                        transcript.replace("\n","<br>");
+                        if(event.results[i].isFinal){
+
+                            finalTranscripts+=transcript;
+
+                        }else{interimTranscripts+=transcript;}
+
+                    }
+
+                    r.innerHTML =finalTranscripts+interimTranscripts;
+                    $("#txt_pass").val(finalTranscripts+interimTranscripts);
+                };
+                speechRecognizer.onerror  = function(event){};
+            }
+            else{
+                r.innerHTML='your browser is not supported';
+
+
+            }
+        }
+
+    </script>
+
+
+
+
+
+{% endblock %}

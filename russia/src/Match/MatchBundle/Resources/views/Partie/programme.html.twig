@@ -1,0 +1,2024 @@
+
+{% extends 'base.html.twig' %}
+
+  {% block style %}
+
+
+     {{ parent() }}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-common.css?v3753b998?v3753b998"/>
+      <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-misc.css?v3753b998?v3753b998"/>
+      <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" href={{ asset("img/favicon.ico") }} type="image/x-icon">
+      <link rel="apple-touch-icon" href={{ asset("img/apple_icons_57x57.png") }}>
+      <link rel="apple-touch-icon" sizes="72x72" href={{ asset("img/apple_icons_72x72.png") }}>
+      <link rel="apple-touch-icon" sizes="114x114" href={{ asset("img/apple_icons_114x114.png" )}}>
+      <title>OC Plateforme</title>
+      <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+      <link rel="stylesheet" href={{ asset("css/bootstrap.min.css") }} type="text/css" media="all" />
+      <link rel="stylesheet" href={{ asset("css/theme.css") }} type="text/css" media="all" />
+      <!-- REVOLUTION CSS FILES -->
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/settings.css") }}>
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/layers.css") }}>
+      <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/navigation.css") }}>
+      <link rel="stylesheet" href={{ asset("css/custom.css") }} type="text/css" media="all" />
+
+      <link rel="stylesheet" href={{ asset("fonts/Dusha_-_FIFA_World_Cup_2018.ttf") }} type="text/css" media="all" />
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+      {{ parent() }}
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-common.css?v3753b998?v3753b998"/>
+    <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-misc.css?v3753b998?v3753b998"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dialog-ken.css') }}" />
+    <script src="{{ asset('js/modernizr.custom.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+      <link rel="stylesheet" href="{{ asset('chosen.css') }}">
+      <link rel="stylesheet" href="{{ asset('ImageSelect.css') }}">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="{{ asset('chosen.jquery.js') }}"></script>
+      <script src="{{ asset('ImageSelect.jquery.js') }}"></script>
+
+
+  {% endblock %}
+
+
+ {% block header %}
+    <div id="main_header" class="type4">
+        <div class="tagline show_hide">
+            <div class="container">
+                <div class="fright">
+                    <div class="tagline_items">
+                        <div class="log_in_out">
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                <div class="login_submenu">
+                                    <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                </div>
+
+
+
+                            {% else %}
+                                <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                            {% endif %}
+
+
+                            <!-- Login submenu -->
+                            <!--<div class="login_submenu">
+                                <form action="javascript:void(0);" method="post">
+                                    <input type="text" placeholder="Email or Login*" value="" name="name">
+                                    <input type="password" placeholder="Password*" value="" name="password">
+                                    <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                    <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                </form>
+                            </div>-->
+                            <!-- //Login submenu -->
+
+                        </div>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <div class="cart_btn">
+                                <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                            </div>
+                        {% endif %}
+
+                        <div class="social_icons">
+                            <ul>
+                                <li><span>Follow:</span></li>
+                                <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="language_select">
+                            <div class="selectBox">
+                                <span class="selected"></span>
+                                <span class="selectArrow"></span>
+                                <div class="selectOptions">
+                                    <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                <div class="fleft">
+                    <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                    <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                </div>
+
+
+                <div class="clear"></div>
+            </div>
+        </div>
+
+
+        <div class="header_parent_wrap">
+            <header>
+                <div class="container">
+                    <div class="logo_sect">
+                        <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                    </div>
+                    <div class="fright">
+                        <nav>
+                            <ul class="menu">
+                                <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                </li>
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                            {% else %}
+                                                <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                <div class="sub-nav">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                        <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                        <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                            <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="current-menu-parent menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+
+                                            <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                <div class="sub-nav">
+                                                    <ul class="sub-menu">
+                                                        <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                        <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                        <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+                                            <li><a href="{{ path('classement') }}">Classement</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                </li>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+
+                                            <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                            <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                {% else %}
+                                    <li></li>
+                                {% endif %}
+                                <li class="menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                    <div class="sub-nav">
+                                        <ul class="sub-menu">
+                                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                            <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                            <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                            {% else %}
+                                                <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                </li>
+                                <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                </li>
+                            </ul>
+                        </nav>
+                        <!--<div class="top_search">
+                            <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                            <div class="top_search_wrap not_click">
+                                <form name="search_form" method="get" action="#" class="search_form not_click">
+                                    <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                    <input type="submit" value="Go">
+                                </form>
+                            </div>
+                        </div>-->
+                        <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+{% endblock %}
+
+
+{% block body %}
+
+
+<br>
+<br>
+
+
+
+
+
+<div ng-app="myApp" ng-controller="controller">
+    <div class="container">
+
+        <div class="page_title">
+            <h1><span style="    color: #007edc;">Calendrier</span> Coupe du monde 2018</h1>
+            <div class="icon_divider"></div>
+            <p>Le calendrier de la Coupe du monde 2018 en Russie a été défini par la fédération internationale de football (FIFA).
+                Les matches se joueront à Kaliningrad, Kazan, Iekaterinbourg, Moscou, Nijni Novgorod, Rostov-sur-le-Don, Saint-Pétersbourg, Samara, Saransk, Sotchi et Volgograd entre le 14 juin et le 15 juillet 2018.
+                La Russie, pays organisateur, disputera le match d'ouverture le 14 juin face à l'Arabie Saoudite et la finale clôturera la compétition le 15 juillet.
+                Ces deux rencontres auront lieu à Moscou au stade Loujniki. Le tirage au sort final de la compétition s'est déroulé le 1er décembre 2017.</p>
+        </div>
+    <div>
+        <div class="left-sidebar-block">
+
+
+
+<br><br><br>
+
+
+
+            <div class="sidepanel widget_posts">
+
+
+
+
+                <div class="data-box data-next">
+                    <header>
+                        <h3>Prochain match</h3>
+                    </header>
+                    {% if match1.id is  null %}
+
+                        <div class="content-next js-matches" data-target="js-match" itemscope itemtype="http://schema.org/SportsEvent">
+                            <div class="m js-match activ" data-match-id="8211">
+                                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                                <meta itemprop="startDate" content="2018-06-14T17:00">
+                                <meta itemprop="name" content="17:00 : Russie vs Arabie Saoudite">
+
+
+                                <span class="date-m"></span>
+
+
+                                        <span>Tous les Matchs ont été Jouées</span>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    {% else %}
+                    <div class="content-next js-matches" data-target="js-match" itemscope itemtype="http://schema.org/SportsEvent">
+                        <div class="m js-match activ" data-match-id="8211">
+                            <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                            <meta itemprop="startDate" content="2018-06-14T17:00">
+                            <meta itemprop="name" content="17:00 : Russie vs Arabie Saoudite">
+                            <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+                                <meta itemprop="name" content="Moscou">
+                                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                    <meta itemprop="addressLocality" content="Moscou"> <meta itemprop="url" content="/russie2018/stades">
+                                </div>
+                            </div>
+                            <span class="date-m">{{ match1.datepartie|date('d-m-Y') }} à {{ match1.heurepartie }}</span>
+                            <a href="" title="{{ match1.home.nomequipe }} - {{ match1.away.nomequipe }}">
+                                <div class="dom">
+                                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ match1.home.drapeau }} " height="20" width="20"></svg>
+                                    <span class="country">{{ match1.home.nomequipe }}</span>
+                                </div>
+                                <div class="result"> <span class="score" data-match="score.home">0</span>
+                                    <span class="score" data-match="score.away">0</span>
+                                    <span class="peno"> <em data-match="tab"></em> </span>
+                                    <span class="timer" data-match="timer"></span>
+                                </div>
+                                <div class="ext">
+                                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ match1.away.drapeau }} " height="20" width="20"></svg>
+                                    <span class="country">{{ match1.away.nomequipe }}</span>
+                                </div> </a>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                </div>
+
+
+
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+                <h3 class="title">Prochains 3 Matchs</h3>
+                <ul class="recent_posts">
+
+                    {% if match1.id is  null %}
+                        <li></li>
+                        {% else %}
+                    <li class="with_img">
+                        <div class="recent_posts_content">
+
+                            <a href="javascript:void(0);" class="title"><img src="http://localhost/russia/web/public/images/{{ match1.home.drapeau }}" style="
+    width: 30px;
+    height: 30px;
+
+"/>{{ match1.home }} VS <img src="http://localhost/russia/web/public/images/{{ match1.away.drapeau }}"    style="
+    width: 30px;
+    height: 30px;
+     left: 250px;
+     " />{{  match1.away }}</a>
+                            <div class="recent_posts_info">{{  match1.datepartie|date('d/m/Y') }}</div>
+                        </div>
+                    </li>
+                 {% endif  %}
+
+
+
+                    {% if match2.id is  null %}
+                        <li></li>
+                        {% else %}
+                        <li class="with_img">
+                            <div class="recent_posts_content">
+
+                                <a href="javascript:void(0);" class="title"><img src="http://localhost/russia/web/public/images/{{ match2.home.drapeau }}" style="
+    width: 30px;
+    height: 30px;
+
+"/>{{ match2.home }} VS <img src="http://localhost/russia/web/public/images/{{ match2.away.drapeau }}"    style="
+    width: 30px;
+    height: 30px;
+     left: 250px;
+     " />{{  match2.away }}</a>
+                                <div class="recent_posts_info">{{  match2.datepartie|date('d/m/Y') }}</div>
+                            </div>
+                        </li>
+                    {% endif  %}
+
+
+
+                    {% if match3.id is  null %}
+                        <li></li>
+                        {% else %}
+                        <li class="with_img">
+                            <div class="recent_posts_content">
+
+                                <a href="javascript:void(0);" class="title"><img src="http://localhost/russia/web/public/images/{{ match3.home.drapeau }}" style="
+    width: 30px;
+    height: 30px;
+
+"/>{{ match3.home }} VS <img src="http://localhost/russia/web/public/images/{{ match3.away.drapeau }}"    style="
+    width: 30px;
+    height: 30px;
+     left: 250px;
+     " />{{  match3.away }}</a>
+                                <div class="recent_posts_info">{{  match3.datepartie|date('d/m/Y') }}</div>
+                            </div>
+                        </li>
+                    {% endif  %}
+
+                </ul>
+            </div>
+
+
+
+
+
+
+            <div class="sidepanel widget_search">
+                {{ form_start(f) }}
+
+
+                <label for="exampleInputEmail1">Filtrer Par Equipe </label>
+                <div style="top: 30px;margin-bottom: 30px;">
+                    <select id="Cl" name="equipe"  class="my-select">
+                        {% for h in equipes %}
+
+                            <option data-img-src="http://localhost/russia/web/public/images/{{ h.drapeau }}" value="{{ h.idequipe }}"> {{ h.nomequipe }} </option>
+
+
+                        {% endfor %}
+                    </select>
+                </div>
+                <div style="width: 130px;">
+                    {{ form_row(f.filtrer,{'attr':{'class':'btn btn-block btn-primary'}}) }}
+                </div>
+
+                    {{ form_end(f) }}
+                </div>
+
+
+
+
+        </div>
+
+</div>
+
+
+        <div style="
+                margin-bottom: 50px;
+                margin-left: 0px;
+                width: 1250px;
+"
+        >
+
+
+            <a href="{{ path('arbre') }}" title="Accès direct à la phase finale" type="btton" class="btn btn-block btn-info " style=" width: 130px;float: right;" >Phase finale</a>&nbsp;
+        </div>
+
+
+<div style="
+    width: 900px;
+    margin-left: 350px;
+">
+<div class="toolsbar" style="
+    width: 900px;
+    margin-left: 350px;
+
+">
+
+
+     </div>
+        <div>
+{% for partie in parties %}
+
+<div class="tab-calendar p1">
+    <time datetime="2018-06-14T00:00:00" class="mdate firsth"> {{ partie.idpartie.datepartie|date('Y-m-d') }} </time>
+    <div itemscope itemtype="http://schema.org/SportsEvent">
+        <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+        <meta itemprop="startDate" content="2018-06-14T17:00">
+        <meta itemprop="name" content="17:00 : Russie vs Arabie Saoudite">
+        <div class="line-tab-match"> <div class="tab-team tab-dom">
+                <a href="/equipes/russie" title="{{ partie.idpartie.home.nomequipe }}">
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partie.idpartie.home.drapeau }}" width="30" height="30"></svg>
+                    <span class="country">{{ partie.idpartie.home.nomEquipe }}</span>
+                </a>
+            </div>
+            <div class="tab-score"><a href="" class="cal-hour" title="Début du match à {{ partie.idpartie.heurepartie }}" itemprop="url">
+                    {% if partie.idpartie.etatMatch=='PasEncore' %}
+                    <time datetime="2018-06-14T17:00:00">{{ partie.idpartie.heurepartie }}</time>
+                {% else %}
+                    <time datetime="2018-06-14T17:00:00">{{ partie.buthome }}/{{ partie.butaway }}</time>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="tab-team tab-ext">
+                <a href="/equipes/arabie-saoudite" title="{{ partie.idpartie.away.nomequipe }}">
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partie.idpartie.away.drapeau }}" width="30" height="30"></svg>
+                    <span class="country">{{ partie.idpartie.away.nomEquipe }}</span>
+                </a>
+            </div>
+        </div>
+
+        {% set betJoue= 0 %}
+        {% for bet in bets  %}
+            {% if bet.idpartie==partie.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endfor %}
+
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+        <div class="line-timer">
+            <div class="tab-timer avant">
+                {% if betJoue ==1 %}
+
+                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                {% else %}
+                {% if partie.idpartie.etatMatch=='Jouee' %}
+                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                 {% else %}
+                     <a href="{{ path('insertBet',{'id':partie.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% else  %}
+
+
+            <div class="line-timer">
+                <div class="tab-timer avant">
+                    <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                </div>
+            </div>
+
+
+        {% endif %}
+
+        <div class="tab-line-infos">
+            <div class="tab-group"> <span class="num">N°{{ partie.idpartie.id }}</span>
+            </div>
+            <div class="tab-tv">
+                <a> <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+            <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                <meta itemprop="name" content="Moscou">
+                <meta itemprop="url" content="/russie2018/stades">
+                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                    <meta itemprop="addressLocality" content="Moscou">
+                    <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                <svg><img src="http://localhost/russia/web/uploads/images/{{partie.idpartie.idstade.photostade}}" height="50" width="50"> </svg>
+                <a href="" class="cal-stade" title="Moscou">{{ partie.idpartie.idstade.nomstade }}</a> </div> </div> </div>
+</div>
+{% endfor %}
+
+
+<div class="text-center">
+
+<div class="navigation" >
+    {{ knp_pagination_render(parties) }}
+</div>
+</div>
+
+
+        <div class="tab-calendar p2">
+
+        <h3 class="title-pf"> HUITIEMES DE FINALE </h3>
+            <time datetime="2018-06-30T00:00:00" class="mdate firsth"> Samedi 30 juin 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-06-30T16:00">
+                <meta itemprop="name" content="16:00 : 1er Groupe C vs 2e Groupe D">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                        {% if partieC1 is empty %}
+                        <svg class="flags"><use xlink:href="/images/svg/sprite-flags.svg#svg-1er-groupe-c"></use></svg>
+
+                        <span class="country">1er Groupe C</span>
+                         {% else %}
+                             <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieC1.idpartie.home.drapeau }}"></svg>
+                             <span class="country">{{ partieC1.idpartie.home.nomequipe }}</span>
+                        {% endif %}
+                    </div>
+                    {% if partieC1 is empty %}
+                    <div class="tab-score"><time datetime="2018-06-30T16:00:00">16:00</time></div>
+                    <div class="tab-team tab-ext"> <svg class="flags"><use xlink:href="/images/svg/sprite-flags.svg#svg-2e-groupe-d"></use></svg>
+                        <span class="country">2e Groupe D</span> </div> </div> <div class="line-timer">
+                    {% else %}
+                       {% if partieC1.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-06-30T16:00:00">16:00</time></div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-06-30T16:00:00">{{ partieC1.buthome }} / {{ partieC1.butaway }}</time></div>
+                    {% endif %}
+                    <div class="tab-team tab-ext"> <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieC1.idpartie.away.drapeau }}"></svg>
+                        <span class="country">{{ partieC1.idpartie.away.nomequipe }}</span> </div> </div> <div class="line-timer">
+                    {% endif %}
+
+                    {% set betJoue= 0 %}
+                    {% for bet in bets  %}
+                        {% if partieC1 is empty %}
+                            {% set betJoue= 0 %}
+                        {% else %}
+                            {% if bet.idpartie==partieC1.idpartie %}
+                                {% set betJoue= 1 %}
+                            {% endif  %}
+                        {% endif %}
+                    {% endfor %}
+
+
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="tab-timer avant">
+                        {% if partieC1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+
+                            {%if betJoue ==1   %}
+                                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                            {% else  %}
+
+                        {% if partieC1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieC1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                                {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                {% else  %}
+
+
+                    <div class="line-timer">
+                        <div class="tab-timer avant">
+                            <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                        </div>
+                    </div>
+
+
+                {% endif %}
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°50</span> </div> <div class="tab-tv">
+                        <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                           <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Kazan">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Kazan">
+                            <meta itemprop="url" content="/russie2018/stades#kazan"> </div> <svg>
+                            <use xlink:href="/images/svg/sprite.svg#svg-gps"></use> </svg>
+                        <a href="/russie2018/stades" class="cal-stade" title="Kazan">Kazan</a> </div> </div> </div>
+
+            <div itemscope itemtype="http://schema.org/SportsEvent"> <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-06-30T20:00">
+                <meta itemprop="name" content="20:00 : 1er Groupe A vs 2e Groupe B">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                       {% if partieA1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+
+                        <span class="country">1er Groupe A</span> </div> <div class="tab-score">
+                        <time datetime="2018-06-30T20:00:00">20:00</time></div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA1.idpartie.home.drapeau }}"></svg>
+
+                    <span class="country">{{ partieA1.idpartie.home.nomequipe }}</span> </div>
+                    {% if partieA1.idpartie.etatmatch=="PasEncore" %}
+                        <div class="tab-score"><time datetime="2018-06-30T20:00:00">20:00</time></div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-06-30T20:00:00">{{ partieA1.buthome }}/{{partieA1.butaway }}</time></div>
+                        {% endif %}
+                {% endif %}
+                {% if partieA1 is empty %}
+                    <div class="tab-team tab-ext"> <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe B</span> </div> </div>
+            {% else %}
+            <div class="tab-team tab-ext"> <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA1.idpartie.away.drapeau }}"></svg>
+                <span class="country">{{ partieA1.idpartie.away.nomequipe }}</span> </div> </div>
+            {% endif %}
+        {% set betJoue= 0 %}
+        {% for bet in bets  %}
+            {% if partieA1 is empty %}
+                {% set betJoue= 0 %}
+            {% else %}
+                {% if bet.idpartie==partieA1.idpartie %}
+                    {% set betJoue= 1 %}
+                {% endif  %}
+            {% endif %}
+        {% endfor %}
+
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer"> <div class="tab-timer avant">
+
+
+                        {% if partieA1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+
+                        {% if partieA1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                            {% else %}
+                             <a href="{{ path('insertBet',{'id':partieA1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+            {% else  %}
+
+
+                <div class="line-timer">
+                    <div class="tab-timer avant">
+                        <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                    </div>
+                </div>
+
+
+            {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°49</span> </div>
+                    <div class="tab-tv">
+                        <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Sotchi"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Sotchi"> <meta itemprop="url" content="/russie2018/stades#sotchi"> </div> <svg>
+                            <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Sotchi">Sotchi</a> </div> </div> </div>
+
+
+            <time datetime="2018-07-01T00:00:00" class="mdate"> Dimanche 01 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-01T16:00">
+                <meta itemprop="name" content="16:00 : 1er Groupe B vs 2e Groupe A">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                        {% if partieB1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe B</span> </div> <div class="tab-score"><time datetime="2018-07-01T16:00:00">16:00</time></div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB1.idpartie.home.drapeau }}"/></svg>
+                    <span class="country">{{ partieB1.idpartie.home.nomequipe }}</span> </div> <div class="tab-score">
+                {% if partieB1.idpartie.etatmatch=='PasEncore' %}
+                    <time datetime="2018-07-01T16:00:00">16:00</time>
+                {% else %}
+                         <time datetime="2018-07-01T16:00:00">{{partieB1.buthome  }} / {{ partieB1.butaway }}</time>
+                {% endif %}
+                </div>
+
+                {% endif %}
+                    <div class="tab-team tab-ext">
+            {% if partieB1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe A</span> </div> </div>
+            {% else %}
+    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB1.idpartie.away.drapeau }}"></svg>
+    <span class="country">{{ partieB1.idpartie.away.nomequipe }}</span> </div> </div>
+    {% endif %}
+
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieB1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieB1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer"> <div class="tab-timer avant">
+                        {% if partieB1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieB1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieB1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+        {% else  %}
+
+
+            <div class="line-timer">
+                <div class="tab-timer avant">
+                    <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                </div>
+            </div>
+
+
+        {% endif %}
+
+
+
+        <div class="tab-line-infos"> <div class="tab-group">
+                        <span class="num">N°51</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                     <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Moscou"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Moscou"> <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="/russie2018/stades" class="cal-stade" title="Moscou">Moscou</a> </div> </div> </div>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-01T20:00">
+                <meta itemprop="name" content="20:00 : 1er Groupe D vs 2e Groupe C">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                   {% if partieD1 is empty%}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe D</span> </div>
+                   {% else %}
+
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieD1.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieD1.idpartie.home.nomequipe }}</span> </div>
+
+                {% if partieD1.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-01T20:00:00">20:00</time></div>
+                   {% else%}
+                       <div class="tab-score"><time datetime="2018-07-01T20:00:00">{{ partieD1.buthome }} / {{partieD1.butaway  }}</time></div>
+                {% endif %}
+                {% endif %}
+                    <div class="tab-team tab-ext">
+               {% if partieD1 is empty %}
+                        <svg class="flags">   <use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe C</span> </div> </div>
+                {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieD1.idpartie.away.drapeau }}" ></svg>
+                    <span class="country">{{ partieD1.idpartie.away.nomequipe }}</span> </div> </div>
+
+               {% endif %}
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieD1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieD1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieD1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+
+                        {% if partieD1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieD1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+
+        {% else  %}
+
+
+            <div class="line-timer">
+                <div class="tab-timer avant">
+                    <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                </div>
+            </div>
+
+
+        {% endif %}
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°52</span> </div> <div class="tab-tv">
+                        <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Nijni-Novgorod">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Nijni-Novgorod">
+                            <meta itemprop="url" content="/russie2018/stades#nijni-novgorod"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Nijni-Novgorod">Nijni-Novgorod</a> </div> </div> </div>
+
+          <time datetime="2018-07-02T00:00:00" class="mdate"> Lundi 02 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-02T16:00">
+                <meta itemprop="name" content="16:00 : 1er Groupe E vs 2e Groupe F">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                        {% if partieE1 is empty%}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe E</span> </div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieE1.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieE1.idpartie.home.nomequipe }}</span> </div>
+                <div class="tab-score">
+                {% if partieE1.idpartie.etatmatch=='PasEncore'%}
+
+                        <time datetime="2018-07-02T16:00:00">16:00</time></div>
+                {% else %}
+                <time datetime="2018-07-02T16:00:00">{{  partieE1.buthome}} / {{ partieE1.butaway }}</time></div>
+                {% endif %}
+                {% endif %}
+                <div class="tab-team tab-ext">
+              {% if partieE1 is empty%}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe F</span> </div>
+              {% else %}
+                  <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieE1.idpartie.away.drapeau }}"></svg>
+                  <span class="country">{{ partieE1.idpartie.away.nomequipe }}</span> </div>
+                 {% endif %}
+               </div>
+
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieE1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieE1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+              <div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieE1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieE1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieE1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+      {% else  %}
+
+
+          <div class="line-timer">
+              <div class="tab-timer avant">
+                  <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+              </div>
+          </div>
+
+
+      {% endif %}
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°53</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Samara"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Samara">
+                            <meta itemprop="url" content="/russie2018/stades#samara"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Samara">Samara</a> </div> </div> </div>
+
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-02T20:00">
+                <meta itemprop="name" content="20:00 : 1er Groupe G vs 2e Groupe H">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                    {% if partieG1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe G</span> </div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieG1.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieG1.idpartie.home.nomequipe }}</span> </div>
+                    {% if partieG1.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-02T20:00:00">20:00</time></div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-07-02T20:00:00">{{ partieG1.buthome }}/ {{partieG1.butaway  }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                   {%  if partieG1 is empty%}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe H</span>
+                    {% else %}
+                        <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieG1.idpartie.away.drapeau }}"></svg>
+                        <span class="country">{{ partieG1.idpartie.away.nomequipe }}</span>
+                   {% endif %}
+                    </div>
+                    </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieG1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieG1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieG1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieG1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieG1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+     {% else  %}
+
+
+         <div class="line-timer">
+             <div class="tab-timer avant">
+                 <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+             </div>
+         </div>
+
+
+     {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°54</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Rostov-sur-le-Don"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Rostov-sur-le-Don">
+                            <meta itemprop="url" content="/russie2018/stades#rostov-sur-le-don"> </div> <svg>
+                            <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Rostov-sur-le-Don">Rostov-sur-le-Don</a> </div> </div> </div>
+
+          <time datetime="2018-07-03T00:00:00" class="mdate"> Mardi 03 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-03T16:00">
+                <meta itemprop="name" content="16:00 : 1er Groupe F vs 2e Groupe E">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                {% if partieF1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe F</span> </div>
+                  {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieF1.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieF1.idpartie.home.nomequipe }}</span> </div>
+                        {% if partieF1.idpartie.etatmatch=="PasEncore" %}
+                    <div class="tab-score">   <time datetime="2018-07-03T16:00:00">16:00</time>    </div>
+                        {% else %}
+                   <div class="tab-score"> <time datetime="2018-07-03T16:00:00">{{ partieF1.buthome }} / {{partieF1.butaway  }}</time>    </div>
+                        {% endif %}
+
+
+
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                        {% if partieF1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe E</span>
+                        {% else %}
+                            <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieF1.idpartie.away.drapeau }}"></svg>
+                            <span class="country">{{ partieF1.idpartie.away.nomequipe }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieF1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieF1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieF1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieF1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieF1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+     {% else  %}
+
+
+         <div class="line-timer">
+             <div class="tab-timer avant">
+                 <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+             </div>
+         </div>
+
+
+     {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°55</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Saint-Petersbourg">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <meta itemprop="addressLocality" content="Saint-Petersbourg">
+                            <meta itemprop="url" content="/russie2018/stades#saint-petersbourg"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Saint-Petersbourg">Saint-Petersbourg</a> </div> </div> </div>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-03T20:00">
+                <meta itemprop="name" content="20:00 : 1er Groupe H vs 2e Groupe G">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                    {% if partieH1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">1er Groupe H</span> </div>
+                   {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieH1.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieH1.idpartie.home.nomequipe }}</span> </div>
+                     {% if partieH1.idpartie.etatmatch=="PasEncore" %}
+                         <div class="tab-score">   <time datetime="2018-07-03T16:00:00">20:00</time>    </div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-07-03T20:00:00">{{ partieH1.buthome }} / {{ partieH1.butaway }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                        {% if partieH1 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">2e Groupe G</span> </div> </div>
+                  {% else %}
+                      <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieH1.idpartie.away.drapeau }}"></svg>
+                      <span class="country">{{ partieH1.idpartie.away.nomequipe }}</span> </div> </div>
+                 {% endif %}
+
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieH1 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieH1.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="line-timer"> <div class="tab-timer avant">
+                        {% if partieH1 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieH1.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieH1.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+      {% else  %}
+
+
+          <div class="line-timer">
+              <div class="tab-timer avant">
+                  <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+              </div>
+          </div>
+
+
+      {% endif %}
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°56</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Moscou">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Moscou">
+                            <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Moscou">Moscou</a> </div> </div> </div>
+
+
+
+
+            <h3 class="title-pf"> QUARTS DE FINALE </h3>
+            <time datetime="2018-07-06T00:00:00" class="mdate firsth"> Vendredi 06 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-06T16:00">
+                <meta itemprop="name" content="16:00 : Vainqueur n°49 vs Vainqueur n°50">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                         {% if partieA11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°49</span> </div>
+                     {% else %}
+                    <svg class="flags"><img  src="http://localhost/russia/web/public/images/{{ partieA11.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieA11.idpartie.home.nomequipe }}</span> </div>
+                   {% if partieA11.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-06T16:00:00">16:00</time></div>
+                {% else %}
+                    <div class="tab-score"><time datetime="2018-07-06T16:00:00">{{ partieA11.buthome }} / {{ partieA11.butaway }}</time></div>
+                {% endif %}
+                {% endif %}
+                    <div class="tab-team tab-ext">
+                      {% if partieA11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°50</span>
+                      {% else %}
+                          <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA11.idpartie.away.drapeau }}"></svg>
+                          <span class="country">{{ partieA11.idpartie.away.nomequipe }}</span>
+                        {% endif %}
+
+                    </div>
+                </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieA11 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieA11.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer"> <div class="tab-timer avant">
+                        {% if partieA11 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieA11.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieA11.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+     {% else  %}
+
+
+         <div class="line-timer">
+             <div class="tab-timer avant">
+                 <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+             </div>
+         </div>
+
+
+     {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°57</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                     <meta itemprop="name" content="Nijni-Novgorod">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Nijni-Novgorod">
+                            <meta itemprop="url" content="/russie2018/stades#nijni-novgorod"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Nijni-Novgorod">Nijni-Novgorod</a> </div> </div> </div>
+
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-06T20:00">
+                <meta itemprop="name" content="20:00 : Vainqueur n°53 vs Vainqueur n°54">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                        {% if partieB11 is empty %}
+                <svg class="flags"><use xlink:href=""></use></svg>
+                 <span class="country">Vainqueur n°53</span></div>
+                   {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB11.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieB11.idpartie.away.nomequipe }}</span></div>
+                      {% if partieB11.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-06T20:00:00">20:00</time></div>
+               {% else %}
+                   <div class="tab-score"><time datetime="2018-07-06T20:00:00">{{ partieB11.butaway }} /{{partieB11.buthome  }}</time></div>
+                {% endif %}
+                {% endif %}
+
+                    <div class="tab-team tab-ext">
+                        {% if partieB11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                     <span class="country">Vainqueur n°54</span> </div> </div>
+              {% else %}
+                  <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB11.idpartie.home.drapeau }}"></svg>
+                  <span class="country">{{ partieB11.idpartie.home.nomequipe }}</span> </div> </div>
+             {% endif %}
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieB11 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieB11.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+
+<div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieB11 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieB11.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieB11.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+
+      {% else  %}
+
+
+          <div class="line-timer">
+              <div class="tab-timer avant">
+                  <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+              </div>
+          </div>
+
+
+      {% endif %}
+
+                <div class="tab-line-infos"> <div class="tab-group">
+                        <span class="num">N°58</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Kazan">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Kazan">
+                            <meta itemprop="url" content="/russie2018/stades#kazan"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Kazan">Kazan</a> </div> </div> </div>
+
+            <time datetime="2018-07-07T00:00:00" class="mdate"> Samedi 07 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-07T16:00">
+                <meta itemprop="name" content="16:00 : Vainqueur n°55 vs Vainqueur n°56">
+                <div class="line-tab-match">
+                    <div class="tab-team tab-dom">
+                     {% if partieD11 is  empty %}
+
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°55</span> </div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieD11.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieD11.idpartie.away.nomequipe }}</span> </div>
+                     {% if partieD11.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-07T16:00:00">16:00</time></div>
+                         {% else %}
+                             <div class="tab-score"><time datetime="2018-07-07T16:00:00">{{ partieD11.butaway }}/{{ partieD11.buthome }}</time></div>
+                    {% endif %}
+                {% endif %}
+                    <div class="tab-team tab-ext">
+                        {% if partieD11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°56</span> </div>
+                     {% else %}
+                <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieD11.idpartie.home.drapeau }}"></svg>
+                <span class="country">{{ partieD11.idpartie.home.nomequipe }}</span> </div>
+                {% endif %}
+                </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieD11 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieD11.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer"> <div class="tab-timer avant">
+
+                        {% if partieD11 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieD11.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieD11.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+
+        {% else  %}
+
+
+            <div class="line-timer">
+                <div class="tab-timer avant">
+                    <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                </div>
+            </div>
+
+
+        {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°60</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Samara"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Samara">
+                            <meta itemprop="url" content="/russie2018/stades#samara"> </div> <svg>
+                            <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Samara">Samara</a> </div> </div> </div>
+
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-07T20:00">
+                <meta itemprop="name" content="20:00 : Vainqueur n°51 vs Vainqueur n°52">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                        {% if partieC11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°51</span> </div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieC11.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieC11.idpartie.away.nomequipe }}</span> </div>
+                       {% if partieC11.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"> <time datetime="2018-07-07T20:00:00">20:00</time></div>
+                    {% else %}
+                        <div class="tab-score"> <time datetime="2018-07-07T20:00:00">{{ partieC11.butaway }}/{{ partieC11.buthome }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                    {% if partieC11 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°52</span>
+                   {% else %}
+                       <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieC11.idpartie.home.drapeau }}"></svg>
+                       <span class="country">{{ partieC11.idpartie.home.nomequipe }}</span>
+                        {% endif %}
+                    </div>
+            </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieC11 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieC11.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+       {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer"> <div class="tab-timer avant">
+
+                        {% if partieC11 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieC11.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieC11.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+
+                    </div> </div>
+
+       {% else  %}
+
+
+           <div class="line-timer">
+               <div class="tab-timer avant">
+                   <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+               </div>
+           </div>
+
+
+       {% endif %}
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°59</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Sotchi">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Sotchi">
+                            <meta itemprop="url" content="/russie2018/stades#sotchi"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Sotchi">Sotchi</a> </div> </div> </div>
+
+
+            <h3 class="title-pf"> DEMI-FINALES </h3>
+            <time datetime="2018-07-10T00:00:00" class="mdate firsth"> Mardi 10 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-10T20:00">
+                <meta itemprop="name" content="20:00 : Vainqueur n°57 vs Vainqueur n°58">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                        {% if partieA111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°57</span> </div>
+                    {% else %}
+
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA111.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieA111.idpartie.away.nomequipe }}</span> </div>
+                    {% if partieA111.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-10T20:00:00">20:00</time></div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-07-10T20:00:00">{{partieA111.butaway  }}/{{partieA111.buthome  }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                {% if partieA111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°58</span>
+                {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA111.idpartie.home.drapeau }}"></svg>
+                    <span class="country">{{ partieA111.idpartie.home.nomequipe }}</span>
+                {% endif %}
+                    </div>
+                </div>
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieA111 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieA111.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                <div class="line-timer">
+                    <div class="tab-timer avant">
+
+                        {% if partieA111 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieA111.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieA111.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+     {% else  %}
+
+
+         <div class="line-timer">
+             <div class="tab-timer avant">
+                 <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+             </div>
+         </div>
+
+
+     {% endif %}
+
+
+
+                <div class="tab-line-infos"> <div class="tab-group">
+                        <span class="num">N°61</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Saint-Petersbourg"> <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Saint-Petersbourg">
+                            <meta itemprop="url" content="/russie2018/stades#saint-petersbourg"> </div>
+                        <svg> <use xlink:href=></use> </svg>
+                        <a href="" class="cal-stade" title="Saint-Petersbourg">Saint-Petersbourg</a> </div> </div> </div>
+
+
+                <time datetime="2018-07-11T00:00:00" class="mdate"> Mercredi 11 juillet 2018 </time>
+                <div itemscope itemtype="http://schema.org/SportsEvent"> <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                    <meta itemprop="startDate" content="2018-07-11T20:00">
+                    <meta itemprop="name" content="20:00 : Vainqueur n°59 vs Vainqueur n°60">
+                    <div class="line-tab-match">
+                        <div class="tab-team tab-dom">
+                            {% if partieB111 is empty %}
+                            <svg class="flags"><use xlink:href=""></use></svg>
+                             <span class="country">Vainqueur n°59</span> </div>
+                       {% else %}
+                            <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB111.idpartie.away.drapeau }}"></svg>
+                            <span class="country">{{ partieB111.idpartie.away.nomequipe }}</span> </div>
+
+                            {% if partieB111.idpartie.etatmatch=='PasEncore' %}
+                        <div class="tab-score"> <time datetime="2018-07-11T20:00:00">20:00</time></div>
+
+                        {% else %}
+                            <div class="tab-score"><time datetime="2018-07-11T20:00:00">{{ partieB111.butaway }} / {{partieB111.buthome  }}</time></div>
+                    {% endif %}
+                        {% endif %}
+
+
+                        <div class="tab-team tab-ext">
+                    {% if partieB111 is empty %}
+                            <svg class="flags"><use xlink:href=""></use></svg>
+                            <span class="country">Vainqueur n°60</span>
+                    {% else %}
+                        <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB111.idpartie.home.drapeau }}"></svg>
+                        <span class="country">{{ partieB111.idpartie.home.nomequipe }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+        {% if partieB111 is empty %}
+            {% set betJoue= 0 %}
+        {% else %}
+            {% if bet.idpartie==partieB111.idpartie %}
+                {% set betJoue= 1 %}
+            {% endif  %}
+        {% endif %}
+    {% endfor %}
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                 <div class="line-timer">
+
+                        <div class="tab-timer avant">
+                            {% if partieB111 is empty %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                            {% else %}
+                            {%if betJoue ==1   %}
+                                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                            {% else %}
+                            {% if partieB111.idpartie.etatMatch=='Jouee' %}
+                                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                            {% else %}
+                                <a href="{{ path('insertBet',{'id':partieB111.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                            {% endif %}
+                            {% endif %}
+                            {% endif %}
+                        </div> </div>
+
+
+      {% else  %}
+
+
+          <div class="line-timer">
+              <div class="tab-timer avant">
+                  <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+              </div>
+          </div>
+
+
+      {% endif %}
+
+                    <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°62</span> </div>
+                        <div class="tab-tv"> <a href="/russie2018/programmes-tv" title="Match diffusé sur TF1 / BeIN Sport">
+
+                                <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+
+                        <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                            <meta itemprop="name" content="Moscou">
+                            <meta itemprop="url" content="/russie2018/stades">
+                            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                             <meta itemprop="addressLocality" content="Moscou"> <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                            <svg> <use xlink:href="/images/svg/sprite.svg#svg-gps"></use> </svg>
+                            <a href="/russie2018/stades" class="cal-stade" title="Moscou">Moscou</a> </div> </div> </div>
+
+
+            <h3 class="title-pf"> TROISIEME PLACE </h3>
+            <time datetime="2018-07-14T00:00:00" class="mdate firsth"> Samedi 14 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-14T16:00">
+                <meta itemprop="name" content="16:00 : Perdant n°61 vs Perdant n°62">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+
+                    {% if partieB1111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Perdant n°61</span> </div>
+
+                    {% else  %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB1111.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieB1111.idpartie.away.nomequipe }}</span> </div>
+                 {% if partieB1111.idpartie.etatmatch=="PasEncore" %}
+                <div class="tab-score"><time datetime="2018-07-14T16:00:00">16:00</time></div>
+                   {% else %}
+                       <div class="tab-score"><time datetime="2018-07-14T16:00:00">{{ partieB1111.butaway }}/{{ partieB1111.buthome }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                    {% if partieB1111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Perdant n°62</span>
+                    {% else %}
+                        <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieB1111.idpartie.home.drapeau }}"></svg>
+                        <span class="country">{{ partieB1111.idpartie.home.nomequipe }}</span>
+                    {% endif %}
+
+                                         </div> </div>
+
+
+
+
+
+
+
+    {% set betJoue= 0 %}
+    {% for bet in bets  %}
+    {% if partieB1111 is empty %}
+        {% set betJoue= 0 %}
+    {% else %}
+    {% if bet.idpartie==partieB1111.idpartie %}
+        {% set betJoue= 1 %}
+    {% endif  %}
+    {% endif  %}
+{% endfor %}
+
+
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="line-timer">
+                    <div class="tab-timer avant">
+                        {% if partieB1111 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+                        {% if partieB1111.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieB1111.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                        {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+
+
+      {% else  %}
+
+
+          <div class="line-timer">
+              <div class="tab-timer avant">
+                  <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+              </div>
+          </div>
+
+
+      {% endif %}
+
+
+                <div class="tab-line-infos"> <div class="tab-group"> <span class="num">N°63</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Saint-Petersbourg">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Saint-Petersbourg">
+                            <meta itemprop="url" content="/russie2018/stades#saint-petersbourg"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Saint-Petersbourg">Saint-Petersbourg</a> </div> </div> </div>
+
+
+            <h3 class="title-pf"> FINALE </h3>
+            <time datetime="2018-07-15T00:00:00" class="mdate firsth"> Dimanche 15 juillet 2018 </time>
+            <div itemscope itemtype="http://schema.org/SportsEvent">
+                <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                <meta itemprop="startDate" content="2018-07-15T17:00">
+                <meta itemprop="name" content="17:00 : Vainqueur n°61 vs Vainqueur n°62">
+                <div class="line-tab-match"> <div class="tab-team tab-dom">
+                    {% if partieA1111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°61</span> </div>
+                    {% else %}
+                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA1111.idpartie.away.drapeau }}"></svg>
+                    <span class="country">{{ partieA1111.idpartie.away.nomequipe }}</span> </div>
+                    {% if partieA1111.idpartie.etatmatch=='PasEncore' %}
+                    <div class="tab-score"><time datetime="2018-07-15T17:00:00">17:00</time></div>
+                    {% else %}
+                        <div class="tab-score"><time datetime="2018-07-15T17:00:00">{{partieA1111.butaway  }} / {{partieA1111.buthome  }}</time></div>
+                    {% endif %}
+                    {% endif %}
+                    <div class="tab-team tab-ext">
+                        {% if partieA1111 is empty %}
+                        <svg class="flags"><use xlink:href=""></use></svg>
+                        <span class="country">Vainqueur n°62</span>
+                     {% else %}
+                         <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partieA1111.idpartie.home.drapeau }}"></svg>
+                         <span class="country">{{ partieA1111.idpartie.home.nomequipe }}</span>
+                        {% endif %}
+                    </div> </div>
+{% set betJoue= 0 %}
+    {% for bet in bets  %}
+    {% if partieA1111 is empty %}
+        {% set betJoue= 0 %}
+    {% else %}
+    {% if bet.idpartie==partieA1111.idpartie %}
+        {% set betJoue= 1 %}
+    {% endif  %}
+{% endif %}
+{% endfor %}
+
+
+     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <div class="line-timer"> <div class="tab-timer avant">
+                        {% if partieA1111 is empty %}
+                        <a href="" class="bt-paris" title="Parier sur ce match" onclick="matchNonProgramme()" > PARIEZ </a>
+                        {% else %}
+                        {%if betJoue ==1   %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                        {% else %}
+
+                        {% if partieA1111.idpartie.etatMatch=='Jouee' %}
+                            <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                        {% else %}
+                            <a href="{{ path('insertBet',{'id':partieA1111.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                        {% endif %}
+                         {% endif %}
+                        {% endif %}
+                    </div> </div>
+
+
+     {% else  %}
+
+
+         <div class="line-timer">
+             <div class="tab-timer avant">
+                 <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+             </div>
+         </div>
+
+
+     {% endif %}
+
+                <div class="tab-line-infos"> <div class="tab-group">
+                        <span class="num">N°64</span> </div>
+                    <div class="tab-tv"> <a href="" title="Match diffusé sur TF1 / BeIN Sport">
+                            <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                    <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                        <meta itemprop="name" content="Moscou">
+                        <meta itemprop="url" content="/russie2018/stades">
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <meta itemprop="addressLocality" content="Moscou">
+                            <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                        <svg> <use xlink:href=""></use> </svg>
+                        <a href="" class="cal-stade" title="Moscou">Moscou</a> </div> </div> </div> </div>
+
+
+
+
+
+</div>
+</div>
+</div>
+
+    </div>
+<br> <br> <br>
+
+
+<script type="text/javascript">
+    function refuse(){
+
+
+        swal ( "Impossible" ,  "Le match a été Terminée" ,  "error" );
+
+
+
+    }
+
+
+    function refuseRefuse(){
+
+
+        swal ( "Impossible" ,  "Vous avez jouée ce Match" ,  "error" );
+
+
+
+    }
+
+    function matchNonProgramme(){
+        swal({
+            title: "Attention",
+            text: "Le match n'est pas encore programmé !",
+            icon: "warning",
+
+            dangerMode: true,
+        })
+
+
+        ;
+    }
+</script>
+
+    <script>
+        $(".my-select").chosen();
+    </script>
+
+{% endblock %}

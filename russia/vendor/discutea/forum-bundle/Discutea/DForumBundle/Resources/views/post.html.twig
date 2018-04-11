@@ -1,0 +1,369 @@
+{% extends "::base.html.twig" %}
+{% block style %}
+    {{ parent() }}
+
+
+{% endblock %}
+ {% block header %}
+     <div id="main_header" class="type4">
+         <div class="tagline show_hide">
+             <div class="container">
+                 <div class="fright">
+                     <div class="tagline_items">
+                         <div class="log_in_out">
+                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                 <div class="login_submenu">
+                                     <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                 </div>
+
+
+
+                             {% else %}
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                             {% endif %}
+
+
+                             <!-- Login submenu -->
+                             <!--<div class="login_submenu">
+                                 <form action="javascript:void(0);" method="post">
+                                     <input type="text" placeholder="Email or Login*" value="" name="name">
+                                     <input type="password" placeholder="Password*" value="" name="password">
+                                     <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                     <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                 </form>
+                             </div>-->
+                             <!-- //Login submenu -->
+
+                         </div>
+                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                             <div class="cart_btn">
+                                 <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                             </div>
+                         {% endif %}
+
+                         <div class="social_icons">
+                             <ul>
+                                 <li><span>Follow:</span></li>
+                                 <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                 <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                             </ul>
+                         </div>
+                         <div class="language_select">
+                             <div class="selectBox">
+                                 <span class="selected"></span>
+                                 <span class="selectArrow"></span>
+                                 <div class="selectOptions">
+                                     <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                 <div class="fleft">
+                     <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                     <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                 </div>
+
+
+                 <div class="clear"></div>
+             </div>
+         </div>
+
+
+         <div class="header_parent_wrap">
+             <header>
+                 <div class="container">
+                     <div class="logo_sect">
+                         <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                     </div>
+                     <div class="fright">
+                         <nav>
+                             <ul class="menu">
+                                 <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                             {% endif %}
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                         <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                         <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                     </ul>
+                                                 </div>
+                                             </li>
+                                             <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                             <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                         <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                         <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                     </ul>
+                                                 </div>
+                                             </li>
+
+                                             <li><a href="{{ path('classement') }}">Classement</a></li>
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                 </li>
+                                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                     <li class="menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                         <div class="sub-nav">
+                                             <ul class="sub-menu">
+
+                                                 <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                                 <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                             </ul>
+                                         </div>
+                                     </li>
+                                 {% else %}
+                                     <li></li>
+                                 {% endif %}
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                                 <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                             {% endif %}
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="current-menu-parent menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                 </li>
+                             </ul>
+                         </nav>
+                         <!--<div class="top_search">
+                             <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                             <div class="top_search_wrap not_click">
+                                 <form name="search_form" method="get" action="#" class="search_form not_click">
+                                     <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                     <input type="submit" value="Go">
+                                 </form>
+                             </div>
+                         </div>-->
+                         <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                         <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>
+                 </div>
+             </header>
+         </div>
+     </div>
+
+
+     <br>
+     <br>
+ {% endblock %}
+
+
+
+{% block body %}
+    <div class="wrapper">
+        <div class="container">
+            <div class="content_block row no-sidebar single_post">
+                <div class="fl-container">
+                    <div class="posts-block">
+                        <div class="contentarea">
+                            <div class="blog_post_preview">
+                                <h2 class="blogpost_title">{{ topic.title }} </h2>
+                                <div class="blog_post_image">
+
+                                    <img src="{{asset("uplod/images/"~topic.image)}}"  style="
+                                width: 200px;
+                                " alt="" />
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="blog_content clearfix">
+                                    <div class="listing_meta">
+                                        <span><i class="fa fa-calendar-check-o"></i>{{ topic.date|date("Y-m-d") }}</span>
+                                        {% if topic.user is not null %}
+                                            {% set username = topic.user.username %}
+                                        {% else %}
+                                            {% set username = 'discutea.forum.deleted.user'|trans %}
+                                        {% endif %}
+                                        <span><i class="fa fa-user"></i><a href="javascript:void(0);">{{ username }}</a></span>
+                                        <span><i class="fa fa-clock-o"></i>{{ topic.date|date("H:i") }}</span>
+
+                                        {% set posts_count = topic.posts|length %}
+
+                                        {% if posts_count >= 1 %}
+                                        <span><i class="fa fa-comments-o"></i><a href="javascript:void(0);">{{ posts_count }} Commenttaires</a></span>
+                                        {% else %}<span><i class="fa fa-comments-o"></i><a href="javascript:void(0);">0 Commenttaires</a></span>
+                                        {% endif %}
+
+
+                                    </div>
+                                    <p>
+
+                                        {% if topic.posts.last.poster is not null %}
+                                            {% set username = topic.posts.last.poster.username %}
+                                        {% else %}
+                                            {% set username = 'discutea.forum.deleted.user'|trans %}
+                                        {% endif %}
+
+
+                                            <span><i class="fa fa-user"></i><a href=""> Dernière Mise à jour par : {{ username }}</a></span><br>
+                                            <span><i class="fa fa-calendar-check-o"></i>{{ topic.posts.last.date|date("Y-m-d") }}</span><br>
+                                            <span><i class="fa fa-clock-o"></i>{{ topic.posts.last.date|date("H:i") }}</span>
+
+
+
+
+                                    </p>
+<br><br>
+
+                                </div>
+                            </div>
+<br><br><br>
+
+                            <div class="row">
+                                <div class="col-sm-12 module_cont module_feature_posts pb0">
+                                    <center> <h4>Les sujets les plus récents</h4></center>
+                                    <div class="items4 featured_posts clearfix">
+                                        {% for la in last %}
+                                        <div class="featured_item">
+                                            <div class="featured_img">
+                                                <a href="{{ path('discutea_forum_post', {'slug': la.slug}) }}"><img alt="" src="{{asset("uplod/images/"~la.image)}}" /></a>
+                                            </div>
+                                            <div class="featured_item_descr">
+                                                <h6><a href="{{ path('discutea_forum_post', {'slug': la.slug}) }}">{{ la.title }}</a></h6>
+                                                {% set posts_count = la.posts|length %}
+
+                                                <div class="featured_meta">{{ la.date|date("Y-m-d") }}&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:void(0);">{{ posts_count }} commentaires</a></div>
+                                            </div>
+                                        </div>
+
+                                      {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="comments" style="
+    padding-bottom: 0px;
+">
+                                <h4>Liste des commentaires<span class="color">({{ posts_count }})</span></h4>
+                                <ol class="commentlist">
+                                    <li class="comment">
+
+                                        <ul>
+
+
+                                            {% for post in posts %}{% include 'DForumBundle::Post/single-post.html.twig' %}{% endfor %}
+                                            {% if postpreview %}{% include 'DForumBundle::Post/preview-post.html.twig' %}{% endif %}
+                                            {% if is_granted('CanEditTopic', topic) %}{% include 'DForumBundle::label.html.twig' %}{% endif %}
+
+
+                                        </ul>
+                                    </li>
+
+                                </ol>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if form is not null %}
+          {#}  <h5> Tire du Sujet : {{ topic.title }}</h5>{#}
+            {% if date(topic.lastpost) < date('-1month') %}
+                <div class="alert alert-danger text-center" role="alert">{{ 'discutea.forum.post.aged'|trans }}</div>
+            {% endif %}
+            {% include 'DForumBundle::Form/Post.html.twig' %}
+        {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+{% endblock %}
+
+
+
+
+
+
+{#}
+
+
+  <h1 class="text-center">{{ topic.title }}</h1>
+  {{ knp_pagination_render(posts) }}
+  
+  {% if topic.closed == true %}
+    <div class="alert alert-danger">{{ 'discutea.forum.label.isclosed'|trans }}</div>
+  {% endif %}
+  {% if topic.resolved == true %}
+    <div class="alert alert-success">{{ 'discutea.forum.label.issolved'|trans }}</div>
+  {% endif %}
+  {% if topic.pinned == true %}
+    <div class="alert alert-warning">{{ 'discutea.forum.label.ispinned'|trans }}</div>
+  {% endif %}
+
+  <ul class="list-unstyled">
+    {% for post in posts %}{% include 'DForumBundle::Post/single-post.html.twig' %}{% endfor %}
+    {% if postpreview %}{% include 'DForumBundle::Post/preview-post.html.twig' %}{% endif %}
+    {% if is_granted('CanEditTopic', topic) %}{% include 'DForumBundle::label.html.twig' %}{% endif %}
+  </ul>
+
+  {{ knp_pagination_render(posts) }}
+  
+  {% if form is not null %}
+    <h2>{{ topic.title }}</h2>
+    {% if date(topic.lastpost) < date('-1month') %}
+      <div class="alert alert-danger text-center" role="alert">{{ 'discutea.forum.post.aged'|trans }}</div>
+    {% endif %}
+    {% include 'DForumBundle::Form/Post.html.twig' %}
+  {% endif %}
+{% endblock %}
+{#}

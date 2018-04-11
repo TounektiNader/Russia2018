@@ -1,0 +1,24 @@
+<div style="
+     margin-left: 200px;
+     padding-right: 500px;
+">
+{{ form_start(form, {'attr': {'id': 'discutea_forum_post'}}) }}
+    <div class="form-group">
+
+      {{ form_label(form.content) }}
+      {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': 5}}) }}
+    </div>
+    <div class="form-group">
+      <div class="pull-right">
+        {% if form.preview is defined %}
+          <ul class="pull-right list-inline" >
+              <li> {{ form_widget(form.preview, {'attr': {'class': 'btn btn-block btn-warning'}}) }}</li>
+        {% endif %}
+
+              <li>  <button type="submit" class="btn bg-navy btn-flat margin" style="    background-color: #001f3f ;" ><i class="fa fa-hand-o-right" >{{ 'discutea.forum.btn.submit'|trans }}</i></button>
+              </li>
+          </ul>
+      </div>
+    </div>
+{{ form_end(form) }}
+</div>

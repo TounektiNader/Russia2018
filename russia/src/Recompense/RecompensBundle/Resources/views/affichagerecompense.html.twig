@@ -1,0 +1,410 @@
+{% extends 'base.html.twig' %}
+
+{% block style %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <title>Russia 2018</title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href={{ asset("css/bootstrap.min.css") }} type="text/css" media="all" />
+    <link rel="stylesheet" href={{ asset("css/theme.css") }} type="text/css" media="all" />
+    <link rel="stylesheet" href={{ asset("css/shop.css") }} type="text/css" media="all" />
+    <link rel="stylesheet" href={{ asset("css/custom.css") }} type="text/css" media="all" />
+{% endblock %}
+
+ {% block header %}
+     <div id="main_header" class="type4">
+         <div class="tagline show_hide">
+             <div class="container">
+                 <div class="fright">
+                     <div class="tagline_items">
+                         <div class="log_in_out">
+                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                 <div class="login_submenu">
+                                     <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                 </div>
+
+
+
+                             {% else %}
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                             {% endif %}
+
+
+                             <!-- Login submenu -->
+                             <!--<div class="login_submenu">
+                                 <form action="javascript:void(0);" method="post">
+                                     <input type="text" placeholder="Email or Login*" value="" name="name">
+                                     <input type="password" placeholder="Password*" value="" name="password">
+                                     <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                     <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                 </form>
+                             </div>-->
+                             <!-- //Login submenu -->
+
+                         </div>
+                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                             <div class="cart_btn">
+                                 <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                             </div>
+                         {% endif %}
+
+                         <div class="social_icons">
+                             <ul>
+                                 <li><span>Follow:</span></li>
+                                 <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                 <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                             </ul>
+                         </div>
+                         <div class="language_select">
+                             <div class="selectBox">
+                                 <span class="selected"></span>
+                                 <span class="selectArrow"></span>
+                                 <div class="selectOptions">
+                                     <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                 <div class="fleft">
+                     <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                     <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                 </div>
+
+
+                 <div class="clear"></div>
+             </div>
+         </div>
+
+
+         <div class="header_parent_wrap">
+             <header>
+                 <div class="container">
+                     <div class="logo_sect">
+                         <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                     </div>
+                     <div class="fright">
+                         <nav>
+                             <ul class="menu">
+                                 <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                             {% endif %}
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                         <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                         <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                     </ul>
+                                                 </div>
+                                             </li>
+                                             <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                             <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                         <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                         <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                     </ul>
+                                                 </div>
+                                             </li>
+
+                                             <li><a href="{{ path('classement') }}">Classement</a></li>
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                 </li>
+                                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                     <li class="menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                         <div class="sub-nav">
+                                             <ul class="sub-menu">
+
+                                                 <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                                 <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                             </ul>
+                                         </div>
+                                     </li>
+                                 {% else %}
+                                     <li></li>
+                                 {% endif %}
+                                 <li class="current-menu-parent menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                                 <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                             {% endif %}
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                 </li>
+                             </ul>
+                         </nav>
+                         <!--<div class="top_search">
+                             <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                             <div class="top_search_wrap not_click">
+                                 <form name="search_form" method="get" action="#" class="search_form not_click">
+                                     <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                     <input type="submit" value="Go">
+                                 </form>
+                             </div>
+                         </div>-->
+                         <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                         <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>
+                 </div>
+             </header>
+         </div>
+     </div>
+
+
+     <br>
+     <br>
+ {% endblock %}
+
+{% block body %}
+
+<div class="wrapper">
+    <div class="container">
+        <div class="content_block row right-sidebar">
+            <div class="page_title">
+                <h1>Liste Des Recompenses</h1>
+
+                <div class="icon_divider"></div>
+                {% if promo is not null %}
+
+                  <div id="countdown" style="
+    background-color: #f00;
+    width: 102%;
+    height: 158px;
+    display: block;
+"></div>
+                    <div class="container" style="padding: 25px 16px;
+    background-color: #f1f1f1;">
+                      <h2 style="
+    padding-right: 140px;
+"><b>{{ promo.promotion }}% De Réduction</b></h2>
+
+                  </div>
+                  <div class="container">
+                      <p style="padding-right: 150px;">Utiliser Promo Code: <span class="promo" style="font-size: 25px;background:#ccc;padding: 3px;">{{ promo.coupon }}</span></p>
+                      <p class="expire" style="padding-right: 150px;color: red;">Expires: {{ promo.expiration|date("Y/m/d") }}</p>
+                  </div>
+                    {% else %}
+
+
+                {% endif %}
+
+                </div>
+            <div class="fl-container hasRS">
+                <div class="posts-block">
+                    <div class="contentarea">
+
+                        <div class="shop_cart">
+                            {% set var=0 %}
+                            {% for cadeau in recompense %}
+
+                            <table>
+                                <thead>
+                                <tr>
+
+                                    <th class="product-item">Categorie</th>
+                                    <th class="product-price">Type</th>
+                                    <th class="product-quantity">Jeton</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="cart_table_item">
+
+                                    <td class="product-item">
+                                        <img src="{{ asset('uploads/images/' ~ cadeau.idcadeau.image) }}" height="50px" width="50px">
+                                        <a href="shop_product.html">{{ cadeau.idcadeau.categorie }}</a>
+                                    </td>
+                                    <td class="product-price">
+                                        <span class="amount">{{ cadeau.idcadeau.type }}</span>
+                                    </td>
+                                    <td class="product-quantity">
+
+                                            <div class="quantity">
+                                                <span class="amount">{{ cadeau.idcadeau.jeton }}</span>
+                                                {% set var=var+cadeau.idcadeau.jeton %}
+
+                                            </div>
+                                            <div class="clear"></div>
+
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td class="actions" colspan="3">
+                                        <div class="coupon">
+                                            <form method="post" action="{{ path('DeletePromo')}}">
+                                            <input type="text" value="" name="coupon" placeholder="Coupon Code">
+                                                <input type="hidden" name="total" value={{ var }}>
+
+                                                <input class="shortcode_button btn_normal btn_type3" type="submit" value="Valider Coupon"></a>
+                                            </form>
+                                        </div>
+
+                                        <div class="clear"></div>
+                                    </td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+
+    <!-- END SLIDER REVOLUTION EXTENSIONS -->
+    {% if promo is not null %}
+        <script type="text/javascript" src={{ asset("js/jquery.countdown.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/jquery.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/jquery-ui.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/bootstrap.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/modules.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/theme.js") }}></script>
+
+        <script type="text/javascript" src={{ asset("js/shop.js") }}></script>
+        <!-- Portfolio -->
+        <script type="text/javascript" src={{ asset("js/jquery.isotope.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("js/sorting.js") }}></script>
+        <!-- REVOLUTION JS FILES -->
+        <script type="text/javascript" src={{ asset("revolution/js/jquery.themepunch.tools.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/jquery.themepunch.revolution.min.js") }}></script>
+
+        <!-- SLIDER REVOLUTION EXTENSIONS (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.actions.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.carousel.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.kenburn.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.layeranimation.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.migration.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.navigation.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.parallax.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.slideanims.min.js") }}></script>
+        <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.video.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/jquery.countdown.min.js") }}></script>
+    <script>
+        function gt3_centerWindow() {
+            "use strict";
+            var globalWrap = jQuery('.global_count_wrapper');
+            var countWrapper = jQuery('.countdown_wrapper');
+            var countTitle = jQuery('.count_title');
+            var window_h = jQuery(window).height();
+            var countContainer = jQuery('.count_container_wrapper');
+            var freeSpace = (window_h - countWrapper.height() - countTitle.height() - countContainer.height())/2.394;
+            countTitle.css('top', freeSpace+'px');
+            countContainer.css('bottom', freeSpace +'px');
+            globalWrap.css('height', window_h + 'px');
+            var setMiddle = freeSpace*1.162 + countTitle.height();
+            countWrapper.css('top', setMiddle+'px');
+        }
+        jQuery(function () {
+
+
+            var austDay = new Date({{ promo.expiration|date("Y") }},{{ promo.expiration|date("m") }}-1,{{ promo.expiration|date("d") }},19,00); //year, month-1, day
+            jQuery('#countdown').countdown({
+                until: austDay,
+                padZeroes: true
+            });
+        });
+        jQuery(document).ready(function(){
+            "use strict";
+            gt3_centerWindow();
+        });
+        jQuery(window).resize(function(){
+            "use strict";
+            gt3_centerWindow();
+        });
+    </script>
+{% else %}
+    <script type="text/javascript" src={{ asset("js/jquery.countdown.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/jquery.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/jquery-ui.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/bootstrap.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/modules.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/theme.js") }}></script>
+
+    <script type="text/javascript" src={{ asset("js/shop.js") }}></script>
+    <!-- Portfolio -->
+    <script type="text/javascript" src={{ asset("js/jquery.isotope.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/sorting.js") }}></script>
+    <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src={{ asset("revolution/js/jquery.themepunch.tools.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/jquery.themepunch.revolution.min.js") }}></script>
+
+    <!-- SLIDER REVOLUTION EXTENSIONS (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.actions.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.carousel.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.kenburn.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.layeranimation.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.migration.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.navigation.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.parallax.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.slideanims.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("revolution/js/extensions/revolution.extension.video.min.js") }}></script>
+    <script type="text/javascript" src={{ asset("js/jquery.countdown.min.js") }}></script>
+    {% endif %}
+{% endblock %}

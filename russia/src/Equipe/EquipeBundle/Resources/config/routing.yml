@@ -1,0 +1,45 @@
+equipe_equipe_homepage:
+    path:     /
+    defaults: { _controller: EquipeEquipeBundle:Default:index }
+_ajouter_equipe:
+    path:     /admin/AjouterEquipe
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:AjouterEquipe }
+_afficher_equipe:
+    path:     /admin/AfficherEquipe
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:AfficherEquipe }
+_modifier_equipe:
+    path:     /admin/ModifierEquipe/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:ModifierEquipe }
+_supprimer_equipe:
+    path:     /admin/SupprimerEquipe/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:SupprimerEquipe }
+_ajouter_joueurs:
+    path:     /admin/AjouterJoueurs
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:AjouterJoueurs }
+_afficher_joueurs:
+    path:     /admin/AfficherJoueurs
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:AfficherJoueurs }
+_supprimer_joueur:
+    path:     /admin/SupprimerJoueur/{idjoueur}
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:SupprimerJoueur }
+_modifier_joueur:
+    path:     /admin/ModifierJoueur/{idjoueur}
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:ModifierJoueur }
+_afficher_equipe_Client:
+    path:     /AffCliEquipe
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:AfficherEquipeClient }
+_afficher_Joueurs_Client:
+    path:     /AffCliJoueurs/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:AfficherJoueursClient }
+_RechercheEquipe:
+    path:     /RechEq/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:Rechercher }
+_StatistiqueEquipe:
+    path:     /Stats/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:PieChart }
+_ExcelJoueur:
+    path:     /Excel
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:Excelparsing }
+_read_joueur:
+    path:     /ReadJoueur
+    defaults: { _controller: EquipeEquipeBundle:ExcelReading:ReadJoueur }

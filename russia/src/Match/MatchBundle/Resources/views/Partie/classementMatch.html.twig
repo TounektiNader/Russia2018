@@ -1,0 +1,427 @@
+
+{% extends 'base.html.twig' %}
+
+          {% block style %}
+
+             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-common.css?v3753b998?v3753b998"/>
+            <link rel="stylesheet" href="//static.ruedufootball.com/css/cm2018-misc.css?v3753b998?v3753b998"/>
+            <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+            <link rel="shortcut icon" href={{ asset("img/favicon.ico") }} type="image/x-icon">
+            <link rel="apple-touch-icon" href={{ asset("img/apple_icons_57x57.png") }}>
+            <link rel="apple-touch-icon" sizes="72x72" href={{ asset("img/apple_icons_72x72.png") }}>
+            <link rel="apple-touch-icon" sizes="114x114" href={{ asset("img/apple_icons_114x114.png" )}}>
+
+            <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+            <link rel="stylesheet" href={{ asset("css/bootstrap.min.css") }} type="text/css" media="all" />
+            <link rel="stylesheet" href={{ asset("css/theme.css") }} type="text/css" media="all" />
+            <!-- REVOLUTION CSS FILES -->
+            <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/settings.css") }}>
+            <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/layers.css") }}>
+            <link rel="stylesheet" type="text/css" href={{ asset("revolution/css/navigation.css") }}>
+            <link rel="stylesheet" href={{ asset("css/custom.css") }} type="text/css" media="all" />
+
+            <link rel="stylesheet" href={{ asset("fonts/Dusha_-_FIFA_World_Cup_2018.ttf") }} type="text/css" media="all" />
+              <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        {% endblock %}
+
+ {% block header %}
+     <div id="main_header" class="type4">
+         <div class="tagline show_hide">
+             <div class="container">
+                 <div class="fright">
+                     <div class="tagline_items">
+                         <div class="log_in_out">
+                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                 <div class="login_submenu">
+                                     <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                 </div>
+
+
+
+                             {% else %}
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                             {% endif %}
+
+
+                             <!-- Login submenu -->
+                             <!--<div class="login_submenu">
+                                 <form action="javascript:void(0);" method="post">
+                                     <input type="text" placeholder="Email or Login*" value="" name="name">
+                                     <input type="password" placeholder="Password*" value="" name="password">
+                                     <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                     <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                 </form>
+                             </div>-->
+                             <!-- //Login submenu -->
+
+                         </div>
+                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                             <div class="cart_btn">
+                                 <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                             </div>
+                         {% endif %}
+
+                         <div class="social_icons">
+                             <ul>
+                                 <li><span>Follow:</span></li>
+                                 <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                 <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                             </ul>
+                         </div>
+                         <div class="language_select">
+                             <div class="selectBox">
+                                 <span class="selected"></span>
+                                 <span class="selectArrow"></span>
+                                 <div class="selectOptions">
+                                     <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                 <div class="fleft">
+                     <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                     <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                 </div>
+
+
+                 <div class="clear"></div>
+             </div>
+         </div>
+
+
+         <div class="header_parent_wrap">
+             <header>
+                 <div class="container">
+                     <div class="logo_sect">
+                         <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                     </div>
+                     <div class="fright">
+                         <nav>
+                             <ul class="menu">
+                                 <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                             {% endif %}
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                         <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                         <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                     </ul>
+                                                 </div>
+                                             </li>
+                                             <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                             <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="current-menu-parent menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                         <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                         <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                     </ul>
+                                                 </div>
+                                             </li>
+
+                                             <li><a href="{{ path('classement') }}">Classement</a></li>
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                 </li>
+                                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                     <li class="menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                         <div class="sub-nav">
+                                             <ul class="sub-menu">
+
+                                                 <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                                 <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                             </ul>
+                                         </div>
+                                     </li>
+                                 {% else %}
+                                     <li></li>
+                                 {% endif %}
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                                 <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                             {% endif %}
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                 </li>
+                             </ul>
+                         </nav>
+                         <!--<div class="top_search">
+                             <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                             <div class="top_search_wrap not_click">
+                                 <form name="search_form" method="get" action="#" class="search_form not_click">
+                                     <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                     <input type="submit" value="Go">
+                                 </form>
+                             </div>
+                         </div>-->
+                         <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                         <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>
+                 </div>
+             </header>
+         </div>
+     </div>
+
+
+     <br>
+     <br>
+ {% endblock %}
+
+{% block body %}
+
+
+    <br>
+    <br>
+
+
+    <div ng-app="myApp" ng-controller="controller">
+        <div class="container">
+
+
+
+            <div class="page_title">
+                <h1><span style="    color: #007edc;">Classement Par Groupe </span> Coupe du monde 2018</h1>
+                <div class="icon_divider"></div>
+                <p>Au fur et à mesure de déroulement des matchs programmés au coupe du monde Russie 2018 , vous trouverez les résultats, les classments,et le programme des équipes par groupe</p>
+            </div>
+
+
+            <div class="nav-gp">
+                <a href="{{ path('classementGroupe',{'groupe':'A'}) }}" title="Groupe A">A</a>
+                <a href="{{ path('classementGroupe',{'groupe':'B'}) }}" title="Groupe B">B</a>
+                <a href="{{ path('classementGroupe',{'groupe':'C'}) }}" title="Groupe C">C</a>
+                <a href="{{ path('classementGroupe',{'groupe':'D'}) }}" title="Groupe D">D</a>
+                <a href="{{ path('classementGroupe',{'groupe':'E'}) }}" title="Groupe E">E</a>
+                <a href="{{ path('classementGroupe',{'groupe':'F'}) }}" title="Groupe F">F</a>
+                <a href="{{ path('classementGroupe',{'groupe':'G'}) }}" title="Groupe G">G</a>
+                <a href="{{ path('classementGroupe',{'groupe':'H'}) }}" title="Groupe H">H</a>
+            </div>
+
+            <table class="tab-classement">
+                <thead>
+                <tr>
+                    <th><abbr title="Position">Pl</abbr>  </th>
+                    <th class="clmt-team"><abbr>Équipes</abbr></th>
+                    <th class="clmt-pts"><abbr title="Points gagnés">Pts</abbr></th>
+                    <th><abbr title="Matches joués">J</abbr></th>
+                    <th class="hide-mob"><abbr title="Matches gagnés">V</abbr></th>
+                    <th class="hide-mob"><abbr title="Matches nuls">N</abbr></th>
+                    <th class="hide-mob"><abbr title="Matches perdus">D</abbr></th>
+                    <th class="hide-mob"><abbr title="Buts marqués">BP</abbr></th>
+                    <th class="hide-mob"><abbr title="buts encaissés">BC</abbr></th>
+                    <th><abbr title="Différence de buts (BP-BC)">Diff.</abbr></th>
+
+                </tr>
+                </thead>
+                {% set var =0 %}
+                <tbody>
+
+                {% for equipe in equipes %}
+                    <tr class="ligne2">
+
+
+
+                        <td class="clmt-pos">{{ var+1 }}</td>
+                        {% set var =var+1 %}
+                        <td class="clmt-team">
+                            <a href="" title="Russie" target="_top">
+                                <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ equipe.drapeau }}" height="30" width="30"></svg>
+                                <span class="country">{{ equipe.nomequipe }}</span></a></td>
+                        <td class="clmt-pts">{{ equipe.nombrepoints }}</td>
+                        <td>{{ equipe.matchjouee }}</td>
+                        <td class="hide-mob">{{ equipe.matchgagne }}</td>
+                        <td class="hide-mob">{{ equipe.matchnull }}</td>
+                        <td class="hide-mob">{{ equipe.matchperdu }}</td>
+                        <td class="hide-mob">{{ equipe.butmarque }}</td>
+                        <td class="hide-mob">{{ equipe.butencaisse }}</td>
+
+                        {% set res = ( equipe.butmarque - equipe.butencaisse ) %}
+
+                        <td class="hide-mob">{{ res}}</td>
+
+                    </tr>
+                {% endfor %}
+
+
+                </tbody>
+            </table>
+
+            {% for partie in parties %}
+                <div class="tab-calendar p1">
+                    <time datetime="2018-06-14T00:00:00" class="mdate firsth"> {{ partie.idpartie.datepartie|date('Y-m-d') }} </time>
+                    <div itemscope itemtype="http://schema.org/SportsEvent">
+                        <meta itemprop="description" content="Coupe du monde 2018 FIFA">
+                        <meta itemprop="startDate" content="2018-06-14T17:00">
+                        <meta itemprop="name" content="17:00 : Russie vs Arabie Saoudite">
+                        <div class="line-tab-match"> <div class="tab-team tab-dom">
+                                <a href="/equipes/russie" title="{{ partie.idpartie.home.nomequipe }}">
+                                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partie.idpartie.home.drapeau }}" width="30" height="30"></svg>
+                                    <span class="country">{{ partie.idpartie.home.nomEquipe }}</span>
+                                </a>
+                            </div>
+                            <div class="tab-score"><a href="" class="cal-hour" title="Début du match à {{ partie.idpartie.heurepartie }}" itemprop="url">
+                               {% if partie.idpartie.etatmatch=="PasEncore" %}
+                                    <time datetime="2018-06-14T17:00:00">{{ partie.idpartie.heurepartie }}</time>
+                                {% else %}
+                                    <time datetime="2018-06-14T17:00:00">{{ partie.buthome }}/ {{ partie.butaway }}</time>
+                                   {% endif %}
+                                </a>
+                            </div>
+                            <div class="tab-team tab-ext">
+                                <a href="/equipes/arabie-saoudite" title="{{ partie.idpartie.away.nomequipe }}">
+                                    <svg class="flags"><img src="http://localhost/russia/web/public/images/{{ partie.idpartie.away.drapeau }}" width="30" height="30"></svg>
+                                    <span class="country">{{partie.idpartie.away.nomEquipe }}</span>
+                                </a>
+                            </div>
+                        </div>
+                        {% set betJoue= 0 %}
+                        {% for bet in bets  %}
+                        {% if bet.idpartie==partie.idpartie %}
+                            {% set betJoue= 1 %}
+                           {% endif  %}
+                        {% endfor %}
+
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                        <div class="line-timer">
+                            <div class="tab-timer avant">
+
+                                {% if betJoue ==1 %}
+
+                                <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuseRefuse()"  > PARIEZ </a>
+                                {% else  %}
+                                     {% if partie.idpartie.etatMatch=='Jouee' %}
+                                    <a href="" class="bt-paris" title="Parier sur ce match" onclick="refuse()"  > PARIEZ </a>
+                                {% else %}
+                                    <a href="{{ path('insertBet',{'id':partie.idpartie.id}) }}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+                                {% endif %}
+                                {% endif %}
+
+
+
+                            </div>
+                        </div>
+
+                        {% else  %}
+
+
+                            <div class="line-timer">
+                                <div class="tab-timer avant">
+                                    <a href="{{ path('fos_user_security_login')}}" class="bt-paris" title="Parier sur ce match"  > PARIEZ </a>
+
+                                </div>
+                            </div>
+
+
+                        {% endif %}
+
+                        <div class="tab-line-infos">
+                            <div class="tab-group"> <span class="num">N°{{ partie.idpartie.id }}</span>
+                            </div>
+                            <div class="tab-tv">
+                                <a> <img src="//static.ruedufootball.com/images/tv/bein.png" alt="Diffusion TV"/></a> </div>
+                            <div class="tab-gps" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                                <meta itemprop="name" content="Moscou">
+                                <meta itemprop="url" content="/russie2018/stades">
+                                <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                    <meta itemprop="addressLocality" content="Moscou">
+                                    <meta itemprop="url" content="/russie2018/stades#moscou"> </div>
+                                <svg><img src="http://localhost/russia/web/uploads/images/{{partie.idpartie.idstade.photostade}}" height="50" width="50"> </svg>
+                                <a href="" class="cal-stade" title="Moscou">{{ partie.idpartie.idstade.nomstade }}</a> </div> </div> </div>
+                </div>
+                {% set betJoue= 0 %}
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+
+
+    <script type="text/javascript">
+        function refuse(){
+
+
+            swal ( "Impossible" ,  "Le match a été Terminée" ,  "error" );
+
+
+
+        }
+
+
+        function refuseRefuse(){
+
+
+            swal ( "Impossible" ,  "Vous avez jouée ce Match" ,  "error" );
+
+
+
+        }
+
+
+    </script>
+
+
+
+{% endblock %}

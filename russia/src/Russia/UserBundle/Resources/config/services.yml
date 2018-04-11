@@ -1,0 +1,6 @@
+services:
+    app_user.registration_listener:
+             class: Russia\UserBundle\EventListener\RegistrationListener
+             arguments: []
+             tags:
+                 - { name: kernel.event_subscriber }

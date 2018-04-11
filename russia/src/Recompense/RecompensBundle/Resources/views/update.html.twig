@@ -1,0 +1,108 @@
+{% extends 'baseadmin.html.twig' %}
+
+ {% block style %}
+     {{ parent() }}
+ {% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+             Cadeau
+
+            </h1>
+
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Modifier Un Cadeau</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+
+
+
+
+
+
+
+
+
+
+
+                        {{form_start(form)}}
+                        <div class="box-body">
+                            <div class="form-group">
+                                {{ form_row(form.categorie, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.type, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.jeton, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.tagsText, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="form-group">
+
+                                {{ form_row(form.image, { 'attr': {'class': 'form-control'} }) }}
+
+                            </div>
+                            <img src="{{ cad }}" height="250" width="250">
+                            <div class="form-group">
+                                {{ form_row(form.captcha, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <input type="submit" class="btn btn-primary" value="Enregistrer">
+
+                        </div>
+
+                        {{form_end(form)}}
+                    </div>
+                    <!-- /.box -->
+
+                    <!-- Form Element sizes -->
+
+                    <!-- /.box -->
+
+
+                    <!-- /.box -->
+
+                    <!-- Input addon -->
+
+                    <!-- /.box -->
+
+                </div>
+                <!--/.col (left) -->
+                <!-- right column -->
+
+                <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}
+
+

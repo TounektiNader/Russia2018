@@ -1,0 +1,334 @@
+{% extends "::base.html.twig" %}
+
+{% block style %}
+    {{ parent() }}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('img/apple_icons_57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/apple_icons_72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('img/apple_icons_114x114.png') }}">
+    <title>Elite Masters | Premium Html Template</title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,900" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}" type="text/css" media="all" />
+{% endblock %}
+ {% block header %}
+     <div id="main_header" class="type4">
+         <div class="tagline show_hide">
+             <div class="container">
+                 <div class="fright">
+                     <div class="tagline_items">
+                         <div class="log_in_out">
+                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-user"></i> {{ app.user.username }}</a>
+                                 <div class="login_submenu">
+                                     <a class="shortcode_button left_icon btn_normal btn_type3" href={{ path("fos_user_security_logout") }} ><i class="fa fa-sign-in"></i>Log out</a>
+                                 </div>
+
+
+
+                             {% else %}
+                                 <a href={{ path("fos_user_security_login") }}><i class="fa fa-sign-in"></i> Login</a>
+
+                             {% endif %}
+
+
+                             <!-- Login submenu -->
+                             <!--<div class="login_submenu">
+                                 <form action="javascript:void(0);" method="post">
+                                     <input type="text" placeholder="Email or Login*" value="" name="name">
+                                     <input type="password" placeholder="Password*" value="" name="password">
+                                     <div class="remember_me"><label><input name="remember" type="checkbox" checked value="remember">Remember Password?</label></div>
+                                     <a href="javascript:void(0);" class="shortcode_button left_icon btn_normal btn_type3"><i class="fa fa-sign-in"></i>Log in</a>
+                                 </form>
+                             </div>-->
+                             <!-- //Login submenu -->
+
+                         </div>
+                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                             <div class="cart_btn">
+                                 <a href="shop_cart.html" class="view_cart_btn"><img src={{ asset("img/coins.png") }}> {{ app.user.jeton }} Jetons</a>
+                             </div>
+                         {% endif %}
+
+                         <div class="social_icons">
+                             <ul>
+                                 <li><span>Follow:</span></li>
+                                 <li><a class="soc_fb" href="https://www.facebook.com/Russia2018-153869445327756/"><i class="fa fa-facebook-square"></i></a></li>
+                                 <li><a class="soc_tweet" href="https://twitter.com/EspritRussia"><i class="fa fa-twitter"></i></a></li>
+                                 <li><a class="soc_instagram" href="https://www.linkedin.com/in/russia-russia"><i class="fa fa-linkedin"></i></a></li>
+                             </ul>
+                         </div>
+                         <div class="language_select">
+                             <div class="selectBox">
+                                 <span class="selected"></span>
+                                 <span class="selectArrow"></span>
+                                 <div class="selectOptions">
+                                     <span class="selectOption" data-value="france"><img src={{ asset("img/imgs/france_flag.png") }} alt="" />Fr</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- <div class="centrer"><iframe src="http://www.decompte.net/compte-a-rebours.php?c=1528936620&s=1&r=0" id="w2" width="300" height="50" marginheight="0" marginwidth="0" align="middle" scrolling="No" frameborder="0">iframe désactivée</iframe></div>-->
+                 <div class="fleft">
+                     <div class="phone"><i class="fa fa-phone"></i> +216 50649211</div>
+                     <div class="email"><a href="mailto:#"><i class="fa fa-envelope"></i> russia.2018.esprit@gmail.com</a></div>
+                 </div>
+
+
+                 <div class="clear"></div>
+             </div>
+         </div>
+
+
+         <div class="header_parent_wrap">
+             <header>
+                 <div class="container">
+                     <div class="logo_sect">
+                         <a href={{ path("IndexModele") }} class="logo"><img src={{ asset("img/1.png") }} class="logo_def" alt="" /><img src={{ asset("img/1.png") }} class="logo_retina" alt="" /></a>
+                     </div>
+                     <div class="fright">
+                         <nav>
+                             <ul class="menu">
+                                 <li class="menu-item-has-children"><a href={{ path("IndexModele") }}>Accueil</a>
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Actualité</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_affiche') }}">Mes Actualités</a></li>
+                                                 <li><a href="{{ path('actualite_actualite_homepage') }}">Ajouter Actualité</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path('actualite_actualite_affichetoute') }}">News</a></li>
+                                             {% endif %}
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Guide des supporters</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Recommendations</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('affichecafe') }}">Cafés</a></li>
+                                                         <li><a href="{{ path('affichehotel') }}">Hôtels</a></li>
+                                                         <li><a href="{{ path('afficheresto') }}">Restaurent</a></li>
+
+                                                     </ul>
+                                                 </div>
+                                             </li>
+                                             <li><a href="{{ path('affichestade') }}">Stades</a></li>
+                                             <li><a href="{{ path('afficheville') }}">Villes</a></li>
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Match/Resultat</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+
+                                             <li class="menu-item-has-children"><a href="javascript:void(0);">Matchs</a>
+                                                 <div class="sub-nav">
+                                                     <ul class="sub-menu">
+                                                         <li><a href="{{ path('programme') }}">Programme</a></li>
+                                                         <li><a href="{{ path('arbre') }}">Phase Finale</a></li>
+                                                         <li><a href="{{ path('listgroupequipe') }}">Matchs par Equipe</a></li>
+                                                     </ul>
+                                                 </div>
+                                             </li>
+
+                                             <li><a href="{{ path('classement') }}">Classement</a></li>
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="menu-item-has-children"><a href="{{ path('_afficher_equipe_Client') }}">Equipes</a>
+
+                                 </li>
+                                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                     <li class="menu-item-has-children"><a href="javascript:void(0);">Bet</a>
+                                         <div class="sub-nav">
+                                             <ul class="sub-menu">
+
+                                                 <li><a href="{{ path("programme") }}">Matchs</a></li>
+                                                 <li><a href="{{ path("mes_bets") }}">Mes Bets</a></li>
+
+
+                                             </ul>
+                                         </div>
+                                     </li>
+                                 {% else %}
+                                     <li></li>
+                                 {% endif %}
+                                 <li class="menu-item-has-children"><a href="javascript:void(0);">Cadeaux</a>
+                                     <div class="sub-nav">
+                                         <ul class="sub-menu">
+                                             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                                 <li><a href="{{ path("RecompenseUser") }}">Mes Recompenses</a></li>
+                                             {% else %}
+                                                 <li><a href="{{ path("CadeauxModele") }}">Cadeaux</a></li>
+                                             {% endif %}
+
+                                         </ul>
+                                     </div>
+                                 </li>
+                                 <li class="current-menu-parent menu-item-has-children"><a href="{{ path('discutea_forum_homepage') }}">Forum</a>
+
+
+                                 </li>
+                                 <li class="menu-item-has-children"><a href={{ path("ContactModele") }}>Contact</a>
+
+                                 </li>
+                             </ul>
+                         </nav>
+                         <!--<div class="top_search">
+                             <a href="javascript:void(0);" class="search_btn not_click">Search Button</a>
+                             <div class="top_search_wrap not_click">
+                                 <form name="search_form" method="get" action="#" class="search_form not_click">
+                                     <input type="text" name="s" value="" placeholder="Search" class="not_click">
+                                     <input type="submit" value="Go">
+                                 </form>
+                             </div>
+                         </div>-->
+                         <div class="cart_in_header"></div><div class="socials_in_header"></div>
+                         <div class="clear"></div>
+                     </div>
+                     <div class="clear"></div>
+                 </div>
+             </header>
+         </div>
+     </div>
+
+
+     <br>
+     <br>
+ {% endblock %}
+
+{% block body %}
+
+
+    <div class="wrapper">
+
+
+        <div class="left-sidebar-block" style="    top: 300px;left: 50px;">
+
+            <div class="sidepanel widget_categories">
+                <h6 class="title">Categories</h6>
+                <ul>
+                    <li class="cat-item"><a href="{{ path('discutea_forum_homepage') }}">Russia 2018</a></li>
+                    <li class="cat-item"><a href="{{ path('discutea_forum_homepage2') }}">Football</a></li>
+
+                </ul>
+            </div>
+
+            <div class="sidepanel widget_posts">
+                <h6 class="title">Derniers Sujets</h6>
+                <ul class="recent_posts">
+                    {% for la in last %}
+                        <li class="with_img">
+                            <div class="recent_posts_content">
+                                <img src="{{asset("uplod/images/"~la.image)}}" alt="" />
+                                <a href="{{ path('discutea_forum_post', {'slug': la.slug}) }}" class="title">{{ la.title }}</a>
+                                <div class="recent_posts_info">{{ la.date|date("Y-m-d") }}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+
+
+        <div class="container">
+
+
+
+            <div class="content_block row left-sidebar">
+
+
+
+                <div class="page_title">
+                    <h1 style=" width: 850px;">{{ 'discutea.forum.forumlist'|trans }}</h1>
+                    <div class="icon_divider"></div>
+                    <p style="width: 850px;">Le forum vous donne l'occasion de debattre des sujets divers en relation au coupe de monde Russie 2018 ou Football générale et de échanger les avis et les commentaires entre divers internautes et interessés.</p>
+                </div>
+
+                <div class="fl-container hasLS">
+                    <div class="row">
+                        <div class="posts-block hasLS">
+                            {% for category in categories if is_granted('CanReadCategory', category) %}
+                                <div class="contentarea">
+
+                                    <div class="row">
+
+                                        {% for forum in category.forums %}
+
+                                            <div class="col-sm-12 module_cont module_blog">
+                                                <div class="blog_post_preview format-image">
+                                                    <div class="postformats_cont blog_post_image">
+
+                                                        <a href=""><img src="{{asset("uplod/images/"~forum.image)}}" alt="" style=" width: 500px;"/></a>
+                                                        <a id="zoom_product" href="{{asset("uplod/images/"~forum.image)}}" class="photozoom view_link"></a>
+
+                                                    </div>
+                                                    <div class="blog_content clearfix">
+                                                        <div class="listing_meta">
+                                                            {% set lastTopic = dfLastTopicInForum(forum) %}
+                                                            {% if lastTopic is not null %}
+                                                                {% if lastTopic.posts.last.poster is not null %}
+                                                                    {% set username = lastTopic.posts.last.poster.username %}
+                                                                {% else %}
+                                                                    {% set username = 'discutea.forum.deleted.user'|trans %}
+                                                                {% endif %}
+                                                                <span><i class="fa fa-calendar-check-o"></i>{{ lastTopic.posts.last.date|date("Y-m-d") }} </span>
+                                                                <span><i class="fa fa-clock-o" aria-hidden="true"></i>{{ lastTopic.posts.last.date|date("H:i") }} </span>
+                                                                <span><i class="fa fa-user" aria-hidden="true"></i> <a class="lastComment" href="{{ dfLastPostPages(lastTopic.posts.last) }}">
+                                          {{ 'discutea.forum.lastpostby'|trans }}  {{ username }}</a></span>
+
+
+                                                            {% else %}
+                                                                <p>{{ 'discutea.forum.null'|trans }}</p>
+                                                            {% endif %}
+                                                        </div>
+                                                        <h5 class="blogpost_title"><a href="{{ path('discutea_forum_topic', {'slug': forum.slug}) }}" title="{{ forum.name }}">{{ forum.name }}.</a></h5>
+                                                        <p>{{ forum.description }}</p>
+                                                        <a class="blog_post_readmore" href="{{ path('discutea_forum_topic', {'slug': forum.slug}) }}" title="{{ forum.name }}">Read More<i class="fa fa-angle-double-right"></i></a>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        {% endfor %}
+                                    </div>
+
+
+                                </div>
+                                <p class="text-center"><a class="btn btn-primary" href="{{ path('discutea_forum_create_forum', {'id': category.id}) }}">{{ 'discutea.forum.category.addforum'|trans }}</a></p>
+                            {% endfor %}
+
+
+                            <div class="navigation" >
+                                {{ knp_pagination_render(categories) }}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+match_match:
+    resource: "@MatchMatchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+equipe_equipe:
+    resource: "@EquipeEquipeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+recompense_recompens:
+    resource: "@RecompenseRecompensBundle/Resources/config/routing.yml"
+    prefix:   /
+
+recommandation_recommandation:
+    resource: "@RecommandationRecommandationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+actualite_actualite:
+    resource: "@ActualiteActualiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+russia_russia:
+    resource: "@RussiaRussiaBundle/Resources/config/routing.yml"
+    prefix:   /
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+discutea_forum:
+    resource: "@DForumBundle/Resources/config/routing.yml"
+    prefix:   /
+gregwar_captcha_routing:
+    resource: "@GregwarCaptchaBundle/Resources/config/routing/routing.yml"

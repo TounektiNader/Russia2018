@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+  {% block body %}
+
+
+
+      <div class="wrapper">
+          <div class="container">
+              <div class="content_block row no-sidebar">
+                  <div class="fl-container">
+                      <div class="posts-block">
+                          <div class="contentarea">
+
+                              <!-- Slider -->
+                              <div class="fw_block bg_start wall_wrap">
+                                  <div class="row">
+                                      <div class="col-sm-12 first-module module_slider module_cont pb0 fullwidthslider">
+                                          <div class="slider_container">
+                                              <div class="fullscreen_slider">
+                                                  <ul>
+                                                      <!-- SLIDE 1 -->
+
+                                                      <li data-index="rs-1" data-transition="fade" data-slotamount="5" data-masterspeed="700" >
+                                                          <img   src={{ asset("img/russia2018.jpg") }}  alt="slide1" data-bgposition="center center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="110" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                                                          <!-- LAYER NR. 1 -->
+                                                          <div  class="tp-caption tp-resizeme tp-resizeme slide_title70 bold light text-uppercase z_index2"
+                                                                id="slide-1-layer-1"
+                                                                data-x="center" data-hoffset="0"
+                                                                data-y="top" data-voffset="136"
+                                                                data-whitespace="nowrap"
+                                                                data-transform_idle="o:1;"
+                                                                data-transform_in="y:-200px;opacity:0;s:1000;e:Power4.easeOut;"
+                                                                data-transform_out="opacity:0;s:500;s:500;"
+                                                                data-start="1500"
+                                                                data-elementdelay="0.05"><p class="titre1">
+                                                                  Bienvenue en Russie!</p>
+                                                          </div>
+
+                                                          <!-- LAYER NR. 2 -->
+                                                          <div class="tp-caption tp-resizeme slide_subtitle25 light z_index3"
+                                                               id="slide-1-layer-2"
+                                                               data-x="center" data-hoffset="0"
+                                                               data-y="top" data-voffset="210"
+                                                               data-whitespace="nowrap"
+                                                               data-transform_idle="o:1;"
+                                                               data-transform_in="z:0;rX:0deg;rY:0;rZ:0;sX:0.5;sY:0.5;skX:0;skY:0;opacity:0;s:1500;e:Power3.easeOut;"
+                                                               data-transform_out="opacity:0;s:500;s:500;"
+                                                               data-start="2000"
+                                                               data-elementdelay="0.05"><div  style="top: 76.193px;transition: none;line-height: 42px;border-width: 0px;margin: 0px;padding: 0px;letter-spacing: 0px;font-weight: 500;font-size: 25px;left: 248px;">
+                                                                  <div id="countdown"></div>
+                                                              </div>
+                                                          </div>
+                                                          <!-- LAYER NR. 3 -->
+                                                          <div class="tp-caption tp-resizeme slide_btn dark_parent z_index5"
+                                                               id="slide-1-layer-3"
+                                                               data-x="left" data-hoffset="430"
+                                                               data-y="top" data-voffset="270"
+                                                               data-whitespace="nowrap"
+                                                               data-transform_idle="o:1;"
+                                                               data-transform_in="y:100px;opacity:0;s:1000;e:Power4.easeOut;"
+                                                               data-transform_out="opacity:0;s:500;s:500;"
+                                                               data-start="2500"
+                                                               data-elementdelay="0.05">
+                                                          </div>
+                                                          <!-- LAYER NR. 4 -->
+                                                          <!--<div class="tp-caption tp-resizeme slide_btn dark_parent z_index5"
+                                                               id="slide-1-layer-4"
+                                                               data-x="left" data-hoffset="592"
+                                                               data-y="top" data-voffset="270"
+                                                               data-whitespace="nowrap"
+                                                               data-transform_idle="o:1;"
+                                                               data-transform_in="y:100px;opacity:0;s:1000;e:Power4.easeOut;"
+                                                               data-transform_out="opacity:0;s:500;s:500;"
+                                                               data-start="2500"
+                                                               data-elementdelay="0.05"><a class="shortcode_button btn_normal btn_type6" href="javascript:void(0);">Get in Touch<i class="fa fa-angle-double-right"></i></a>
+                                                          </div>-->
+                                                      </li>
+
+
+                                                  </ul>
+
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+
+
+                              </div>
+                              <!-- //Slider -->
+
+
+                              <div class="fw_block bg_start stretch portfolio_bg2 pt65 mb65">
+                                  <div class="breadcrumbs">
+                                      <div class="container">
+                                          <a href={{ path("affichecafe") }}><h7>Cafés</h7></a><span><h7><u>{{ cafe.nomcafe }}</u></h7></span>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-sm-12 module_cont module_title pb5">
+                                          <div class="bg_title">
+                                              <h2>{{ cafe.nomcafe }}</h2>
+                                              <div class="icon_divider"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+
+                                      <div id="list" class="sorting_block image-grid column1">
+                                          <div class="pt30">
+                                              <div class="col-sm-12 branding webui element">
+                                                  <div class="portfolio_item">
+                                                      <div class="row">
+
+                                                          <div class="col-sm-6">
+                                                              <div style="height:fit-content" class="portf_img">
+                                                                  <img alt="" src={{ asset('uploads/images/' ~ cafe.photocafe) }} />
+                                                              </div>
+                                                              <br>
+                                                          </div>
+                                                          <div class="col-sm-6">
+                                                              <h5 class="portf_title">{{ cafe.nomcafe }}</h5>
+                                                              <span><i class="fa fa-building"></i>&nbsp;<a href="{{ path('detville',{'id':cafe.idville.getIdville}) }}">{{ cafe.idville.getNomville }}</a></span>
+                                                              <br><br>
+
+                                                              <div id="map" style="width: max-content" class="portf_img" align="left">
+                                                                  {{ ivory_google_map(map) }}
+                                                                  {{ ivory_google_api([map]) }}
+                                                              </div>
+                                                              <br>
+                                                              <table border="1">
+                                                                  <tr>
+                                                                      <td width="20px" align="center" style="color: #0a0a0a;"><img height="20" width="20" src="{{ asset('bower_components/Ionicons/png/512/android-information.png') }}"> &nbsp;{{ cafe.detailscafe }}</td>
+                                                                  </tr>
+                                                              </table>
+
+                                                          </div>
+
+
+                                                      </div>
+                                                      <a href="http://www.reliablecounter.com" target="_blank"><img src="http://www.reliablecounter.com/count.php?page=159601230&digit=style/plain/6/&reloads=0" alt="quotes" title="quotes" border="0"></a><br /><a href="http://overquotes.com" target="_blank" style="font-family: Geneva, Arial; font-size: 9px; color: #330010; text-decoration: none;">Nombre de visites</a>
+
+                                                      <br>
+                                                      <div class="col-sm-3">
+                                                          <div class="sidepanel widget_posts">
+                                                              <h6 class="title"><u>Cafés dans {{ cafe.idville.nomville }}</u></h6>
+                                                              {% for cv in cv %}
+                                                              <ul class="recent_posts">
+                                                                  <li class="with_img">
+                                                                      <div class="recent_posts_content">
+                                                                          <a href="{{ path('detcafe', {'id': cv.idcafe}) }}"><img src={{ asset('uploads/images/' ~ cv.photocafe) }} alt="" /></a>
+                                                                          <a style="color: #0a0a0a" href="{{ path('detcafe', {'id': cv.idcafe}) }}" class="title"><i class="fa fa-coffee" ></i> &nbsp;{{ cv.nomcafe }}</a>
+                                                                          <div style="color: #0a0a0a" class="recent_posts_info"><i class="fa fa-info-circle" ></i> &nbsp;{{ cv.detailscafe }}</div>
+                                                                      </div>
+                                                                  </li>
+                                                              </ul>
+                                                              {% endfor %}
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <div class="clear"></div>
+
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="clear"></div>
+              </div>
+          </div>
+      </div>
+
+  {% endblock %}

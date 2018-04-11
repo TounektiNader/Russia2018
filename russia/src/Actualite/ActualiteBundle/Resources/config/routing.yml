@@ -1,0 +1,33 @@
+actualite_actualite_homepage:
+    path:     /ok
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:index }
+actualite_actualite_ajoutadmin:
+    path:     /admin/ok4
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:ajout }
+actualite_actualite_affiche:
+    path:     /ok1
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:liste }
+actualite_actualite_affichetoute:
+    path:     /ok6
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:listeDEtoute }
+actualite_actualite_affichedetaille:
+    path:     /detaille/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:divaff }
+actualite_actualite_supp:
+    path:     /ok1/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:delete }
+actualite_actualite_supprime:
+    path:     /ok5/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:supprime }
+actualite_actualite_mod:
+    path:     /ok2/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:update }
+actualite_actualite_modif:
+    path:     /ok3/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:modifier }
+actualite_actualite_admin:
+    path:     /admin/amin
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:amin }
+actualite_actualite_pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:pdf }

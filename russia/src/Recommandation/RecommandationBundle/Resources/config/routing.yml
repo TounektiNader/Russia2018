@@ -1,0 +1,123 @@
+recommandation_recommandation_homepage:
+    path:     /
+    defaults: { _controller: RecommandationRecommandationBundle:Default:index }
+affichehotel:
+    path:     /affichehotel
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:List }
+afficheresto:
+    path:     /afficheresto
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:List }
+affichecafe:
+    path:     /affichecafe
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:List }
+affichestade:
+    path:     /affichestade
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:List }
+afficheville:
+    path:     /afficheville
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:List }
+detcafe:
+    path:     /detcafe/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:det }
+dethotel:
+    path:     /dethotel/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:det }
+detresto:
+    path:     /detresto/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:det}
+detstade:
+    path:     /detstade/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:det}
+detville:
+    path:     /detville/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:det}
+ajoutcafe:
+    path:     /admin/ajoutcafe
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:ajout}
+ajouthotel:
+    path:     /admin/ajouthotel
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:ajout}
+ajoutresto:
+    path:     /admin/ajoutresto
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:ajout}
+ajoutstade:
+    path:     /admin/ajoutstade
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:ajout}
+ajoutville:
+    path:     /admin/ajoutville
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:ajout}
+updatecafe:
+    path:     /admin/updatecafe/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:Update}
+updatehotel:
+    path:     /admin/updatehotel/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:Update}
+updateresto:
+    path:     /admin/updateresto/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:Update}
+updatestade:
+    path:     /admin/updatestade/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:Update}
+updateville:
+    path:     /admin/updateville/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:Update}
+deletecafe:
+    path:     /admin/deletecafe/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:Delete}
+deletehotel:
+    path:     /admin/deletehotel/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:Delete}
+deleteresto:
+    path:     /admin/deleteresto/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:Delete}
+deletestade:
+    path:     /admin/deletestade/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:Delete}
+deleteville:
+    path:     /admin/deleteville/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:Delete}
+recherchecafe:
+    path:     /recherchecafe
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:rechercheSerieDQL}
+recherchehotel:
+    path:     /recherchehotel
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:rechercheSerieDQL}
+rechercheresto:
+    path:     /rechercheresto
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:rechercheSerieDQL}
+recherchestade:
+    path:     /recherchestade
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:rechercheSerieDQL}
+rechercheville:
+    path:     /rechercheville
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:rechercheSerieDQL}
+affichecafeadmin:
+    path:     /admin/affichecafeadmin
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:Listadmin}
+affichehoteladmin:
+    path:     /admin/affichehoteladmin
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:Listadmin}
+afficherestoadmin:
+    path:     /admin/afficherestoadmin
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:Listadmin}
+affichestadeadmin:
+    path:     /admin/affichestadeadmin
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:Listadmin}
+affichevilleadmin:
+    path:     /admin/affichevilleadmin
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:Listadmin}
+pdf:
+    path:     /pdf/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:index}
+pdf1:
+    path:     /pdf1/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:index}
+pdf2:
+    path:     /pdf2/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:index}
+pdf3:
+    path:     /pdf3/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:index}
+pdf4:
+    path:     /pdf4/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:index}

@@ -1,0 +1,86 @@
+{% extends 'baseadmin.html.twig' %}
+
+{% block style %}
+    {{ parent() }}
+    {% endblock %}
+{% block header %}
+    {{ parent() }}
+    {% endblock %}
+{% block body %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Actualites
+                <small>Lites des Actualites</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Lites des Actualites</a></li>
+                <li class="active"></li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <!-- /.box -->
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Lites des Actualites</h3>
+
+                            <center>    <a href="{{ path('actualite_actualite_ajoutadmin') }}">Ajout</a></center>
+
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+
+
+                                    <th>ID</th>
+                                    <th>Titre</th>
+                                    <th>Texte</th>
+                                    <th>Image</th>
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for a in ac %}
+                                    <tr>
+                                        <td>{{ a.idactualite }}</td>
+                                        <td>{{ a.titre }}</td>
+                                        <td>{{ a.texte }}</td>
+                                        <td>
+                                            <img src="{{ asset('images/') }}{{ a.nomImage2 }}" height="100px" width="150px">
+                                        </td>
+
+
+
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+
+
+
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+{% endblock %}
+{% block footer %}
+    {{ parent() }}
+{% endblock %}

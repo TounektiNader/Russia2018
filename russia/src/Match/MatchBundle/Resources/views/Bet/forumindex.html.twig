@@ -1,0 +1,240 @@
+{% extends "::base.html.twig" %}
+{% block style %}
+    {{ parent() }}
+{#    {% block title %}Liste Des Sujets {% endblock %}#}
+{% endblock %}
+{% block header %}
+{% endblock %}
+{% block body %}
+
+
+
+<div class="left-sidebar-block">
+
+
+    <div class="sidepanel widget_search">
+        <form name="search_form" method="get" action="javascript:void(0);" class="search_form">
+            <input type="text" name="s" value="" placeholder="Search the Site">
+            <input type="submit" value="Go">
+        </form>
+    </div>
+
+    <div class="sidepanel widget_posts">
+        <h6 class="title">Recent Posts</h6>
+        <ul class="recent_posts">
+            <li class="with_img">
+                <div class="recent_posts_content">
+                    <img src="img/imgs/widget_post1.jpg" alt="" />
+                    <a href="javascript:void(0);" class="title">Duis Aute Irure Dolor</a>
+                    <div class="recent_posts_info">June 09, 2018</div>
+                </div>
+            </li>
+            <li class="with_img">
+                <div class="recent_posts_content">
+                    <img src="img/imgs/widget_post2.jpg" alt="" />
+                    <a href="javascript:void(0);" class="title">Temporibus Autem Quibusdam</a>
+                    <div class="recent_posts_info">June 08, 2018</div>
+                </div>
+            </li>
+            <li class="with_img">
+                <div class="recent_posts_content">
+                    <img src="img/imgs/widget_post3.jpg" alt="" />
+                    <a href="javascript:void(0);" class="title">Saepe Eveniet Ut Et</a>
+                    <div class="recent_posts_info">June 06, 2018</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="wrapper">
+        <div class="container">
+            <div class="content_block row no-sidebar single_post">
+                <div class="fl-container">
+                    <div class="posts-block">
+                        <div class="contentarea">
+                            <div class="blog_post_preview">
+                                <h2 class="blogpost_title">Liste des sujets</h2>
+                                <div class="blog_post_image">
+                                    <div class="blog_post_format_label colored_bg"><i class="fa fa-camera-retro"></i></div>
+                                    <img src="img/blog/post/1170_560/4.jpg" alt="" />
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="blog_content clearfix">
+                                    <div class="listing_meta">
+                                        <span><i class="fa fa-calendar-check-o"></i>August 17, 2019</span>
+                                        <span><i class="fa fa-user"></i><a href="javascript:void(0);">Admin</a></span>
+                                        <span><i class="fa fa-bookmark-o"></i><a href="javascript:void(0);">Image</a>, <a href="javascript:void(0);">Places</a></span>
+                                        <span><i class="fa fa-comments-o"></i><a href="javascript:void(0);">3 Comments</a></span>
+                                        <span><i class="fa fa-tag"></i><a href="javascript:void(0);">people</a>, <a href="javascript:void(0);">photo</a>, <a href="javascript:void(0);">places</a></span>
+                                        <div class="share_block">
+                                            <a target="_blank" href="javascript:void(0);"><i class="fa fa-facebook-square"></i></a>
+                                            <a target="_blank" href="javascript:void(0);"><i class="fa fa-twitter"></i></a>
+                                            <a target="_blank" href="javascript:void(0);"><i class="fa fa-google-plus"></i></a>
+                                            <a target="_blank" href="javascript:void(0);"><i class="fa fa-pinterest"></i></a>
+                                        </div>
+                                    </div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est. Cras eleifend vehicula augue, sit amet molestie lacus fermentum a. Ut sed massa ut quam pharetra faucibus.</p>
+                                    <p><a href="javascript:void(0);">Aliquam accumsan</a> at dui ac ultricies. Pellentesque euismod ante ac velit vulputate, vitae dictum ante laoreet. Phasellus malesuada turpis sed enim rutrum suscipit. Duis et orci bibendum, euismod lorem a, auctor mauris. Cras semper metus elit, ut elementum orci suscipit condimentum. Vivamus id urna sit amet tortor rutrum condimentum. Nulla laoreet erat sit amet elit efficitur pretium. Curabitur sit amet faucibus dui.</p>
+                                    <p>Proin maximus felis sed augue tempus feugiat. In semper, massa ut consectetur rutrum, orci nibh blandit justo, a hendrerit leo tortor cursus eros. Proin et tempus magna. Aliquam eu erat sed lacus pulvinar congue. Etiam sem lectus, efficitur id lorem egestas, lacinia dictum elit. Suspendisse tempor id mauris sed pellentesque. Pellentesque non tortor libero. Donec in nisl odio. Nullam quis cursus velit. In hac habitasse platea dictumst.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-sm-12 module_cont module_feature_posts pb0">
+                                   <center> <h4>Les sujets les plus récents</h4></center>
+                                    <div class="items4 featured_posts clearfix">
+                                        <div class="featured_item">
+                                            <div class="featured_img">
+                                                <a href="post_fullwidth.html"><img alt="" src="img/blog/feature/1.jpg" /></a>
+                                            </div>
+                                            <div class="featured_item_descr">
+                                                <h6><a href="post_fullwidth.html">Example Post with Gallery</a></h6>
+                                                <div class="featured_item_content">Nam id elit non nunc tincidunt scelerisque. Duis sit amet diam maximus, interdum urna convallis, sagittis purus.</div>
+                                                <div class="featured_meta">December 19, 2020&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:void(0);">5 comments</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="featured_item">
+                                            <div class="featured_img">
+                                                <a href="post_fullwidth.html"><img alt="" src="img/blog/feature/2.jpg" /></a>
+                                            </div>
+                                            <div class="featured_item_descr">
+                                                <h6><a href="post_fullwidth.html">Single Image Post</a></h6>
+                                                <div class="featured_item_content">Nam id elit non nunc tincidunt scelerisque. Duis sit amet diam maximus, interdum urna convallis, sagittis purus.</div>
+                                                <div class="featured_meta">December 18, 2020&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:void(0);">0 comments</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="featured_item">
+                                            <div class="featured_img">
+                                                <a href="post_fullwidth.html"><img alt="" src="img/blog/feature/3.jpg" /></a>
+                                            </div>
+                                            <div class="featured_item_descr">
+                                                <h6><a href="post_fullwidth.html">Video Post Format</a></h6>
+                                                <div class="featured_item_content">Nam id elit non nunc tincidunt scelerisque. Duis sit amet diam maximus, interdum urna convallis, sagittis purus.</div>
+                                                <div class="featured_meta">December 17, 2020&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:void(0);">3 comments</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="featured_item">
+                                            <div class="featured_img">
+                                                <a href="post_fullwidth.html"><img alt="" src="img/blog/feature/4.jpg" /></a>
+                                            </div>
+                                            <div class="featured_item_descr">
+                                                <h6><a href="post_fullwidth.html">Example Post with Gallery</a></h6>
+                                                <div class="featured_item_content">Nam id elit non nunc tincidunt scelerisque. Duis sit amet diam maximus, interdum urna convallis, sagittis purus.</div>
+                                                <div class="featured_meta">December 16, 2020&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:void(0);">1 comments</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="comments">
+                                <h4>Liste des commentaires<span class="color">(4)</span></h4>
+                                <ol class="commentlist">
+                                    <li class="comment">
+                                      {#  <div class="stand_comment">
+                                            <div class="thiscommentbody">
+                                                <div class="commentava wrapped_img">
+                                                    <img class="avatar" src="img/imgs/avatar1.jpg" alt="" />
+                                                </div>
+                                                <div class="comment_info">
+                                                    <div class="comment_meta clearfix">
+                                                        <h6 class="comment_author_name"><a href="javascript:void(0);">Anthony Hoffman</a></h6>
+                                                        <span class="date">20 min ago</span>
+                                                        <div class="comment-reply-link">
+                                                            <a class="shortcode_button btn_small btn_type6" href="javascript:void(0);"><i class="fa fa-mail-reply-all"></i>Reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment_content">
+                                                    <p>Donec aliquam ex ut odio dictum, ut consequat leo interdum. Aenean nunc ipsum, blandit eu enim sed, facilisis convallis orci. Etiam commodo lectus quis vulputate tincidunt. Mauris tristique velit eu magna maximus condimentum. Sed id velit varius, tristique eros.</p>
+                                                </div>
+                                            </div>
+                                        </div>#}
+                                        <ul>
+                                            <li class="comment">
+                                                <div class="stand_comment">
+                                                    <div class="thiscommentbody">
+                                                        <div class="commentava wrapped_img">
+                                                            <img class="avatar" src="img/imgs/avatar3.jpg" alt="" />
+                                                        </div>
+                                                        <div class="comment_info">
+                                                            <div class="comment_meta clearfix">
+                                                                <h6 class="comment_author_name"><a href="javascript:void(0);">Julia Wright</a></h6>
+                                                                <span class="date">5 min ago</span>
+                                                                <div class="comment-reply-link">
+                                                                    <a class="shortcode_button btn_small btn_type6" href="javascript:void(0);"><i class="fa fa-mail-reply-all"></i>Reply</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="comment_content">
+                                                            <p>Vivamus viverra nunc rutrum pretium lacinia. Sed felis massa, interdum eget commodo id, semper eget sapien. Morbi eleifend vulputate tellus in mollis. Donec cursus dui vitae ex luctus, quis elementum felis scelerisque. Maecenas faucibus imperdiet nibh quis auctor.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                 {#   <li class="comment">
+                                        <div class="stand_comment">
+                                            <div class="thiscommentbody">
+                                                <div class="commentava wrapped_img">
+                                                    <img class="avatar" src="img/imgs/avatar2.jpg" alt="" />
+                                                </div>
+                                                <div class="comment_info">
+                                                    <div class="comment_meta clearfix">
+                                                        <h6 class="comment_author_name"><a href="javascript:void(0);">Cheryl Allen</a></h6>
+                                                        <span class="date">15 min ago</span>
+                                                        <div class="comment-reply-link">
+                                                            <a class="shortcode_button btn_small btn_type6" href="javascript:void(0);"><i class="fa fa-mail-reply-all"></i>Reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="comment_content">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer velit felis, tincidunt nec faucibus sit amet, molestie ac nibh. Nunc id lobortis odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae. Ut in sem rutrum, semper ex sit amet, condimentum orci.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>#}
+                                </ol>
+
+                                <div id="respond">
+                                    <h4>Leave a Comment!</h4>
+                                    <form class="comment-form" id="commentform" method="post" action="javascript:void(0);">
+                                        <input type="text" name="author" value="" placeholder="Name*">
+                                        <input type="text" name="email" value="" placeholder="Email*">
+                                        <textarea name="comment" placeholder="Write Your Comment Here..."></textarea>
+                                        <div class="comment_submit_wrap">
+                                            <i class="fa fa-hand-o-right"></i>
+                                            <input name="submit" type="submit" id="submit" value="Add a comment" />
+                                        </div>
+                                    </form>
+                                </div><!-- #respond -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

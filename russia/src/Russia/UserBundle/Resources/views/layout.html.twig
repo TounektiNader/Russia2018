@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="{{ asset('favicon.ico') }}">
+
+        <title>Russia 2018</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('signin.css') }}" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+
+
+
+
+    </head>
+    <body class="text-center">
+
+
+
+
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+            <div class="alert alert-{{ type }}">
+                <ul>
+                   {% for message in messages %}
+                   <li>
+                        {{ message }}
+                   </li>
+                {% endfor %}
+                </ul>
+
+                {% endfor %}
+        {% endif %}
+</div>
+
+
+
+        <div>
+
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+
+
+
+
+
+    </body>
+</html>

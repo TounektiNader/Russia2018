@@ -1,0 +1,121 @@
+{% extends 'baseadmin.html.twig' %}{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <h1>
+                 Liste des stades
+
+             </h1>
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="#">stades</a></li>
+                 <li class="active">Liste des stades</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div class="row">
+                 <div class="col-xs-12">
+
+                     <!-- /.box -->
+
+                     <div class="box">
+                         <div class="box-header">
+                             <center><a class="kk" rel="group" id="kk" title="Ajouter" href="{{ path('ajoutstade') }}"><i class="ion-android-add-circle"></i>&nbsp&nbsp Ajouter un nouveau stade</a></center>
+                         </div>
+                         <!-- /.box-header -->
+                         <div class="box-body">
+                             <table id="example1" class="table table-bordered table-striped">
+                                 <thead>
+                                 <tr>
+                                     <th>Nom</th>
+                                     <th>Fondation</th>
+                                     <th>Capacité</th>
+                                     <th>Equipe locale</th>
+                                     <th>Position</th>
+                                     <th>Photo</th>
+                                     <th>Ville</th>
+                                     <th></th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for stade in stades %}
+                                     <tr>
+                                         <td align="center">{{ stade.nomstade }}</td>
+                                         <td align="center">{{ stade.fondationstade }}</td>
+                                         <td align="center">{{ stade.capacitestade }}</td>
+                                         <td align="center">{{ stade.equipestade }}</td>
+                                         <td align="center">{{ stade.positionstade }}</td>
+                                         <td align="center"><img src="{{ asset('uploads/images/' ~ stade.photostade) }}" height="100px" width="150px"></td>
+                                         <td align="center">{{ stade.idville.nomville }}</td>
+                                         <td align="center">
+                                             <a title="Modifier" href="{{ path('updatestade',{'id':stade.idstade}) }}">&nbsp&nbsp<i class="ion-edit"></i></a>
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <a onclick="return confirm('Voulez vous vraiment supprimer ce stade?')" title="Supprimer" href="{{ path('deletestade',{'id':stade.idstade}) }}">&nbsp&nbsp<i class="ion-trash-b"></i></a>
+                                         </td>
+                                     </tr>
+                                 {% endfor %}
+                                 </tbody>
+                             </table>
+                         </div>
+                         <!-- /.box-body -->
+                     </div>
+                     <!-- /.box -->
+                 </div>
+                 <!-- /.col -->
+             </div>
+             <!-- /.row -->
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}
+{% block script %}
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="{{ asset('js/jquery-2.2.4.js') }}"></script>
+
+    <!-- Add mousewheel plugin (this is optional) -->
+    <script type="text/javascript" src="{{ asset('js/jquery.mousewheel-3.0.6.pack.js') }}"></script>
+
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="{{ asset('js/jquery.fancybox.css') }}?v=2.1.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ asset('js/jquery.fancybox.pack.js') }}?v=2.1.7"></script>
+
+    <!-- Optionally add helpers - button, thumbnail and/or media -->
+    <link rel="stylesheet" href="{{ asset('js/jquery.fancybox-buttons.css') }}?v=1.0.5" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ asset('js/jquery.fancybox-buttons.js') }}?v=1.0.5"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.fancybox-media.js') }}?v=1.0.6"></script>
+
+    <link rel="stylesheet" href="{{ asset('js/jquery.fancybox-thumbs.css') }}?v=1.0.7" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{ asset('js/jquery.fancybox-thumbs.js') }}?v=1.0.7"></script>
+
+    <script type="text/javascript">
+        $(".open_ajax").fancybox({type: 'ajax'});
+        $(document).ready(function() {
+            $(".kk").fancybox({
+                maxWidth	: 800,
+                maxHeight	: 600,
+                fitToView	: false,
+                width		: '70%',
+                height		: '70%',
+                autoSize	: false,
+                closeClick	: false,
+                openEffect	: 'none',
+                closeEffect	: 'none'
+            });
+        });
+    </script>
+{% endblock %}

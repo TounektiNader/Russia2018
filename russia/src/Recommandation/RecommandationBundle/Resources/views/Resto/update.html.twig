@@ -1,0 +1,78 @@
+{% extends 'baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="{{ path('afficherestoadmin') }}">Restaurants</a></li>
+                 <li class="active">Mise à jour d'un restaurant</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div align="" class="row">
+                 <!-- left column -->
+                 <div class="col-md-6">
+                     <!-- general form elements -->
+                     <div class="box box-primary">
+                         <div class="box-header with-border">
+                             <h3 class="box-title">Mise a jour du restaurant: {{ resto.nomresto }}</h3>
+                         </div>
+                         <!-- /.box-header -->
+                         <!-- form start -->
+                         <form name="form" method="post" enctype="multipart/form-data">
+                             <div class="box-body">
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Nom</label>
+                                     {{ form_widget(form.nomresto) }}
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Détails</label>
+                                     {{ form_widget(form.detailsresto) }}
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputEmail1">Position</label>
+                                     {{ form_widget(form.positionresto) }}
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputFile">Photo</label>
+                                     {{ form_row(form.photoresto)}}
+                                     <p class="help-block">Sélectionnez une image JPG.</p>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="exampleInputPassword1">Ville</label>
+                                     {{ form_widget(form.idville)}}
+                                 </div>
+                             </div>
+                             <!-- /.box-body -->
+                             <div class="box-footer">
+                                 <button class="btn btn-primary" type="submit" id="form_Ajouter" name="form[valider]">Valider</button>
+                             </div>
+                             {{ form_row(form._token) }}                      </form>
+                     </div>
+                     <!-- /.box -->
+
+                     <!-- /.box-body -->
+                 </div>
+                 <!-- /.box -->
+             </div>
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}

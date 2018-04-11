@@ -1,0 +1,137 @@
+{% extends 'baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('chosen.css') }}">
+    <link rel="stylesheet" href="{{ asset('ImageSelect.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ asset('chosen.jquery.js') }}"></script>
+    <script src="{{ asset('ImageSelect.jquery.js') }}"></script>
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Match/Resultat</a></li>
+            <li><a href="#">Moddifier Partie</a></li>
+
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Modifier Partie</h3>
+                    </div>
+
+
+
+
+
+{{ form_start(f) }}
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Groupe</label>
+
+
+            <select name="CGroup" selected="selected">
+                <option > {{go}}</option>
+                {% for group in groupes %}
+
+
+                    <option  value="{{ group.groupe}}"> {{ group.groupe}} </option>
+
+                {% endfor %}
+            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Date Partie</label>
+
+                            {{ form_widget(f.datepartie,{'attr':{'class':'form-control'}} ) }}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Heure Partie</label>
+                            {{ form_widget(f.heurepartie,{'attr':{'class':'form-control'}} ) }}
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Home</label>
+            <select selected="selected" name="CHome"  class="my-select" >
+                <option > {{ho}}</option>
+                {% for h in equipes %}
+
+                    <option  data-img-src="http://localhost/russia/web/public/images/{{ h.drapeau }}" value="{{ h.idequipe }}"> {{ h.nomequipe }} </option>
+
+
+                {% endfor %}
+            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Away</label>
+            <select  selected="selected"  name="CAway" class="my-select">
+                <option > {{aw}}</option>
+                {% for a in equipes %}
+
+                    <option data-img-src="http://localhost/russia/web/public/images/{{ a.drapeau }}" value="{{ a.idequipe }}"> {{ a.nomequipe }} </option>
+
+
+                {% endfor %}
+            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Stade</label>
+            <select selected="selected" name="CStade" class="my-select">
+                <option > {{st}}</option>
+
+                {% for s in stades %}
+
+                    <option  data-img-src="http://localhost/russia/web/uploads/images/{{ s.photostade }}" value="{{ s.idstade }}"> {{ s.nomstade }} </option>
+
+
+                {% endfor %}
+            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="box-footer">
+                        {{ form_row(f.save,{'attr':{'class':'btn btn-primary'}}) }}
+
+
+                    </div>
+
+                </div>
+{{ form_end(f) }}
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    $(".my-select").chosen();
+</script>
+    {% endblock %}
+    {% block footer %}
+    {{ parent() }}
+{% endblock %}

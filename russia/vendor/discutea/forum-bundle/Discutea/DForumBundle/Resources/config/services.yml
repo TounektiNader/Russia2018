@@ -1,0 +1,70 @@
+services:
+    topic.listener.updatelastpost:
+        class: Discutea\DForumBundle\EventListener\UpdateTopic
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postRemove }
+
+    discutea.forum.pagin:
+            class: Discutea\DForumBundle\Component\Pagin
+            arguments:
+                - '@request_stack'
+                - '@knp_paginator'
+                - '%discutea_forum.pagination%'
+                - '%discutea_forum.pagination.pagename%'
+
+    discutea.forum.security.category_voter:
+        class: Discutea\DForumBundle\Security\CategoryVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+    discutea.forum.security.forum_voter:
+        class: Discutea\DForumBundle\Security\ForumVoter
+        arguments: 
+            - '@security.access.decision_manager'
+        public: false
+        tags:
+            - { name: security.voter }
+
+    discutea.forum.security.topic_voter:
+        class: Discutea\DForumBundle\Security\TopicVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+    discutea.forum.security.post_voter:
+        class: Discutea\DForumBundle\Security\PostVoter
+        arguments: ['@security.access.decision_manager']
+        public: false
+        tags:
+            - { name: security.voter }
+
+    discutea.forum.twig_extension:
+        class: Discutea\DForumBundle\Twig\DForumExtension
+        arguments: 
+            - '@doctrine.orm.entity_manager'
+            - '@router'
+            - '%discutea_forum.pagination%'
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    discutea.forum.form.remove.forum:
+        class: Discutea\DForumBundle\Form\Type\Remover\RemoveForumType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+
+    discutea.forum.form.remove.category:
+        class: Discutea\DForumBundle\Form\Type\Remover\RemoveCategoryType
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: form.type }
+
+    forum.listener.dropauser:
+        class: Discutea\DForumBundle\EventListener\ForumListener
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }

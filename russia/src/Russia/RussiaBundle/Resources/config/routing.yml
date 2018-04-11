@@ -1,0 +1,21 @@
+IndexModele:
+        path:     /accueil
+        defaults: { _controller: RussiaRussiaBundle:Default:Index }
+ActualiteModele:
+        path:     /actualite
+        defaults: { _controller: RussiaRussiaBundle:Default:Actualite }
+ContactModele:
+        path:     /contact
+        defaults: { _controller: RussiaRussiaBundle:Default:Contact }
+LoginModele:
+        path:     /loginn
+        defaults: { _controller: RussiaRussiaBundle:Default:Login }
+RegistreModele:
+        path:     /registre
+        defaults: { _controller: RussiaRussiaBundle:Default:Registre }
+admin:
+        path:     /admin/adminn
+        defaults: { _controller: RussiaRussiaBundle:Default:Admin }
+Mail:
+        path:     /Mail
+        defaults: { _controller: RussiaRussiaBundle:Default:mail }

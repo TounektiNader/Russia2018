@@ -1,0 +1,14 @@
+user_homepage:
+    path:     /haya
+    defaults: { _controller: UserBundle:Default:index }
+admin_page:
+    path:     /admin/
+    defaults: { _controller: UserBundle:Default:admin }
+client_page:
+    path:     /client/
+    defaults: { _controller: UserBundle:Default:client }
+login_ok:
+    path:     /login_ok
+    defaults: { _controller: UserBundle:Default:succes }
+
+

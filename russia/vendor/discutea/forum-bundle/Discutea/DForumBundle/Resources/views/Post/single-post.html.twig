@@ -1,0 +1,131 @@
+<li class="comment">
+  <div class="stand_comment">
+    <div class="thiscommentbody">
+      <div class="commentava wrapped_img">
+        <img class="avatar" src="{{ asset('user.png') }}" alt="" style="width:50px" />
+      </div>
+      <div class="comment_info">
+        <div class="comment_meta clearfix">
+            {% if post.poster is not null %}
+                {% set username = post.poster.username %}
+            {% else %}
+                {% set username = 'discutea.forum.deleted.user'|trans %}
+            {% endif %}
+
+          <h6 class="comment_author_name"><a href="javascript:void(0);">{{ username }}</a></h6>
+          <span class="date"> {{ post.date|date("Y-m-d H:i:s") }} </span>
+          <div class="comment-reply-link">
+              {% if app.user and posts is defined %}
+                <ul class="pull-right list-inline">
+                    {% if (post.poster == app.user or is_granted('ROLE_MODERATOR')) %}
+                      <li><a id="{{ post.id }}" class="editAction" href="{{ path("discutea_forum_post_edit", {'id': post.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'discutea.forum.edit'|trans }}</a></li>
+
+                    {% endif %}
+                    {% if is_granted('ROLE_MODERATOR') %}
+                      <li>
+                        <a href="{{ path('discutea_forum_post_delete', {'id': post.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'discutea.forum.remove'|trans }}</a>
+                      </li>
+                    {% endif %}
+                <br><br>
+                </ul>
+              {% endif %}
+
+          </div>
+        </div>
+      </div>
+      <div class="comment_content">
+        <p>{{ post.content }}</p>
+
+        <div id="content{{ post.id }}" class="comment-reply-link">
+          {% if app.user and posts is defined %}
+            <ul class="pull-right list-inline" style="padding-top: 50px;" >
+
+
+                <li style="margin-top: 50px;"><a href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount, 'quote': post.id}) }}#discutea_forum_post"><i class="fa fa-tag"></i> Tag</a></li>
+                {% if posts.pageCount != posts.currentPageNumber %}
+                    <li><a   href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount}) }}#discutea_forum_post"><i class="fa fa-mail-reply-all"></i> Répondre</a></li>
+                {% else %}
+                    <li><a  href="#discutea_forum_post"><i class="fa fa-mail-reply-all"></i> Répondre</a></li>
+                {% endif %}
+
+
+             {#} <li><a  class="shortcode_button btn_small btn_type6" href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount, 'quote': post.id}) }}#discutea_forum_post"><i class="fa fa-mail-reply-all"></i> Répondre </a></li>
+                {% if posts.pageCount != posts.currentPageNumber %}
+                  <li><a href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount}) }}#discutea_forum_post"><i class="glyphicon glyphicon-thumbs-up"></i> {{ 'discutea.forum.reply'|trans }}</a></li>
+                {% else %}
+                  <li><a href="#discutea_forum_post"><i class="glyphicon glyphicon-thumbs-up"></i> {{ 'discutea.forum.reply'|trans }}</a></li>
+                {% endif %}
+                {#}
+            </ul>
+          {% endif %}
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#}
+
+
+<li id="post{{ post.id }}" class="list-group-item topics">
+    <div class="row">
+        <div class="col-sm-2 text-center">
+            {% if post.poster is not null %}
+                {% set username = post.poster.username %}
+            {% else %}
+                {% set username = 'discutea.forum.deleted.user'|trans %}
+            {% endif %}
+            <p><strong>{{ username }}</strong></p>
+        </div>
+        <div class="col-sm-10">
+            <div class="raw">
+                <span class="small">{{ 'discutea.forum.on'|trans }} {{ post.date|date("Y-m-d H:i:s") }}</span>
+
+                {% if app.user and posts is defined %}
+                    <ul class="pull-right list-inline">
+                        {% if (post.poster == app.user or is_granted('ROLE_MODERATOR')) %}
+                            <li><a id="{{ post.id }}" class="editAction" href="{{ path("discutea_forum_post_edit", {'id': post.id}) }}"><i class="glyphicon glyphicon-edit"></i> {{ 'discutea.forum.edit'|trans }}</a></li>
+                        {% endif %}
+                        {% if is_granted('ROLE_MODERATOR') %}
+                            <li>
+                                <a href="{{ path('discutea_forum_post_delete', {'id': post.id}) }}"><i class="glyphicon glyphicon-remove"></i> {{ 'discutea.forum.remove'|trans }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                <br /><br />
+            </div>
+
+            <div id="content{{ post.id }}" class="raw">{{ post.content }}</div>
+            {% if app.user and posts is defined %}
+                <ul class="pull-right list-inline">
+                    <li><a href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount, 'quote': post.id}) }}#discutea_forum_post"><i class="glyphicon glyphicon-tint"></i> {{ 'discutea.forum.quote'|trans }}</a></li>
+                    {% if posts.pageCount != posts.currentPageNumber %}
+                        <li><a href="{{ path(posts.route, {'slug': posts.params.slug, 'p': posts.pageCount}) }}#discutea_forum_post"><i class="glyphicon glyphicon-thumbs-up"></i> {{ 'discutea.forum.reply'|trans }}</a></li>
+                    {% else %}
+                        <li><a href="#discutea_forum_post"><i class="glyphicon glyphicon-thumbs-up"></i> {{ 'discutea.forum.reply'|trans }}</a></li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</li>
+{#}
