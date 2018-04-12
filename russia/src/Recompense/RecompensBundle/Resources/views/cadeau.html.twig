@@ -237,7 +237,7 @@
                                                 <div class="clearfix shop_list_details">
                                                     <span class="price color pull-left">{{ cadeau.jeton }}</span>
 
-                                                    <a class="add_to_cart_button pull-right" href={{ path('AjouterRecompense',{'id':cadeau.idcadeau}) }}><i class="fa fa-shopping-cart"></i></a>
+                                                    <a onclick="myFunction({{ cadeau.jeton }})" class="add_to_cart_button pull-right" href={{ path('AjouterRecompense',{'id':cadeau.idcadeau}) }}><i class="fa fa-shopping-cart"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -270,4 +270,13 @@
 {% endblock %}
 {% block footer %}
 {{ parent() }}
+    <script type="text/javascript">
+        function myFunction(x) {
+            if(x>{{ app.user.jeton }})
+            alert("Votre solde est insuffisant");
+            else
+                alert("Votre achat est confirmé");
+        }
+
+</script>
 {% endblock %}

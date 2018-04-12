@@ -9,6 +9,7 @@ use Recompense\RecompensBundle\Entity\Tag;
 use Beelab\TagBundle\Tag\TagInterface;
 use Recompense\RecompensBundle\Form\CadeauType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -32,6 +33,9 @@ class CadeauController extends Controller
         {
             $promo=$request->get('coupon');
             $total=$request->get('total');
+            if(empty($promo))
+                return $this->redirectToRoute('RecompenseUser');
+
         }
 
         $em=$this->getDoctrine()->getManager();
@@ -64,7 +68,7 @@ class CadeauController extends Controller
         $form = $this->createFormBuilder($promo)
             ->add('coupon', TextType::class)
             ->add('promotion', IntegerType::class)
-            ->add('expiration',DateType::class)
+            ->add('expiration',DateTimeType::class)
             ->add('captcha', CaptchaType::class, array(
                 'width' => 200,
                 'height' => 50,

@@ -44,14 +44,14 @@ class Promo
      */
     private $promotion;
     /**
-     * @var date
+     * @var datetime
      *
-     * @ORM\Column(name="expiration", type="date", nullable=false)
+     * @ORM\Column(name="expiration", type="datetime", nullable=false)
      */
     private $expiration;
 
     /**
-     * @return date
+     * @return datetime
      */
     public function getExpiration()
     {
@@ -59,7 +59,7 @@ class Promo
     }
 
     /**
-     * @param date $expiration
+     * @param datetime $expiration
      */
     public function setExpiration($expiration)
     {

@@ -234,7 +234,7 @@
                   </div>
                   <div class="container">
                       <p style="padding-right: 150px;">Utiliser Promo Code: <span class="promo" style="font-size: 25px;background:#ccc;padding: 3px;">{{ promo.coupon }}</span></p>
-                      <p class="expire" style="padding-right: 150px;color: red;">Expires: {{ promo.expiration|date("Y/m/d") }}</p>
+                      <p class="expire" style="padding-right: 150px;color: red;">Expires: {{ promo.expiration|date("Y/m/d à H:i") }} </p>
                   </div>
                     {% else %}
 
@@ -290,10 +290,11 @@
                                     <td class="actions" colspan="3">
                                         <div class="coupon">
                                             <form method="post" action="{{ path('DeletePromo')}}">
-                                            <input type="text" value="" name="coupon" placeholder="Coupon Code">
+                                            <input type="text" value="" name="coupon" placeholder="Coupon Code" required />
                                                 <input type="hidden" name="total" value={{ var }}>
 
-                                                <input class="shortcode_button btn_normal btn_type3" type="submit" value="Valider Coupon"></a>
+                                                <input class="shortcode_button btn_normal btn_type3" type="submit" value="Valider Coupon"  />
+
                                             </form>
                                         </div>
 
@@ -364,7 +365,7 @@
         jQuery(function () {
 
 
-            var austDay = new Date({{ promo.expiration|date("Y") }},{{ promo.expiration|date("m") }}-1,{{ promo.expiration|date("d") }},19,00); //year, month-1, day
+            var austDay = new Date({{ promo.expiration|date("Y") }},{{ promo.expiration|date("m") }}-1,{{ promo.expiration|date("d") }},{{ promo.expiration|date("H") }},{{ promo.expiration|date("i") }}); //year, month-1, day
             jQuery('#countdown').countdown({
                 until: austDay,
                 padZeroes: true

@@ -58,7 +58,7 @@
                                         <td>{{ cadeau.categorie }}</td>
                                         <td>{{ cadeau.Type }}</td>
                                         <td>{{ cadeau.jeton }}</td>
-                                        <td><img src="http://localhost/russia/web/uploads/images/{{  cadeau.image }}" height="50px" width="50px"></td>
+                                        <td><img src="{{ asset('uploads/images/' ~ cadeau.image) }}" height="50px" width="50px"></td>
                                         <td>
                                             <a href="{{ path('Delete_Cadeau',{'id':cadeau.idcadeau})}}">Supprimer</a>
 
