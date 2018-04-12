@@ -14,7 +14,7 @@ _supprimer_equipe:
     path:     /admin/SupprimerEquipe/{idequipe}
     defaults: { _controller: EquipeEquipeBundle:GestionEquipe:SupprimerEquipe }
 _ajouter_joueurs:
-    path:     /admin/AjouterJoueurs
+    path:     /admin/AjouterJoueur
     defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:AjouterJoueurs }
 _afficher_joueurs:
     path:     /admin/AfficherJoueurs

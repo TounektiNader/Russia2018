@@ -9,65 +9,70 @@ use Equipe\EquipeBundle\Entity\Joueurs;
 use Equipe\EquipeBundle\Form\JoueursType;
 
 
-use Spreadsheet_Excel_Reader;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
 
 
 
 class GestionJoueursController extends Controller
 {
-   /* public function AjouterJoueursAction(Request $request)
-    {
-        $joueur = new Joueurs();
 
-        $form = $this->createFormBuilder($joueur)
-            ->add('nomjoueur')
-            ->add('prenomjoueur')
-            ->add('postion')
-            ->add('idequipe', EntityType::class, array(
-                'class' => 'Equipe\EquipeBundle\Entity\Equipe',
-                'choice_label' => 'nomequipe',
-                'multiple' => false,
-                'data_class'=>null
-            ))
-            ->add('Ajouter', SubmitType::class)
-            ->getForm();
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($joueur);
-            $em->flush();
 
-            return $this->redirectToRoute('_afficher_equipe');
 
-        }
-        return $this->render('EquipeEquipeBundle:GestionJoueurs:ajouter_joueurs.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }*/
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
 
     public function AjouterJoueursAction(Request $request)
     {
-        $joueurs=new Joueurs();
-    $form=$this->createForm(JoueursType::class,$joueurs);
-    $form->handleRequest($request);
-    if($form->isValid())
-    {
-    $eq=$this->getDoctrine();
-    $eq=$eq->getManager();
-    $eq->persist($joueurs);
-    $eq->flush();
-    return $this->redirectToRoute('_afficher_joueurs');
+        $joueurs = new Joueurs();
+        $form = $this->createForm(JoueursType::class, $joueurs);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $eq = $this->getDoctrine();
+            $eq = $eq->getManager();
+            $eq->persist($joueurs);
+            $eq->flush();
+            return $this->redirectToRoute('_afficher_joueurs');
 
-    }
-        return $this->render('EquipeEquipeBundle:GestionJoueurs:ajouter_joueurs.html.twig', array(
+        }
+
+        if ($request->isMethod('post')) {
+            $eq = $this->getDoctrine()->getManager();
+            $xx=$request->get('worksheet');
+            $workbook = SpreadsheetParser::open('C:\Users\Nader\Documents\GitHub\ValidationWeb\russia\web\public\File\testing.xlsx');
+
+
+            $myWorksheetIndex = $workbook->getWorksheetIndex('myworksheet');
+
+            foreach ($workbook->createRowIterator($myWorksheetIndex) as $rowIndex => $values) {
+                dump($rowIndex, $values);
+                $joueur = new Joueurs();
+                $joueur->setPrenomjoueur($rowIndex . $values[0]);
+                $joueur->setNomjoueur($values[0]);
+                $joueur->setPostion($values[0]);
+
+                $Equipe = $eq->getRepository("EquipeEquipeBundle:Equipe")->find($values[3]);
+
+                $joueur->setIdequipe($Equipe);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($joueur);
+                $em->flush();
+
+            }
+        }
+
+        return $this->render('EquipeEquipeBundle:GestionJoueurs:_ajouttttt_joueur.html.twig', array(
             'form' => $form->createView()
         ));
+
     }
+
 
     public function AfficherJoueursAction()
     {

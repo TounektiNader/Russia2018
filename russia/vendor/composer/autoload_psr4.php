@@ -71,5 +71,6 @@ return array(
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
     'Clue\\StreamFilter\\' => array($vendorDir . '/clue/stream-filter/src'),
     'Beelab\\TagBundle\\' => array($vendorDir . '/beelab/tag-bundle'),
+    'Akeneo\\Component\\SpreadsheetParser\\' => array($vendorDir . '/akeneo-labs/spreadsheet-parser/src'),
     '' => array($baseDir . '/src'),
 );

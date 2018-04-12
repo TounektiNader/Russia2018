@@ -51,36 +51,48 @@
                              <div class="form-group">
                                  {{ form_row(form.idequipe,{'attr':{'class': 'form-control'} }) }}
                              </div>
-                             <div class="form-group">
-                                <a href=" {{ path('_ExcelJoueur') }}">Ajout par Excel</a>
-                             </div>
+
                              <div class="box-footer">
                                  <a href="{{ path('_afficher_joueurs') }}">Tableaux des joueurs</a>
                              </div>
-
-                             {{ form_end(form) }}
                          </div>
-                         <!-- /.box -->
 
-                         <!-- Form Element sizes -->
-
-                         <!-- /.box -->
-
-
-                         <!-- /.box -->
-
-                         <!-- Input addon -->
-
-                         <!--/.col (left) -->
-                         <!-- right column -->
-
-                         <!--/.col (right) -->
+                         {{ form_end(form) }}
+                         <br> <br>
+                         <form method="post">
+                             <input type="file" name="worksheet" id="worksheet">
+                             <input type="submit" value="valider">
+                         </form>
                      </div>
+
+                     <!-- /.box -->
+
+                     <!-- Form Element sizes -->
+
+                     <!-- /.box -->
+
+
+                     <!-- /.box -->
+
+                     <!-- Input addon -->
+
+                     <!--/.col (left) -->
+                     <!-- right column -->
+
+                     <!--/.col (right) -->
                  </div>
-                 <!-- /.row -->
+             </div>
+             <!-- /.row -->
          </section>
          <!-- /.content -->
      </div>
+
+
+
+
+
+
+
 
  {% endblock %}
  {% block footer %}

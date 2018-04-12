@@ -131,6 +131,10 @@ class ComposerStaticInit17096cefbad6d8132f90ced110a7ab21
         array (
             'Beelab\\TagBundle\\' => 17,
         ),
+        'A' => 
+        array (
+            'Akeneo\\Component\\SpreadsheetParser\\' => 35,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -397,6 +401,10 @@ class ComposerStaticInit17096cefbad6d8132f90ced110a7ab21
         array (
             0 => __DIR__ . '/..' . '/beelab/tag-bundle',
         ),
+        'Akeneo\\Component\\SpreadsheetParser\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/akeneo-labs/spreadsheet-parser/src',
+        ),
     );
 
     public static $fallbackDirsPsr4 = array (
@@ -430,13 +438,6 @@ class ComposerStaticInit17096cefbad6d8132f90ced110a7ab21
             'SensioLabs\\Security' => 
             array (
                 0 => __DIR__ . '/..' . '/sensiolabs/security-checker',
-            ),
-        ),
-        'N' => 
-        array (
-            'Nomaya\\SocialBundle\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/nomaya/social-bundle',
             ),
         ),
         'K' => 
