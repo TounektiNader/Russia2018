@@ -7,7 +7,6 @@ use Recompense\RecompensBundle\Entity\Promo;
 use Recompense\RecompensBundle\Form\PromoType;
 use Recompense\RecompensBundle\Entity\Tag;
 use Beelab\TagBundle\Tag\TagInterface;
-use Sunra\PhpSimple\HtmlDomParser;
 use Recompense\RecompensBundle\Form\CadeauType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
