@@ -35,5 +35,5 @@ PromoModele:
     path:     /admin/ListPromo
     defaults: { _controller: RecompenseRecompensBundle:Cadeau:ListPromo }
 Delete_Promo:
-    path:     /DeletePromo/{id}
+    path:     /admin/DeletePromo/{id}
     defaults: { _controller: RecompenseRecompensBundle:Cadeau:effacerPromo }
