@@ -28,8 +28,8 @@ class HotelForm extends AbstractType
             ->add('detailshotel', TextareaType::class, array(
                 'attr' => array('cols' => '20', 'rows' => '5','class'=>'form-control'),
             ))
-            ->add('positionhotel',null,array('attr'=>array('class'=>'form-control')))
-            ->add('photohotel', FileType::class, array('data_class' => null,'required' => false,'label' => false))
+            ->add('positionhotel',null,array('attr'=>array('class'=>'form-control','placeholder'=>'Position','readonly' => true)))
+            ->add('photohotel', FileType::class, array('data_class' => null,'required' => true,'label' => false))
             ->add('idville', EntityType::class,array(
                 'attr'=> array('class'=>'form-control'),
                 'class' => 'Russia\RussiaBundle\Entity\Villes',

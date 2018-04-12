@@ -26,10 +26,10 @@ class VilleForm extends AbstractType
             ->add('nomville',null,array('attr'=>array('class'=>'form-control')))
             ->add('fondationville',null,array('attr'=>array('class'=>'form-control')))
             ->add('populationville',null,array('attr'=>array('class'=>'form-control')))
-            ->add('coordonnees',null,array('attr'=>array('class'=>'form-control')))
+            ->add('coordonnees',null,array('attr'=>array('class'=>'form-control','placeholder'=>'Coordonnées','readonly' => true)))
             ->add('timezone',null,array('attr'=>array('class'=>'form-control')))
             ->add('equipelocale',null,array('attr'=>array('class'=>'form-control')))
-            ->add('photoville', FileType::class, array('data_class' => null,'required' => false,'label' => false))
+            ->add('photoville', FileType::class, array('data_class' => null,'required' => true,'label' => false))
             ->add('logoville', FileType::class, array('data_class' => null,'required' => false,'label' => false))
             ->add('logoequipe', FileType::class, array('data_class' => null,'required' => false,'label' => false))
             ->add('valider', SubmitType::class);

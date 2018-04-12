@@ -1,0 +1,83 @@
+{% extends ':AdminLTE-2.4.3:baseadmin.html.twig' %}{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+
+
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <h1>
+                 Liste des hotels
+
+             </h1>
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="#">hotels</a></li>
+                 <li class="active">Liste des hotels</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div class="row">
+                 <div class="col-xs-12">
+
+                     <!-- /.box -->
+
+                     <div class="box">
+                         <div class="box-header">
+                             <center><a title="Ajouter" href="{{ path('ajouthotel') }}"><i class="ion-android-add-circle"></i>&nbsp&nbsp Ajouter un nouveau hotel</a></center>
+
+                         </div>
+                         <!-- /.box-header -->
+                         <div class="box-body">
+                             <table id="example1" class="table table-bordered table-striped">
+                                 <thead>
+                                 <tr>
+                                     <th>Nom</th>
+                                     <th>Détails</th>
+                                     <th>Position</th>
+                                     <th>Photo</th>
+                                     <th>Ville</th>
+                                     <th></th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for hotel in hotels %}
+                                     <tr>
+                                         <td align="center">{{ hotel.nomhotel }}</td>
+                                         <td align="center">{{ hotel.detailshotel }}</td>
+                                         <td align="center">{{ hotel.positionhotel }}</td>
+                                         <td align="center"><img src="{{ asset('uploads/images/' ~ hotel.photohotel) }}" height="100px" width="150px"></td>
+                                         <td align="center">{{ hotel.idville.nomville }}</td>
+                                         <td align="center">
+                                             <a title="Modifier" href="{{ path('updatehotel',{'id':hotel.idhotel}) }}">&nbsp&nbsp<i class="ion-edit"></i></a>
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <a onclick="return confirm('Voulez vous vraiment supprimer cet hotel?')" title="Supprimer" href="{{ path('deletehotel',{'id':hotel.idhotel}) }}">&nbsp&nbsp<i class="ion-trash-b"></i></a>
+                                         </td>
+                                     </tr>
+                                 {% endfor %}
+                                 </tbody>
+                             </table>
+                         </div>
+                         <!-- /.box-body -->
+                     </div>
+                     <!-- /.box -->
+                 </div>
+                 <!-- /.col -->
+             </div>
+             <!-- /.row -->
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}

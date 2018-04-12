@@ -1,0 +1,56 @@
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+<h1>Recherche des stades</h1>
+{{ form_start(form)}}
+Nom: {{ form_widget(form.nomstade) }}
+    {{ form_end(form) }}
+
+<h2>Liste des stades</h2>
+<div id="div"></div>
+
+<script>
+
+    $(function(){
+        $('#recherche_stade_form_nomstade').keyup(
+            function () {
+                //Récupération de la série
+                var nom=$('#recherche_stade_form_nomstade').val();
+                //Construction de la requête à solliciter
+                var Data = 'nomstade=' + nom;
+
+                $.ajax({
+                        //Construction de l'objet XHR avec la méthode POST
+                        type: "POST",
+                        url: "{{ path('recherchestade') }}",
+                        data: Data,
+                        //Test sur le succèes de réponse
+                        success: function (data) {
+                            console.log(data);
+                            //Affichage des données récupérés dans un div
+                            $("#div").html(
+                                "<table id='res' border='1'>"+
+                                "<td>Nom</td>"+
+                                "<td>Fondation</td>"+
+                                "<td>Capacité</td>"+
+                                "<td>Equipe locale</td>"+
+                                "<td>Ville</td></table>");
+
+                            //Parcours
+                            $.each(data, function (k,el) {
+                                $("#affichage").hide();
+                                $("#res").append(
+                                    "<tr>"+
+                                    "<td>"+el.nomstade+"</td>"+
+                                    "<td>"+el.fondationstade+"</td>"+
+                                    "<td>"+ el.capacitestade+"</td>"+
+                                    "<td>"+ el.equipestade+"</td>"+
+                                    "<td>"+ el.idville.nomville+ "</td>"+
+                                    "</tr>"
+                                );
+                            })
+                        }
+                    }
+                );
+            }
+        );
+    });
+</script>

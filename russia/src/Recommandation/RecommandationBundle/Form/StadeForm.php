@@ -26,9 +26,9 @@ class StadeForm extends AbstractType
             ->add('nomstade',null,array('attr'=>array('class'=>'form-control')))
             ->add('fondationstade',null,array('attr'=>array('class'=>'form-control')))
             ->add('capacitestade',null,array('attr'=>array('class'=>'form-control')))
-            ->add('positionstade',null,array('attr'=>array('class'=>'form-control')))
+            ->add('positionstade',null,array('attr'=>array('class'=>'form-control','placeholder'=>'Position','readonly' => true)))
             ->add('equipestade',null,array('attr'=>array('class'=>'form-control')))
-            ->add('photostade', FileType::class, array('data_class' => null,'required' => false,'label' => false))
+            ->add('photostade', FileType::class, array('data_class' => null,'required' => true,'label' => false))
             ->add('idville', EntityType::class,array(
                 'attr'=> array('class'=>'form-control'),
                 'class' => 'Russia\RussiaBundle\Entity\Villes',

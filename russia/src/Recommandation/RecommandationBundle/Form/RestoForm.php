@@ -28,8 +28,8 @@ class RestoForm extends AbstractType
             ->add('detailsresto', TextareaType::class, array(
                 'attr' => array('cols' => '20', 'rows' => '5','class'=>'form-control'),
             ))
-            ->add('positionresto',null,array('attr'=>array('class'=>'form-control')))
-            ->add('photoresto', FileType::class, array('data_class' => null,'required' => false,'label' => false))
+            ->add('positionresto',null,array('attr'=>array('class'=>'form-control','placeholder'=>'Position','readonly' => true)))
+            ->add('photoresto', FileType::class, array('data_class' => null,'required' => true,'label' => false))
             ->add('idville', EntityType::class,array(
                 'attr'=> array('class'=>'form-control'),
                 'class' => 'Russia\RussiaBundle\Entity\Villes',

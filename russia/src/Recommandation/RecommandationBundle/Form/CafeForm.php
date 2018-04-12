@@ -28,8 +28,8 @@ class CafeForm extends AbstractType
             ->add('detailscafe', TextareaType::class, array(
                 'attr' => array('cols' => '20', 'rows' => '5','class'=>'form-control'),
             ))
-            ->add('positioncafe',null,array('attr'=>array('class'=>'form-control')))
-            ->add('photocafe', FileType::class, array('data_class' => null,'required' => false,'label' => false))
+            ->add('positioncafe',null,array('attr'=>array('class'=>'form-control','placeholder'=>'Position','readonly' => true)))
+            ->add('photocafe', FileType::class, array('data_class' => null,'required' => true,'label' => false))
             ->add('idville', EntityType::class,array(
                 'attr'=> array('class'=>'form-control'),
                 'class' => 'Russia\RussiaBundle\Entity\Villes',

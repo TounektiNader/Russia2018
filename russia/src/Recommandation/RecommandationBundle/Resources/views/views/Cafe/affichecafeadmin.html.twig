@@ -1,0 +1,97 @@
+{% extends ':AdminLTE-2.4.3:baseadmin.html.twig' %}
+{% block style %}
+    {{ parent() }}
+{% endblock %}
+{% block header %}
+    {{ parent() }}
+{% endblock %}
+
+ {% block body %}
+     <script src="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.pack.js"></script>
+     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.css" />
+<script type="text/javascript">
+
+    $(function () {
+        $("#fancybox").fancybox({
+            'width'             : 500,
+            'height'            : 400,
+            'type'              :'iframe',
+            afterClose: function () {
+                parent.location.reload(true);
+
+            }})})
+    ;
+</script>
+     <!-- Content Wrapper. Contains page content -->
+     <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+         <section class="content-header">
+             <h1>
+                 Liste des cafés
+
+             </h1>
+             <ol class="breadcrumb">
+                 <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                 <li><a href="#">cafes</a></li>
+                 <li class="active">Liste des cafes</li>
+             </ol>
+         </section>
+
+         <!-- Main content -->
+         <section class="content">
+             <div class="row">
+                 <div class="col-xs-12">
+
+                     <!-- /.box -->
+
+                     <div class="box">
+                         <div class="box-header">
+                             <center><a class="fn" id="fn" title="Ajouter" href="{{ path('ajoutcafe') }}"><i class="ion-android-add-circle"></i>&nbsp&nbsp Ajouter un nouveau café</a></center>
+
+                         </div>
+                         <!-- /.box-header -->
+                         <div class="box-body">
+                             <table id="example1" class="table table-bordered table-striped">
+                                 <thead>
+                                 <tr>
+                                     <th>Nom</th>
+                                     <th>Détails</th>
+                                     <th>Position</th>
+                                     <th>Photo</th>
+                                     <th>Ville</th>
+                                     <th></th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for cafe in cafes %}
+                                     <tr>
+                                         <td align="center" valign="center">{{ cafe.nomcafe }}</td>
+                                         <td align="center" valign="center">{{ cafe.detailscafe }}</td>
+                                         <td align="center" valign="center">{{ cafe.positioncafe }}</td>
+                                         <td align="center" valign="center"><img src="{{ asset('uploads/images/' ~ cafe.photocafe) }}" height="100px" width="150px"></td>
+                                         <td align="center" valign="center">{{ cafe.idville.nomville }}</td>
+                                         <td align="center" valign="center">
+                                             <a title="Modifier" href="{{ path('updatecafe',{'id':cafe.idcafe}) }}">&nbsp&nbsp<i class="ion-edit"></i></a>
+                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <a onclick="return confirm('Voulez vous vraiment supprimer ce café?')" title="Supprimer" href="{{ path('deletecafe',{'id':cafe.idcafe}) }}">&nbsp&nbsp<i class="ion-trash-b"></i></a>
+                                         </td>
+                                     </tr>
+                                 {% endfor %}
+                                 </tbody>
+                             </table>
+                         </div>
+                         <!-- /.box-body -->
+                     </div>
+                     <!-- /.box -->
+                 </div>
+                 <!-- /.col -->
+             </div>
+             <!-- /.row -->
+         </section>
+         <!-- /.content -->
+     </div>
+     <!-- /.content-wrapper -->
+ {% endblock %}
+ {% block footer %}
+     {{ parent() }}
+ {% endblock %}
