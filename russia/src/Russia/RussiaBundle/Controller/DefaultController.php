@@ -74,7 +74,7 @@ class DefaultController extends Controller
                 ->setBody("Ce mail est de la part de  ".$name." avec le mail suivant  ".$mail."  avec ce messsage  ".$message2.""
                 );
             $this->get('mailer')->send($message);
-            
+
 
             return $this->render('RussiaRussiaBundle:Default:contact.html.twig');
 
