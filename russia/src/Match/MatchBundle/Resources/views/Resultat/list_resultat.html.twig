@@ -23,7 +23,7 @@
 
 
 {%  for flashMessage in app.session.flashbag.get('Suppression') %}
-    <div class="alert-danger">
+    <div class="alert-danger" style="color: #7c1212">
         {{ flashMessage   }}
 
 
@@ -96,14 +96,14 @@
                 <tr {% if loop.index is odd %}class="color"{% endif %} >
                     <td>{{ partie.idresultat }}</td>
 
-                    <td> <img src="{{partie.idpartie.home.drapeau}}" height="30" width="30">
+                    <td> <img src="http://localhost/russia/web/public/images/{{partie.idpartie.home.drapeau}}" height="30" width="30">
                         {{ partie.idpartie.home.nomequipe }}</td>
                     <td>
 
                         {{ partie.buthome }}
                     </td>
                     <td>
-                        <img src="{{partie.idpartie.away.drapeau}}" height="30" width="30">
+                        <img src="http://localhost/russia/web/public/images/{{partie.idpartie.away.drapeau}}" height="30" width="30">
                         {{ partie.idpartie.away.nomequipe }}
                     </td>
 

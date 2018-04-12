@@ -56,32 +56,45 @@ class ActualiteController extends Controller
 
         return $this->render('ActualiteActualiteBundle:Default:ajoutadmin.html.twig', array('form'=>$form->createView()));
     }
-    public function listeAction()
+    public function listeAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
         $user=$this->get('security.token_storage')->getToken()->getUser()->getId();
         $a=$em->getRepository("Russia\RussiaBundle\Entity\Actualite")
             ->findBy(array('username'=>$user));
 
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $a, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*page number*/
+
+        );
 
         return $this->render("ActualiteActualiteBundle:Default:afficher.html.twig"
             ,array(
 
-                'ac'=>$a
+                'ac'=>$result
             ));
     }
-    public function listeDEtouteAction()
+    public function listeDEtouteAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
 
         $a=$em->getRepository("Russia\RussiaBundle\Entity\Actualite")
             ->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $result = $paginator->paginate(
+            $a, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $request->query->getInt('limit', 4)/*page number*/
 
+        );
 
         return $this->render("ActualiteActualiteBundle:Default:affichetoute.html.twig"
             ,array(
 
-                'ac'=>$a
+                'ac'=>$result
             ));
     }
     public function deleteAction (Request $request, $id)
