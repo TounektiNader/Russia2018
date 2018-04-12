@@ -234,8 +234,8 @@
 
                                                 <form method="post"  >
                                                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                                                    <input type="text" name="name"  value="{{ app.user.username }}" placeholder="Name *" disabled />
-                                                    <input type="text" name="email" value="{{ app.user.email }}" placeholder="Email *" disabled />
+                                                    <input type="text" name="name"  value="{{ app.user.username }}" placeholder="Name *"  />
+                                                    <input type="text" name="email" value="{{ app.user.email }}" placeholder="Email *"  />
                                                     <input type="text" name="subject" value="" placeholder="Subject" />
                                                     <textarea name="message" id="message" placeholder="Message *"></textarea>
                                                     <div class="comment_submit_wrap">
@@ -249,7 +249,6 @@
                                                     <input type="text" name="subject" value="" placeholder="Subject" />
                                                     <textarea name="message" id="message" placeholder="Message *"></textarea>
                                                     <div class="comment_submit_wrap">
-                                                        <i class="fa fa-hand-o-right"></i>
                                                         <input type="submit" text="chercher" name="chercher">
 
                                                     </div>

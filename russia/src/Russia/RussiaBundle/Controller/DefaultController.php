@@ -61,7 +61,7 @@ class DefaultController extends Controller
     public function ContactAction(Request $request)
     {
         if($request->getMethod()=="POST") {
-            $us=$this->getUser();
+
             $subject=$request->get('subject');
             $name=$request->get('name');
             
@@ -74,6 +74,7 @@ class DefaultController extends Controller
                 ->setBody("Ce mail est de la part de  ".$name." avec le mail suivant  ".$mail."  avec ce messsage  ".$message2.""
                 );
             $this->get('mailer')->send($message);
+            
 
             return $this->render('RussiaRussiaBundle:Default:contact.html.twig');
 
