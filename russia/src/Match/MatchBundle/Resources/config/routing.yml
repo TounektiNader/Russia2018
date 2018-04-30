@@ -71,6 +71,31 @@ promoteUser:
 son:
     path:     /hayahaya
     defaults: { _controller: MatchMatchBundle:Default:acc }
+jss:
+    path:     /jssc{id}
+    defaults: { _controller: MatchMatchBundle:Default:different }
+AllResultatJ:
+    path:     /resultatJ
+    defaults: { _controller: MatchMatchBundle:Resultat:alllResultJ }
+AddBet:
+    path:     /addbet/{valeur}/{idUser}/{idPartie}
+    defaults: { _controller: MatchMatchBundle:Default:newBet }
+MesBetsJ:
+    path:     /mesBets/{idUser}/
+    defaults: { _controller: MatchMatchBundle:Default:MesBet }
+EquipeGagneJ:
+    path:     /EquipeGagne/{idPartie}/
+    defaults: { _controller: MatchMatchBundle:Default:EquipeGa }
+addUser:
+    path:     /adduser/{nom}/{prenom}/{username}/{usernameCano}/{mail}/{mailCano}/{pass}/{conf}/{num}/{natio}
+    defaults: { _controller: MatchMatchBundle:Default:registerJ }
+numberRandom:
+    path:     /numbr
+    defaults: { _controller: MatchMatchBundle:Default:VariableRand }
+validercompte:
+    path:     /valideU/{id}
+    defaults: { _controller: MatchMatchBundle:Default:validerUser }
+
 
 
 

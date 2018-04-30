@@ -10,9 +10,11 @@ use Match\MatchBundle\Services\BetService;
 use Match\MatchBundle\Services\PartieService;
 use Match\MatchBundle\Services\ResultatService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use \DateTime;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Match\MatchBundle\Entity\Notifacation;
 
@@ -1365,6 +1367,16 @@ class ResultatController extends Controller
     }
 
 
+
+    public function alllResultJAction()
+    {$tasks = $this->getDoctrine()->getManager()
+        ->getRepository('MatchMatchBundle:Resultat')
+        ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+        //return $this->render('MatchMatchBundle:Default:son.html.twig');
+    }
 
 
 }
