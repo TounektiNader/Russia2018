@@ -41,6 +41,26 @@ class VilleController extends Controller
         return $this->render('@RecommandationRecommandation/Ville/afficheville.html.twig',array("villes"=>$ville));
     }
 
+    public function accAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Villes')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
+    public function differentAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Villes')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function ListadminAction()
     {
         $em=$this->getDoctrine()->getManager();

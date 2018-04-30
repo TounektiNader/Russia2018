@@ -41,6 +41,27 @@ class RestoController extends Controller
         $resto=$em->getRepository('RussiaRussiaBundle:Restos')->findAll();
         return $this->render('@RecommandationRecommandation/Resto/afficheresto.html.twig',array("restos"=>$resto));
     }
+
+    public function accAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Restos')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
+    public function differentAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Cafes')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function ListadminAction()
     {
         $em=$this->getDoctrine()->getManager();

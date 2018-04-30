@@ -121,3 +121,33 @@ pdf3:
 pdf4:
     path:     /pdf4/{id}
     defaults: { _controller: RecommandationRecommandationBundle:Ville:index}
+cafesjson:
+    path:     /cafesjson
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:acc}
+cafesjsondet:
+    path:     /cafesjsondet/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:different}
+hotelsjson:
+    path:     /hotelsjson
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:acc}
+hotelsjsondet:
+    path:     /hotelsjsondet/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:different}
+restosjson:
+    path:     /restosjson
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:acc}
+restosjsondet:
+    path:     /restosjsondet/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:different}
+stadesjson:
+    path:     /stadesjson
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:acc}
+stadesjsondet:
+    path:     /stadesjsondet/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:different}
+villesjson:
+    path:     /villesjson
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:acc}
+villesjsondet:
+    path:     /villesjsondet/{id}
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:different}

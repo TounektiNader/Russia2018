@@ -49,6 +49,26 @@ class HotelController extends Controller
         return $this->render('@RecommandationRecommandation/Hotel/affichehotel.html.twig', array("hotel" => $hotel));
     }
 
+    public function accAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Hotels')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
+    public function differentAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Hotels')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function ListadminAction()
     {
         $em = $this->getDoctrine()->getManager();

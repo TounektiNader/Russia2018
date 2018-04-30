@@ -40,6 +40,26 @@ class StadeController extends Controller
         return $this->render('@RecommandationRecommandation/Stade/affichestade.html.twig',array("stades"=>$stade));
     }
 
+    public function accAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Stades')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
+    public function differentAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Stades')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function ListadminAction()
     {
         $em=$this->getDoctrine()->getManager();

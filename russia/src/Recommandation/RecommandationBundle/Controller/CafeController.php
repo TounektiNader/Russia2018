@@ -41,7 +41,6 @@ use Ivory\GoogleMap\Helper\Renderer\Control\MapTypeControlStyleRenderer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Russia\RussiaBundle\Entity\Stades;
-use function Symfony\Component\VarDumper\Tests\Fixtures\bar;
 
 
 class CafeController extends Controller
@@ -53,17 +52,32 @@ class CafeController extends Controller
         return $this->render('@RecommandationRecommandation/Cafe/affichecafe.html.twig',array("cafes"=>$cafe));
     }
 
+    public function accAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+        ->getRepository('RussiaRussiaBundle:Cafes')
+        ->findAll();
+        $normalizer = new ObjectNormalizer();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+        }
+
+    public function differentAction($id)
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Cafes')
+            ->find($id);
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function ListadminAction()
     {
         $em=$this->getDoctrine()->getManager();
         $cafe=$em->getRepository('RussiaRussiaBundle:Cafes')->findAll();
         return $this->render('@RecommandationRecommandation/Cafe/affichecafeadmin.html.twig',array("cafes"=>$cafe));
-    }
-
-    public function ajAction()
-    {
-
-        return $this->render('@RussiaRussia/Default/baseadmin.html.twig',array());
     }
 
     public function detAction ($id, Request $request)
@@ -167,7 +181,7 @@ class CafeController extends Controller
                 'multiple' => false,
             ))
             ->add('Ajouter', SubmitType::class)
-        ->getForm();
+            ->getForm();
         $form->handleRequest($request);
 
         if ($form->isValid()) {
