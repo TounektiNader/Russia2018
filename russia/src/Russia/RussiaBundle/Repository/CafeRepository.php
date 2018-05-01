@@ -32,6 +32,13 @@ ORDER BY v.nomcafe ASC")
         return $query->getResult();
     }
 
+    public function cafecount()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("select COUNT(v) from RussiaRussiaBundle:Cafes v");
+        return $query->getResult();
+    }
+
 
 
 }

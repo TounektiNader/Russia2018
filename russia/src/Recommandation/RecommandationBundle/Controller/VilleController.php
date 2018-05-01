@@ -51,6 +51,16 @@ class VilleController extends Controller
         return new JsonResponse($formatted);
     }
 
+    public function countAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RussiaRussiaBundle:Villes')
+            ->cafecount();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+
     public function differentAction($id)
     {
         $tasks = $this->getDoctrine()->getManager()

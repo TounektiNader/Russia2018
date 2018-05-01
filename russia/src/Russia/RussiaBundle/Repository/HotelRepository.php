@@ -39,4 +39,11 @@ ORDER BY v.nomhotel ASC")
 WHERE v.idville = s.idville");
         return $query->getResult();
     }
+
+    public function cafecount()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("select COUNT(v) from RussiaRussiaBundle:Hotels v");
+        return $query->getResult();
+    }
 }

@@ -31,4 +31,11 @@ ORDER BY v.nomresto ASC")
             ->setParameter('nom',$nom->getIdville());
         return $query->getResult();
     }
+
+    public function cafecount()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("select COUNT(v) from RussiaRussiaBundle:Restos v");
+        return $query->getResult();
+    }
 }

@@ -151,3 +151,18 @@ villesjson:
 villesjsondet:
     path:     /villesjsondet/{id}
     defaults: { _controller: RecommandationRecommandationBundle:Ville:different}
+cafecount:
+    path:     /cafecount
+    defaults: { _controller: RecommandationRecommandationBundle:Cafe:count}
+stadecount:
+    path:     /stadecount
+    defaults: { _controller: RecommandationRecommandationBundle:Stade:count}
+hotelcount:
+    path:     /hotelcount
+    defaults: { _controller: RecommandationRecommandationBundle:Hotel:count}
+villecount:
+    path:     /villecount
+    defaults: { _controller: RecommandationRecommandationBundle:Ville:count}
+restocount:
+    path:     /restocount
+    defaults: { _controller: RecommandationRecommandationBundle:Resto:count}

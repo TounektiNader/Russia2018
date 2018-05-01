@@ -60,4 +60,11 @@ WHERE v.idville = c.idville AND s.idville = c.idville AND s.idville = :nom")
         return $query->getResult();
     }
 
+    public function cafecount()
+    {
+        $query=$this->getEntityManager()
+            ->createQuery("select COUNT(v) from RussiaRussiaBundle:Stades v");
+        return $query->getResult();
+    }
+
 }
