@@ -3,6 +3,8 @@
 namespace Recompense\RecompensBundle\Controller;
 
 use Recompense\RecompensBundle\Entity\Cadeau;
+use Recompense\RecompensBundle\Entity\Recompense;
+use Match\MatchBundle\Entity\User;
 use Recompense\RecompensBundle\Entity\Promo;
 use Recompense\RecompensBundle\Form\PromoType;
 use Recompense\RecompensBundle\Entity\Tag;
@@ -16,15 +18,162 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Recompense\RecompensBundle\Entity\Recompense;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Gregwar\CaptchaBundle\Type\CaptchaType;
-
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class CadeauController extends Controller
 {
 
+    public function allAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RecompenseRecompensBundle:Cadeau')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+    public function deletemobileAction($coupon,$iduser,$total)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $promo2=$em->getRepository("RecompenseRecompensBundle:Promo")->findBy([
+            "coupon" => $coupon
 
+        ]);
+        $hours=2;
+        $user=$em->getRepository("UserBundle:User")->find($iduser);
+        $reduction=$promo2[0]->getPromotion();
+        $date=$promo2[0]->getExpiration();
+        $date2=new \DateTime( "Now" ,new \DateTimeZone("Africa/Tunis"));
+        $date2->sub(new \DateInterval('PT'.$hours.'H'));
+        if($date<$date2)
+        {
+            $em->remove($promo2[0]);
+            $em->flush();
+        }
+        else
+        {
+            $user->setJeton($user->getJeton()+ceil($total*$reduction/100));
+            $em->persist($user);
+            $em->remove($promo2[0]);
+            $em->flush();
+        }
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($promo2[0]);
+        return new JsonResponse($formatted);
+    }
+    public function allpromoAction()
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('RecompenseRecompensBundle:Promo')
+            ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+    }
+    public function allrecAction($id)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $user=$em->getRepository("UserBundle:User")->find($id);
+        $recompense = $em->getRepository("RecompenseRecompensBundle:Recompense")->findBy([
+            "username" => $user
+
+        ]);
+        /*dump($recompense);
+        exit();*/
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($recompense);
+        return new JsonResponse($formatted);
+    }
+    public function AdddAction($idcadeau,$iduser)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $cadeau=$em->getRepository("RecompenseRecompensBundle:Cadeau")->find($idcadeau);
+        $user=$em->getRepository("UserBundle:User")->find($iduser);
+        $recompense= new Recompense();
+        $recompense->setUsername($user);
+        $recompense->setIdcadeau($cadeau);
+        if($user->getJeton()>=$cadeau->getJeton())
+        {
+            $user->setJeton($user->getJeton()-$cadeau->getJeton());
+            $em->persist($recompense);
+            $em->persist($user);
+            $em->flush();
+
+        }
+        else
+        {
+
+        }
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($recompense);
+        return new JsonResponse($formatted);
+    }
+    function random($car){
+        $string = "";
+        $chaine = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        srand((double)microtime()*1000000);
+        for($i=0; $i<$car; $i++) {
+            $string .= $chaine[rand()%strlen($chaine)];
+        }
+        return $string;
+    }
+    public function AddpromoAction()
+    {
+        $em=$this->getDoctrine()->getManager();
+        $nb_min = 1;
+        $nb_max = 50;
+        $nombre = mt_rand($nb_min,$nb_max);
+        $promo= new Promo();
+        $promo->setCoupon($this->random(4));
+        $minutes_to_add = 30;
+        $hours=2;
+        $hour=1;
+        $date=new \DateTime( "Now" ,new \DateTimeZone("Africa/Tunis"));
+        $date->add(new \DateInterval('PT' . $minutes_to_add . 'M'));
+        $date->sub(new \DateInterval('PT'.$hour.'H'));
+        $promo->setExpiration($date);
+        $promo->setPromotion($nombre);
+
+
+
+        $promo2=$em->getRepository('RecompenseRecompensBundle:Promo')
+            ->findBy(array(), array('expiration' => 'asc'));
+        $debut=count($promo2);
+
+
+        foreach ($promo2 as $item)
+        {
+            $date2=new \DateTime( "Now" ,new \DateTimeZone("Africa/Tunis"));
+            $date2->add(new \DateInterval('PT'.$hours.'H'));
+            var_dump($item->getExpiration() < $date2);
+            dump($date2);
+            if($item->getExpiration() < $date2)
+            {
+                $em->remove($item);
+                $em->flush();
+            }
+
+        }
+        $promo3=$em->getRepository('RecompenseRecompensBundle:Promo')
+            ->findBy(array(), array('expiration' => 'asc'));
+
+        $fin=count($promo3);
+        $debut=$debut;
+        if($fin<$debut or $fin==$debut)
+        {
+
+            $em->persist($promo);
+            $em->flush();
+        }
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($promo);
+        return new JsonResponse($formatted);
+    }
 
     public function DeletePromoAction(Request $request)
     {

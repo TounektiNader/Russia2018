@@ -37,3 +37,21 @@ PromoModele:
 Delete_Promo:
     path:     /admin/DeletePromo/{id}
     defaults: { _controller: RecompenseRecompensBundle:Cadeau:effacerPromo }
+hedi:
+    path:     /all
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:all }
+hed:
+    path:     /addmobile/{idcadeau}/{iduser}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:Addd }
+he:
+    path:     /mobile/{id}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:allrec }
+h:
+    path:     /promo
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:Addpromo }
+ha:
+    path:     /promo2
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:allpromo }
+ham:
+    path:     /deletepromo/{coupon}/{iduser}/{total}
+    defaults: { _controller: RecompenseRecompensBundle:Cadeau:deletemobile }
