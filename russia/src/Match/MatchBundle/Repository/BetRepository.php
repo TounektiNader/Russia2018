@@ -92,6 +92,63 @@ class BetRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
+
+    function countbetgagneBetsUser($id)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "select count(m.idbet)  as nb  from MatchMatchBundle:Bet m WHERE m.etat=:c  and m.username=:d " )
+
+            ->setParameter('c','Gain')
+        ->setParameter('d',$id);
+
+        return $query->getResult();
+
+    }
+
+
+    function countbetPerteBetsUser($id)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "select count(m.idbet)  as nb  from MatchMatchBundle:Bet m WHERE m.etat=:c  and m.username=:d " )
+
+            ->setParameter('c','Perte')
+            ->setParameter('d',$id);
+
+        return $query->getResult();
+
+    }
+
+
+
+    function countbetEncursBetsUser($id)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "select count(m.idbet)  as nb  from MatchMatchBundle:Bet m WHERE m.etat=:c  and m.username=:d " )
+
+            ->setParameter('c','Traite')
+            ->setParameter('d',$id);
+
+        return $query->getResult();
+
+    }
+
+
+    function countBetsTotUser($id)
+    {
+        $query=$this->getEntityManager()->createQuery(
+            "select m,count(m.idbet)  as nb  from MatchMatchBundle:Bet m WHERE  m.username=:d " )
+
+
+            ->setParameter('d',$id);
+
+        return $query->getResult();
+
+    }
+
+
+
+
+
     function DistancBets()
     {
         $query=$this->getEntityManager()->createQuery(

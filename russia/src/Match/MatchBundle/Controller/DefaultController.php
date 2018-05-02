@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Match\MatchBundle\sms\SmsGateway;
 
 class DefaultController extends Controller
 {
@@ -26,10 +27,10 @@ class DefaultController extends Controller
 
     public function usersAction(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('MatchMatchBundle:User')->findAll();
 
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $user, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -37,20 +38,17 @@ class DefaultController extends Controller
 
         );
 
-        return $this->render('MatchMatchBundle:Default:users.html.twig', array("users"=>$result
-
+        return $this->render('MatchMatchBundle:Default:users.html.twig', array("users" => $result
 
 
         ));
     }
 
 
-
-    public function promotesAction($id,Request $request)
+    public function promotesAction($id, Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('MatchMatchBundle:User')->find($id);
-
 
 
         $userManager = $this->get('fos_user.user_manager');
@@ -61,8 +59,7 @@ class DefaultController extends Controller
         $users = $em->getRepository('MatchMatchBundle:User')->findAll();
 
 
-
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $users, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
@@ -70,22 +67,23 @@ class DefaultController extends Controller
 
         );
 
-        return $this->render('MatchMatchBundle:Default:users.html.twig', array("users"=>$result
-
+        return $this->render('MatchMatchBundle:Default:users.html.twig', array("users" => $result
 
 
         ));
     }
 
     public function accAction()
-    {$tasks = $this->getDoctrine()->getManager()
-        ->getRepository('MatchMatchBundle:Bet')
-        ->findAll();
+    {
+        $tasks = $this->getDoctrine()->getManager()
+            ->getRepository('MatchMatchBundle:Bet')
+            ->findAll();
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($tasks);
         return new JsonResponse($formatted);
         //return $this->render('MatchMatchBundle:Default:son.html.twig');
     }
+
     public function differentAction($id)
     {
         $tasks = $this->getDoctrine()->getManager()
@@ -98,7 +96,7 @@ class DefaultController extends Controller
     }
 
 
-    public function newBetAction($valeur,$idUser,$idPartie)
+    public function newBetAction($valeur, $idUser, $idPartie)
     {
         $em = $this->getDoctrine()->getManager();
         $partie = new Partie();
@@ -117,7 +115,7 @@ class DefaultController extends Controller
         $em->persist($bet);
         $em->flush();
 
-        $user->setJeton($user->getJeton()-1);
+        $user->setJeton($user->getJeton() - 1);
         $em->persist($user);
         $em->flush();
         $serializer = new Serializer([new ObjectNormalizer()]);
@@ -128,11 +126,11 @@ class DefaultController extends Controller
 
     public function MesBetAction($idUser)
     {
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('MatchMatchBundle:User')->find($idUser);
 
 
-        $bets= $em->getRepository(Bet::class)->mesBets($user);
+        $bets = $em->getRepository(Bet::class)->mesBets($user);
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($bets);
         return new JsonResponse($formatted);
@@ -156,7 +154,7 @@ class DefaultController extends Controller
         $butAway = $resultat->getButaway();
 
         if ($butHome > $butAway) {
-            $equipeGagner=$partie->getHome();
+            $equipeGagner = $partie->getHome();
 
         } elseif ($butAway > $butHome) {
             $equipeGagner = $partie->getAway();
@@ -166,8 +164,6 @@ class DefaultController extends Controller
         }
 
 
-
-
         $serializer = new Serializer([new ObjectNormalizer()]);
         $formatted = $serializer->normalize($equipeGagner);
         return new JsonResponse($formatted);
@@ -175,7 +171,7 @@ class DefaultController extends Controller
     }
 
 
-    public function registerJAction($nom,$prenom,$username,$usernameCano,$mail,$mailCano,$pass,$conf,$num,$natio)
+    public function registerJAction($nom, $prenom, $username, $usernameCano, $mail, $mailCano, $pass, $conf, $num, $natio)
     {
 
         $user = new User();
@@ -216,7 +212,7 @@ class DefaultController extends Controller
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randstring = '';
         for ($i = 0; $i < 10; $i++) {
-            $randstring = $randstring.$characters[rand(0, strlen($characters))];
+            $randstring = $randstring . $characters[rand(0, strlen($characters))];
         }
         $equipe->setGroupe($randstring);
 
@@ -241,5 +237,67 @@ class DefaultController extends Controller
         $formatted = $serializer->normalize($user);
         return new JsonResponse($formatted);
     }
+
+    public function EnvoyerSmsMobileAction($num, $code)
+    {
+        $smsGateway = new SmsGateway('nader.tounekti@esprit.tn', 'mahamahamaha');
+        $deviceID = 84004;
+        $number = '+216' . $num;
+        $message = $code;
+
+        $result = $smsGateway->sendMessageToNumber($number, $message, $deviceID);
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize("ok");
+        return new JsonResponse($formatted);
+    }
+
+    public function statBetGainAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('MatchMatchBundle:User')->find($id);
+        $betsGain = $em->getRepository(Bet::class)->countbetgagneBetsUser($user);
+        $betsPerte = $em->getRepository(Bet::class)->countbetPerteBetsUser($user);
+        $betsTarite = $em->getRepository(Bet::class)->countbetEncursBetsUser($user);
+
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($betsGain[0]);
+        return new JsonResponse($formatted);
+    }
+
+    public function statBetPerteAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('MatchMatchBundle:User')->find($id);
+
+        $betsPerte = $em->getRepository(Bet::class)->countbetPerteBetsUser($user);
+
+
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($betsPerte[0]);
+        return new JsonResponse($formatted);
+    }
+
+    public function statBetEncoursAction($id)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('MatchMatchBundle:User')->find($id);
+
+        $betsTarite = $em->getRepository(Bet::class)->countbetEncursBetsUser($user);
+
+
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($betsTarite[0]);
+        return new JsonResponse($formatted);
+    }
+
 
 }

@@ -95,6 +95,19 @@ numberRandom:
 validercompte:
     path:     /valideU/{id}
     defaults: { _controller: MatchMatchBundle:Default:validerUser }
+codeSMS:
+    path:     /envoieSMS/{num}/{code}
+    defaults: { _controller: MatchMatchBundle:Default:EnvoyerSmsMobile }
+betStatG:
+    path:     /statBetssGain/{id}
+    defaults: { _controller: MatchMatchBundle:Default:statBetGain }
+betStatP:
+    path:     /statBetssPerte/{id}
+    defaults: { _controller: MatchMatchBundle:Default:statBetPerte }
+betStatE:
+    path:     /statBetssCours/{id}
+    defaults: { _controller: MatchMatchBundle:Default:statBetEncours }
+
 
 
 
