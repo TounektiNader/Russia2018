@@ -31,3 +31,9 @@ actualite_actualite_admin:
 actualite_actualite_pdf:
     path:     /pdf/{id}
     defaults: { _controller: ActualiteActualiteBundle:Actualite:pdf }
+ajoutactuj:
+    path:     /ajoutActuJ/{titre}/{texte}/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:newActuJ }
+actualite_actualite_mobile:
+    path:     /mobile
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:acc }

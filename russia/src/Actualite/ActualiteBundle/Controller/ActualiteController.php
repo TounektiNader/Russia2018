@@ -11,7 +11,11 @@ use Russia\RussiaBundle\Form\AvisType;
 use Russia\RussiaBundle\Form\CommentaireType;
 use Russia\RussiaBundle\RussiaRussiaBundle;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+Use Russia\UserBundle\Entity\User;
 
 
 class ActualiteController extends Controller
@@ -260,10 +264,41 @@ class ActualiteController extends Controller
 
         $html= $this->renderView("ActualiteActualiteBundle:Default:pdf.html.twig",array("Actualite"=>$Actualite,"user"=>$user));
         $this->returnPDFResponseFromHTML($html);
+        }
 
 
+    public function newActuJAction($titre,$texte,$id)
+    { $em = $this->getDoctrine()->getManager();
+        $Actualite = new Actualite();
+        $Actualite->setTitre($titre);
+        $Actualite->setTexte($texte);
+
+
+        $user = $em->getRepository('UserBundle:User')->find($id);
+        $Actualite->setUsername($user);
+
+
+        $em->persist($Actualite);
+        $em->flush();
+        $encoder = new JsonResponse();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceHandler(function ($object){
+            return $object->getId();
+        });
+        $serializer = new Serializer(array($normalizer, $encoder));
+        $formatted = $serializer->normalize($Actualite);
+        return new JsonResponse($formatted);
 
     }
 
+    public function accAction()
+    {$tasks = $this->getDoctrine()->getManager()
+        ->getRepository('RussiaRussiaBundle:Actualite')
+        ->findAll();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($tasks);
+        return new JsonResponse($formatted);
+
+    }
 
 }
