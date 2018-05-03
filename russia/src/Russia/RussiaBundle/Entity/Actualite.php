@@ -120,13 +120,13 @@ class Actualite
     }
     public function getWebPath2()
     {
-        return null===$this->nomImage2 ? null : $this->getUploadDir2.'/'.$this->nomImage2;
+        return null===$this->nomImage2 ? null : $this->getUploadDir2().'/'.$this->nomImage2;
     }
-    protected  function getUploadRootDir2()
+    public function getUploadRootDir2()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir2();
     }
-    protected function getUploadDir2()
+    public function getUploadDir2()
     {
         return 'images';
     }
@@ -162,6 +162,22 @@ class Actualite
     public function __toString()
     {
         return $this->getTitre();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFile2()
+    {
+        return $this->file2;
+    }
+
+    /**
+     * @param mixed $file2
+     */
+    public function setFile2($file2)
+    {
+        $this->file2 = $file2;
     }
 
 
