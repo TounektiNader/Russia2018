@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 
@@ -126,7 +129,17 @@ class GestionJoueursController extends Controller
         $joueur = $js->getRepository("EquipeEquipeBundle:Joueurs")->findByidequipe($idequipe);
         return $this->render('EquipeEquipeBundle:GestionJoueurs:afficher_joueurs_client.html.twig', array('joueur' => $joueur, 'user' => $user));
     }
-
+////////////////////////////////////////////////////
+    public function AfficherJoueursClient1Action($idequipe)
+    {
+        $user = $this->getUser();
+        $js = $this->getDoctrine()->getManager();
+        $joueur = $js->getRepository("EquipeEquipeBundle:Joueurs")->findByidequipe($idequipe);
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($joueur);
+        return new JsonResponse($formatted);
+        //return $this->render('EquipeEquipeBundle:GestionJoueurs:afficher_joueurs_client.html.twig', array('joueur' => $joueur, 'user' => $user));
+    }
 
 
 

@@ -7,12 +7,16 @@ use Equipe\EquipeBundle\Form\EquipeType;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 
 
 
 class GestionEquipeController extends Controller
 {
+
 
 
     public function AjouterEquipeAction(Request $request)
@@ -189,5 +193,18 @@ class GestionEquipeController extends Controller
         }
     }
 
+/////////////////////////////////////////////////////////////////
+
+    public function AfficherEquipeClient1Action()
+    {
+        $user=$this->getUser();
+        $eq=$this->getDoctrine()->getManager();
+        $equipe=$eq->getRepository("EquipeEquipeBundle:Equipe")->findAll();
+        $serializer= new Serializer([new ObjectNormalizer()]);
+        $formatted= $serializer->normalize($equipe);
+        return new JsonResponse($formatted);
+        //return $this->render('EquipeEquipeBundle:GestionEquipe:afficher_Equipe_Client.html.twig',array('equipes'=>$equipe,'user'=>$user));
+
+    }
 
 }

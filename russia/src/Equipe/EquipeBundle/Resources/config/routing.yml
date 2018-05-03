@@ -43,3 +43,28 @@ _ExcelJoueur:
 _read_joueur:
     path:     /ReadJoueur
     defaults: { _controller: EquipeEquipeBundle:ExcelReading:ReadJoueur }
+_affichFav:
+    path:     /AfficheJoueurrrr1
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:AffichageFavori1 }
+_affichFav2:
+    path:     /AfficheJoueurrrr2
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:AffichageFavori2 }
+_affichFav3:
+    path:     /AfficheJoueurrrr3
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:AffichageFavori3 }
+_affichFav4:
+    path:     /AfficheJoueurrrr4
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:AffichageFavori4 }
+_affichFav5:
+    path:     /AfficheJoueurrrr5
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:AffichageFavori5 }
+_FavoriEquipe:
+    path:     /Fav/{id}/{idEquipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionFavoris:MakeFavorite }
+_afficher_equipe_Client_1:
+    path:     /AffCliEquipe1
+    defaults: { _controller: EquipeEquipeBundle:GestionEquipe:AfficherEquipeClient1 }
+_afficher_Joueurs_Client_1:
+    path:     /AffCliJoueurs1/{idequipe}
+    defaults: { _controller: EquipeEquipeBundle:GestionJoueurs:AfficherJoueursClient1 }
+
