@@ -300,5 +300,15 @@ class ActualiteController extends Controller
         return new JsonResponse($formatted);
 
     }
+    public function deleteactuAction ( $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $actualite= $em->getRepository("RussiaRussiaBundle:Actualite")->find($id);
+        $em->remove($actualite);
+        $em->flush();
+        $serializer = new Serializer([new ObjectNormalizer()]);
+        $formatted = $serializer->normalize($actualite);
+        return new JsonResponse($formatted);
 
+    }
 }

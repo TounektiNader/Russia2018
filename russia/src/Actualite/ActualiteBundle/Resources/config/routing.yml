@@ -37,3 +37,6 @@ ajoutactuj:
 actualite_actualite_mobile:
     path:     /mobile
     defaults: { _controller: ActualiteActualiteBundle:Actualite:acc }
+suppriactuj:
+    path:     /suppriactuj/{id}
+    defaults: { _controller: ActualiteActualiteBundle:Actualite:deleteactu }
