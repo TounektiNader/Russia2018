@@ -47,7 +47,7 @@ class CadeauController extends Controller
         $user=$em->getRepository("UserBundle:User")->find($iduser);
         $reduction=$promo2[0]->getPromotion();
         $date=$promo2[0]->getExpiration();
-        $date2=new \DateTime( "Nseserveow" ,new \DateTimeZone("Africa/Tunis"));
+        $date2=new \DateTime( "Now" ,new \DateTimeZone("Africa/Tunis"));
         $date2->sub(new \DateInterval('PT'.$hours.'H'));
         if($date<$date2)
         {

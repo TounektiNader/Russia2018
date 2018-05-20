@@ -22,6 +22,9 @@ class ImageUpload
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
         $file->move($this->getTargetDir(), $fileName);
+        $destination='C:/Users/21650/Documents/GitHub/EssaiEssaiProjet/Essai/src/img/'.$fileName;
+        $source=$this->getTargetDir().'/'.$fileName;
+        copy($source,$destination);
 
         return $fileName;
     }
